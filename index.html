@@ -1,13 +1,55 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Portfolio 3D</title>
-    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <title>Mon Portfolio 3D - L'Univers des Compétences</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<canvas id="webgl"></canvas>
-<script type="module" src="main.js"></script>
+    <canvas id="webgl"></canvas>
+    
+    <div id="loadingScreen">
+        <h2>🌍 Création de l'univers portfolio...</h2>
+        <div class="loading-spinner"></div>
+        <p>Génération des villes des compétences</p>
+    </div>
+    
+    <div id="hud">
+        <div id="title">
+            <h1>🌟 L'Univers Portfolio</h1>
+            <p>Explorez les villes de mes compétences</p>
+        </div>
+        
+        <div id="cityInfo">
+            <h3 id="cityName">Ville des Compétences</h3>
+            <p id="cityDescription">Cliquez sur une ville pour découvrir mes compétences</p>
+            <div class="skills" id="citySkills"></div>
+            <button id="projectsButton">
+                📁 Voir les Projets
+            </button>
+        </div>
+        
+        <div id="navigation">
+            <h4>🗺️ Navigation</h4>
+            <button class="city-button" data-city="frontend">🎨 Frontend Valley</button>
+            <button class="city-button" data-city="backend">⚙️ Backend Mountains</button>
+            <button class="city-button" data-city="mobile">📱 Mobile Island</button>
+            <button class="city-button" data-city="design">🎭 Design District</button>
+            <button class="city-button" data-city="data">📊 Data Science City</button>
+            <button class="city-button" data-city="devops">☁️ DevOps Cloud</button>
+        </div>
+        
+        <div id="controls">
+            🖱️ Clic + Glisser : Orbiter<br>
+            🖱️ Molette : Zoom<br>
+            🎯 Clic sur ville : Infos
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
 </body>
+
 </html>
