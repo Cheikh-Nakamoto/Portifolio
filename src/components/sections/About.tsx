@@ -261,7 +261,7 @@ export function About() {
                   {siteConfig.blockchainActivities.interests && (
                     <div className="pt-4 border-t border-light-border dark:border-dark-border">
                       <p className="font-semibold text-sm text-secondary mb-3">
-                        Centre d'intérêt blockchain :
+                        Centre d&apos;intérêt blockchain :
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {siteConfig.blockchainActivities.interests.map((interest) => (

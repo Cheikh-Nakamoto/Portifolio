@@ -124,7 +124,7 @@ export function Contact() {
           <h2 className="text-4xl md:text-5xl font-bold">Contactez-moi</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Une question ? Un projet ? N'hésitez pas à me contacter !
+            Une question ? Un projet ? N&apos;hésitez pas à me contacter !
           </p>
         </motion.div>
 
@@ -272,7 +272,7 @@ export function Contact() {
                   <div className="flex items-center space-x-2 text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/20 p-4 rounded-lg">
                     <HiExclamation className="w-5 h-5" />
                     <p className="text-sm">
-                      Erreur lors de l'envoi. Vérifiez que EmailJS est bien configuré dans .env.local
+                      Erreur lors de l&apos;envoi. Vérifiez que EmailJS est bien configuré dans .env.local
                     </p>
                   </div>
                 )}
