@@ -54,7 +54,7 @@ export function Hero() {
                 <div className="relative w-[calc(100%-6px)] h-[calc(100%-6px)] rounded-full overflow-hidden bg-light-surface dark:bg-dark-surface">
                   {!imageError && (
                     <Image
-                      src="/avatar.jpeg"
+                      src="avatar-original.jpeg"
                       alt={siteConfig.name}
                       fill
                       className="object-cover z-10"
