@@ -97,7 +97,10 @@ export function CodeParticles() {
     // Animate connection lines
     if (linesRef.current) {
       linesRef.current.rotation.y += delta * 0.1;
-      linesRef.current.material.opacity = 0.2 + Math.sin(time) * 0.1;
+      if (!Array.isArray(linesRef.current.material)) {
+        const material = linesRef.current.material as THREE.Material & { opacity: number };
+        material.opacity = 0.2 + Math.sin(time) * 0.1;
+      }
     }
   });
 

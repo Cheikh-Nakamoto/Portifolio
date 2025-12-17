@@ -74,7 +74,7 @@ function SkillCube({ skill, position, color, category }: SkillCubeProps) {
         color="white"
         anchorX="center"
         anchorY="middle"
-        opacity={0.7}
+        fillOpacity={0.7}
       >
         {category}
       </Text>

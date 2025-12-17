@@ -46,6 +46,41 @@ export function ProjectCarousel3D({ projects }: ProjectCarousel3DProps) {
   const getPrevIndex = () => (currentIndex - 1 + projects.length) % projects.length;
   const getNextIndex = () => (currentIndex + 1) % projects.length;
 
+  // Animation variants
+  const variants = {
+    enter: (dir: number) => ({
+      x: dir > 0 ? 400 : -400,
+      opacity: 0,
+      scale: 0.9,
+      rotateY: dir > 0 ? -20 : 20,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      rotateY: 0,
+      z: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 150,
+        damping: 25,
+        duration: 0.8,
+      }
+    },
+    exit: (dir: number) => ({
+      x: dir > 0 ? -400 : 400,
+      opacity: 0,
+      scale: 0.9,
+      rotateY: dir > 0 ? 20 : -20,
+      transition: {
+        type: 'spring',
+        stiffness: 100,
+        damping: 20,
+        duration: 1.2,
+      }
+    })
+  };
+
   return (
     <div className="relative w-full py-12">
       {/* Carousel Container */}
@@ -66,38 +101,11 @@ export function ProjectCarousel3D({ projects }: ProjectCarousel3DProps) {
           <motion.div
             key={`current-${currentIndex}`}
             custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
             className="relative w-[600px] z-10"
-            initial={(direction) => ({
-              x: direction > 0 ? 400 : -400,
-              opacity: 0,
-              scale: 0.9,
-              rotateY: direction > 0 ? -20 : 20,
-            })}
-            animate={{
-              x: 0,
-              opacity: 1,
-              scale: 1,
-              rotateY: 0,
-              z: 0,
-              transition: {
-                type: 'spring',
-                stiffness: 150,
-                damping: 25,
-                duration: 0.8,
-              }
-            }}
-            exit={(direction) => ({
-              x: direction > 0 ? -400 : 400,
-              opacity: 0,
-              scale: 0.9,
-              rotateY: direction > 0 ? 20 : -20,
-              transition: {
-                type: 'spring',
-                stiffness: 100,
-                damping: 20,
-                duration: 1.2,
-              }
-            })}
             style={{ transformStyle: 'preserve-3d' }}
           >
             <ProjectCard project={projects[currentIndex]} index={0} />

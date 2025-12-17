@@ -148,11 +148,12 @@ export function disposeObject(object: THREE.Object3D): void {
  * Dispose material and its textures
  */
 function disposeMaterial(material: THREE.Material): void {
-  if ('map' in material && material.map) material.map.dispose();
-  if ('lightMap' in material && material.lightMap) material.lightMap.dispose();
-  if ('bumpMap' in material && material.bumpMap) material.bumpMap.dispose();
-  if ('normalMap' in material && material.normalMap) material.normalMap.dispose();
-  if ('specularMap' in material && material.specularMap) material.specularMap.dispose();
-  if ('envMap' in material && material.envMap) material.envMap.dispose();
+  const mat = material as any;
+  if ('map' in mat && mat.map) mat.map.dispose();
+  if ('lightMap' in mat && mat.lightMap) mat.lightMap.dispose();
+  if ('bumpMap' in mat && mat.bumpMap) mat.bumpMap.dispose();
+  if ('normalMap' in mat && mat.normalMap) mat.normalMap.dispose();
+  if ('specularMap' in mat && mat.specularMap) mat.specularMap.dispose();
+  if ('envMap' in mat && mat.envMap) mat.envMap.dispose();
   material.dispose();
 }

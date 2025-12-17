@@ -85,8 +85,9 @@ export function NetworkWeb({ socialLinks, onNodeClick }: NetworkWebProps) {
     }
 
     // Animate line opacity
-    if (linesRef.current) {
-      linesRef.current.material.opacity = 0.15 + Math.sin(time * 2) * 0.05;
+    if (linesRef.current && !Array.isArray(linesRef.current.material)) {
+      const material = linesRef.current.material as THREE.Material & { opacity: number };
+      material.opacity = 0.15 + Math.sin(time * 2) * 0.05;
     }
   });
 
