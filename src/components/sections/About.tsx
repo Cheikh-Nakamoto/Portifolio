@@ -1,6 +1,7 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
@@ -14,6 +15,12 @@ import {
   HiBadgeCheck,
   HiCube,
 } from 'react-icons/hi';
+
+// Dynamically import 3D components
+const Scene = dynamic(() => import('@/components/3d/Scene').then(mod => ({ default: mod.Scene })), { ssr: false });
+const Timeline3D = dynamic(() => import('@/components/3d/about/Timeline3D').then(mod => ({ default: mod.Timeline3D })), { ssr: false });
+const SkillCubes = dynamic(() => import('@/components/3d/about/SkillCubes').then(mod => ({ default: mod.SkillCubes })), { ssr: false });
+const CertBadges = dynamic(() => import('@/components/3d/about/CertBadges').then(mod => ({ default: mod.CertBadges })), { ssr: false });
 
 const values = [
   {
@@ -66,106 +73,134 @@ export function About() {
     <section
       id="about"
       ref={ref}
-      className="py-20 px-6 bg-light-surface/50 dark:bg-dark-surface/50"
+      className="relative py-20 px-6 bg-neutral-darkest overflow-hidden min-h-screen"
     >
-      <div className="container mx-auto max-w-6xl">
+      {/* 3D Background Layer */}
+      <div className="absolute inset-0 z-0 opacity-40">
+        <Suspense fallback={<div className="w-full h-full bg-neutral-dark" />}>
+          <Scene camera={{ position: [0, 0, 10], fov: 75 }} enablePostProcessing={false}>
+            <Timeline3D />
+            <group position={[0, -4, 0]}>
+              <SkillCubes />
+            </group>
+            <group position={[0, 4, 0]}>
+              <CertBadges />
+            </group>
+          </Scene>
+        </Suspense>
+      </div>
+
+      {/* Content Overlay */}
+      <div className="container mx-auto max-w-6xl relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
           className="space-y-12"
         >
-          {/* Section Header */}
+          {/* Section Header with glass effect */}
           <motion.div variants={itemVariants} className="text-center space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold">À propos de moi</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
+            <h2 className="text-5xl md:text-6xl font-black gradient-text">
+              À propos de moi
+            </h2>
+            <div className="w-32 h-1.5 bg-primary mx-auto rounded-full glow-primary" />
           </motion.div>
 
-          {/* About Content */}
+          {/* About Content with glassmorphism */}
           <motion.div variants={itemVariants}>
-            <Card className="max-w-4xl mx-auto">
+            <div className="glass-strong p-8 rounded-3xl max-w-4xl mx-auto neon-border">
               <div className="space-y-6">
-                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                <p className="text-lg text-gray-200 leading-relaxed">
                   {siteConfig.about.introduction}
                 </p>
-                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                <p className="text-lg text-gray-200 leading-relaxed">
                   {siteConfig.about.journey}
                 </p>
 
-                {/* Experience */}
-                <div className="pt-6 border-t border-light-border dark:border-dark-border">
+                {/* Experience with enhanced styling */}
+                <div className="pt-6 border-t border-primary/20">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <HiCode className="w-6 h-6 text-primary" />
+                    <div className="w-14 h-14 rounded-2xl glass border-2 border-primary/50 flex items-center justify-center flex-shrink-0 glow-primary">
+                      <HiCode className="w-7 h-7 text-primary" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold">
+                      <h3 className="text-2xl font-bold text-white">
                         {siteConfig.experience.role}
                       </h3>
-                      <p className="text-primary font-medium">
+                      <p className="text-primary font-bold text-lg">
                         {siteConfig.experience.company}
                       </p>
-                      <p className="text-sm text-gray-500 dark:text-gray-500">
+                      <p className="text-sm text-primary/70 font-medium">
                         {siteConfig.experience.period}
                       </p>
-                      <p className="text-gray-700 dark:text-gray-300 mt-2">
+                      <p className="text-gray-200 mt-3 leading-relaxed">
                         {siteConfig.experience.description}
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
-            </Card>
+            </div>
           </motion.div>
 
-          {/* Values */}
+          {/* Values with glassmorphism cards */}
           <motion.div variants={itemVariants}>
-            <h3 className="text-2xl md:text-3xl font-bold text-center mb-8">
+            <h3 className="text-3xl md:text-4xl font-bold text-center mb-8 gradient-text">
               Mes valeurs
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {values.map((value) => (
-                <Card key={value.title} hover className="text-center">
-                  <value.icon className="w-12 h-12 text-primary mx-auto mb-4" />
-                  <h4 className="font-bold text-lg mb-2">{value.title}</h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+              {values.map((value, index) => (
+                <motion.div
+                  key={value.title}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className="glass p-6 rounded-2xl text-center border-2 border-transparent hover:border-primary/50 smooth-transition group"
+                >
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-2xl glass-strong border-2 border-primary/30 flex items-center justify-center group-hover:glow-primary smooth-transition">
+                    <value.icon className="w-9 h-9 text-primary" />
+                  </div>
+                  <h4 className="font-bold text-xl mb-2 text-white">{value.title}</h4>
+                  <p className="text-sm text-gray-300">
                     {value.description}
                   </p>
-                </Card>
+                </motion.div>
               ))}
             </div>
           </motion.div>
 
-          {/* Certifications */}
+          {/* Certifications with enhanced glassmorphism */}
           {siteConfig.certifications && siteConfig.certifications.length > 0 && (
             <motion.div variants={itemVariants}>
-              <h3 className="text-2xl md:text-3xl font-bold text-center mb-8">
+              <h3 className="text-3xl md:text-4xl font-bold text-center mb-8 gradient-text">
                 Certifications
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                 {siteConfig.certifications.map((cert) => (
-                  <Card key={cert.name} hover className="group">
+                  <motion.div
+                    key={cert.name}
+                    whileHover={{ scale: 1.02, y: -3 }}
+                    className="glass-strong p-6 rounded-2xl border-2 border-secondary/30 hover:border-secondary smooth-transition group"
+                  >
                     <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                        <HiBadgeCheck className="w-6 h-6 text-primary" />
+                      <div className="w-14 h-14 rounded-2xl glass border-2 border-secondary/50 flex items-center justify-center flex-shrink-0 group-hover:glow-secondary smooth-transition">
+                        <HiBadgeCheck className="w-7 h-7 text-secondary" />
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-bold text-lg mb-1">{cert.name}</h4>
-                        <p className="text-primary font-medium text-sm">{cert.issuer}</p>
-                        <p className="text-gray-500 dark:text-gray-500 text-sm">{cert.date}</p>
+                        <h4 className="font-bold text-xl mb-1 text-white">{cert.name}</h4>
+                        <p className="text-secondary font-bold text-sm">{cert.issuer}</p>
+                        <p className="text-primary/70 text-sm font-medium">{cert.date}</p>
                         {cert.url && cert.url !== '#' && (
                           <a
                             href={cert.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-secondary hover:underline text-sm mt-2 inline-block"
+                            className="text-accent hover:text-accent/80 font-semibold text-sm mt-2 inline-block smooth-transition"
                           >
                             Voir la certification →
                           </a>
                         )}
                       </div>
                     </div>
-                  </Card>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
@@ -277,50 +312,74 @@ export function About() {
             </motion.div>
           )}
 
-          {/* Skills */}
+          {/* Skills with modern glassmorphism */}
           <motion.div variants={itemVariants}>
-            <h3 className="text-2xl md:text-3xl font-bold text-center mb-8">
+            <h3 className="text-3xl md:text-4xl font-bold text-center mb-8 gradient-text">
               Compétences techniques
             </h3>
-            <Card className="max-w-4xl mx-auto">
-              <div className="space-y-6">
+            <div className="glass-strong p-8 rounded-3xl max-w-4xl mx-auto neon-border">
+              <div className="space-y-8">
                 {/* Languages */}
                 <div>
-                  <h4 className="font-semibold text-lg mb-3 text-primary">
+                  <h4 className="font-bold text-2xl mb-4 text-primary flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                     Langages
                   </h4>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-3">
                     {skillsByCategory.languages.map((skill) => (
-                      <Badge key={skill.name}>{skill.name}</Badge>
+                      <motion.span
+                        key={skill.name}
+                        whileHover={{ scale: 1.1 }}
+                        className="glass px-4 py-2 rounded-xl border-2 border-primary/30 hover:border-primary
+                          text-white font-semibold smooth-transition hover:glow-primary cursor-pointer"
+                      >
+                        {skill.name}
+                      </motion.span>
                     ))}
                   </div>
                 </div>
 
                 {/* Frameworks */}
                 <div>
-                  <h4 className="font-semibold text-lg mb-3 text-secondary">
+                  <h4 className="font-bold text-2xl mb-4 text-secondary flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
                     Frameworks & Libraries
                   </h4>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-3">
                     {skillsByCategory.frameworks.map((skill) => (
-                      <Badge key={skill.name}>{skill.name}</Badge>
+                      <motion.span
+                        key={skill.name}
+                        whileHover={{ scale: 1.1 }}
+                        className="glass px-4 py-2 rounded-xl border-2 border-secondary/30 hover:border-secondary
+                          text-white font-semibold smooth-transition hover:glow-secondary cursor-pointer"
+                      >
+                        {skill.name}
+                      </motion.span>
                     ))}
                   </div>
                 </div>
 
                 {/* Tools */}
                 <div>
-                  <h4 className="font-semibold text-lg mb-3 text-accent">
+                  <h4 className="font-bold text-2xl mb-4 text-accent flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
                     Outils & Technologies
                   </h4>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-3">
                     {skillsByCategory.tools.map((skill) => (
-                      <Badge key={skill.name}>{skill.name}</Badge>
+                      <motion.span
+                        key={skill.name}
+                        whileHover={{ scale: 1.1 }}
+                        className="glass px-4 py-2 rounded-xl border-2 border-accent/30 hover:border-accent
+                          text-white font-semibold smooth-transition hover:glow-accent cursor-pointer"
+                      >
+                        {skill.name}
+                      </motion.span>
                     ))}
                   </div>
                 </div>
               </div>
-            </Card>
+            </div>
           </motion.div>
         </motion.div>
       </div>

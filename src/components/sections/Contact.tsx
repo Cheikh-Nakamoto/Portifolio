@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
-import { Card } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
 import { useInView } from '@/hooks/useInView';
 import { ContactForm } from '@/types';
 import { siteConfig } from '@/config/site';
@@ -16,6 +15,11 @@ import {
 } from 'react-icons/hi';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
+// Dynamically import 3D components
+const Scene = dynamic(() => import('@/components/3d/Scene').then(mod => ({ default: mod.Scene })), { ssr: false });
+const NetworkWeb = dynamic(() => import('@/components/3d/contact/NetworkWeb').then(mod => ({ default: mod.NetworkWeb })), { ssr: false });
+const PaperPlane = dynamic(() => import('@/components/3d/contact/PaperPlane').then(mod => ({ default: mod.PaperPlane })), { ssr: false });
+
 export function Contact() {
   const { ref, isInView } = useInView({ threshold: 0.1 });
   const [formData, setFormData] = useState<ContactForm>({
@@ -24,6 +28,7 @@ export function Contact() {
     message: '',
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [isPlaneFlying, setIsPlaneFlying] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,6 +71,8 @@ export function Contact() {
         publicKey
       );
 
+      // Trigger paper plane flying animation
+      setIsPlaneFlying(true);
       setStatus('success');
       setFormData({ name: '', email: '', message: '' });
 
@@ -103,27 +110,44 @@ export function Contact() {
   ];
 
   const socialLinks = [
-    { icon: FaGithub, href: siteConfig.links.github, label: 'GitHub' },
-    { icon: FaLinkedin, href: siteConfig.links.linkedin, label: 'LinkedIn' },
-    { icon: FaTwitter, href: siteConfig.links.twitter, label: 'Twitter' },
+    { icon: FaGithub, href: siteConfig.links.github, label: 'GitHub', url: siteConfig.links.github },
+    { icon: FaLinkedin, href: siteConfig.links.linkedin, label: 'LinkedIn', url: siteConfig.links.linkedin },
+    { icon: FaTwitter, href: siteConfig.links.twitter, label: 'Twitter', url: siteConfig.links.twitter },
   ];
 
   return (
     <section
       id="contact"
       ref={ref}
-      className="py-20 px-6 bg-light-surface/50 dark:bg-dark-surface/50"
+      className="relative py-20 px-6 bg-neutral-dark overflow-hidden min-h-screen"
     >
-      <div className="container mx-auto max-w-6xl">
+      {/* 3D Background with Network Web and Paper Plane */}
+      <div className="absolute inset-0 z-0 opacity-40">
+        <Suspense fallback={<div className="w-full h-full bg-neutral-dark" />}>
+          <Scene camera={{ position: [0, 0, 8], fov: 75 }} enablePostProcessing={false}>
+            <NetworkWeb
+              socialLinks={socialLinks}
+              onNodeClick={(url) => window.open(url, '_blank')}
+            />
+            <PaperPlane
+              isFlying={isPlaneFlying}
+              onAnimationComplete={() => setIsPlaneFlying(false)}
+            />
+          </Scene>
+        </Suspense>
+      </div>
+
+      {/* Content Overlay */}
+      <div className="container mx-auto max-w-6xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5 }}
           className="text-center space-y-4 mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold">Contactez-moi</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <h2 className="text-5xl md:text-6xl font-black gradient-text">Contactez-moi</h2>
+          <div className="w-32 h-1.5 bg-primary mx-auto rounded-full glow-primary" />
+          <p className="text-lg text-gray-200 max-w-2xl mx-auto">
             Une question ? Un projet ? N&apos;hésitez pas à me contacter !
           </p>
         </motion.div>
@@ -136,54 +160,71 @@ export function Contact() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="space-y-6"
           >
-            <Card>
-              <h3 className="text-2xl font-bold mb-6">Informations</h3>
+            {/* Information Card */}
+            <div className="glass-strong p-8 rounded-3xl border-2 border-primary/30 hover:border-primary/50 smooth-transition group">
+              <h3 className="text-2xl font-bold mb-6 text-white group-hover:gradient-text smooth-transition">
+                Informations
+              </h3>
               <div className="space-y-4">
                 {contactInfo.map((info) => (
-                  <div key={info.label} className="flex items-start space-x-4">
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <motion.div
+                    key={info.label}
+                    whileHover={{ x: 5 }}
+                    className="flex items-start space-x-4"
+                  >
+                    <div className="w-12 h-12 rounded-xl glass border border-primary/30 flex items-center justify-center flex-shrink-0 group-hover:border-primary smooth-transition">
                       <info.icon className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-700 dark:text-gray-300">
+                      <p className="font-semibold text-gray-200">
                         {info.label}
                       </p>
                       {info.href ? (
                         <a
                           href={info.href}
-                          className="text-primary hover:underline"
+                          className="text-primary hover:text-secondary smooth-transition hover:underline"
                         >
                           {info.value}
                         </a>
                       ) : (
-                        <p className="text-gray-600 dark:text-gray-400">
+                        <p className="text-gray-300">
                           {info.value}
                         </p>
                       )}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </Card>
+            </div>
 
-            {/* Social Links */}
-            <Card>
-              <h3 className="text-xl font-bold mb-4">Suivez-moi</h3>
+            {/* Social Links Card */}
+            <div className="glass-strong p-8 rounded-3xl border-2 border-secondary/30 hover:border-secondary/50 smooth-transition group">
+              <h3 className="text-xl font-bold mb-6 text-white group-hover:gradient-text smooth-transition">
+                Suivez-moi
+              </h3>
               <div className="flex space-x-4">
                 {socialLinks.map((link) => (
-                  <a
+                  <motion.a
                     key={link.label}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-4 rounded-lg bg-light-bg dark:bg-dark-bg border border-light-border dark:border-dark-border hover:border-primary transition-all hover:scale-110 group"
+                    whileHover={{ scale: 1.1, y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="p-4 rounded-xl glass border-2 border-primary/30 hover:border-primary hover:glow-primary smooth-transition group/icon"
                     aria-label={link.label}
                   >
-                    <link.icon className="w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors" />
-                  </a>
+                    <link.icon className="w-7 h-7 text-white group-hover/icon:text-primary smooth-transition" />
+                  </motion.a>
                 ))}
               </div>
-            </Card>
+
+              {/* 3D Network Web hint */}
+              <p className="text-sm text-gray-400 mt-6 text-center">
+                <span className="inline-block w-2 h-2 rounded-full bg-primary animate-pulse mr-2" />
+                Explorez le réseau 3D en arrière-plan
+              </p>
+            </div>
           </motion.div>
 
           {/* Contact Form */}
@@ -192,12 +233,12 @@ export function Contact() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <Card>
+            <div className="glass-strong p-8 rounded-3xl border-2 border-primary/30 hover:border-primary/50 smooth-transition">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium mb-2"
+                    className="block text-sm font-bold mb-2 text-gray-200"
                   >
                     Nom complet
                   </label>
@@ -208,7 +249,7 @@ export function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg bg-light-bg dark:bg-dark-bg border border-light-border dark:border-dark-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-xl glass border-2 border-primary/20 focus:border-primary focus:glow-primary outline-none smooth-transition text-white placeholder-gray-400"
                     placeholder="Votre nom"
                   />
                 </div>
@@ -216,7 +257,7 @@ export function Contact() {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium mb-2"
+                    className="block text-sm font-bold mb-2 text-gray-200"
                   >
                     Email
                   </label>
@@ -227,7 +268,7 @@ export function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg bg-light-bg dark:bg-dark-bg border border-light-border dark:border-dark-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-xl glass border-2 border-primary/20 focus:border-primary focus:glow-primary outline-none smooth-transition text-white placeholder-gray-400"
                     placeholder="votre@email.com"
                   />
                 </div>
@@ -235,7 +276,7 @@ export function Contact() {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-sm font-medium mb-2"
+                    className="block text-sm font-bold mb-2 text-gray-200"
                   >
                     Message
                   </label>
@@ -246,38 +287,59 @@ export function Contact() {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 rounded-lg bg-light-bg dark:bg-dark-bg border border-light-border dark:border-dark-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-xl glass border-2 border-primary/20 focus:border-primary focus:glow-primary outline-none smooth-transition resize-none text-white placeholder-gray-400"
                     placeholder="Votre message..."
                   />
                 </div>
 
-                <Button
+                <motion.button
                   type="submit"
-                  className="w-full"
                   disabled={status === 'loading'}
+                  whileHover={{ scale: status === 'loading' ? 1 : 1.02 }}
+                  whileTap={{ scale: status === 'loading' ? 1 : 0.98 }}
+                  className="w-full px-6 py-4 rounded-xl font-bold text-lg border-2 border-primary bg-primary/20 hover:bg-primary/30 text-white hover:glow-primary smooth-transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {status === 'loading'
-                    ? 'Envoi en cours...'
-                    : 'Envoyer le message'}
-                </Button>
+                  {status === 'loading' ? (
+                    <span className="flex items-center justify-center gap-3">
+                      <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      Envoi en cours...
+                    </span>
+                  ) : (
+                    'Envoyer le message'
+                  )}
+                </motion.button>
 
                 {status === 'success' && (
-                  <div className="flex items-center space-x-2 text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/20 p-4 rounded-lg">
-                    <HiCheckCircle className="w-5 h-5" />
-                    <p className="text-sm">Message envoyé avec succès !</p>
-                  </div>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex items-center space-x-3 glass border-2 border-primary/50 p-4 rounded-xl"
+                  >
+                    <HiCheckCircle className="w-6 h-6 text-primary flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-bold text-primary">Message envoyé avec succès !</p>
+                      <p className="text-xs text-gray-300 mt-1">L&apos;avion en papier a décollé 🚀</p>
+                    </div>
+                  </motion.div>
                 )}
 
                 {status === 'error' && (
-                  <div className="flex items-center space-x-2 text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/20 p-4 rounded-lg">
-                    <HiExclamation className="w-5 h-5" />
-                    <p className="text-sm">
-                      Erreur lors de l&apos;envoi. Vérifiez que EmailJS est bien configuré dans .env.local
-                    </p>
-                  </div>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex items-center space-x-3 glass border-2 border-accent/50 p-4 rounded-xl"
+                  >
+                    <HiExclamation className="w-6 h-6 text-accent flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-bold text-accent">Erreur lors de l&apos;envoi</p>
+                      <p className="text-xs text-gray-300 mt-1">
+                        Vérifiez que EmailJS est bien configuré dans .env.local
+                      </p>
+                    </div>
+                  </motion.div>
                 )}
               </form>
-            </Card>
+            </div>
           </motion.div>
         </div>
       </div>

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Project } from '@/types';
-import { getFeaturedProjects } from '@/lib/github';
+import { getProjects } from '@/lib/github';
 
 export function useGithubProjects() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -13,8 +13,13 @@ export function useGithubProjects() {
     async function loadProjects() {
       try {
         setLoading(true);
-        const data = await getFeaturedProjects(6);
-        setProjects(data);
+        // Charge TOUS les projets (jusqu'à 100 repos publics)
+        const data = await getProjects();
+
+        // Trier par étoiles pour afficher les meilleurs en premier
+        const sortedData = data.sort((a, b) => b.stars - a.stars);
+
+        setProjects(sortedData);
         setError(null);
       } catch (err) {
         setError('Erreur lors du chargement des projets');

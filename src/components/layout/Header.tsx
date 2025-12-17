@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { siteConfig } from '@/config/site';
 import { HiMenu, HiX, HiCode } from 'react-icons/hi';
@@ -16,10 +17,26 @@ const navItems = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      // Track active section
+      const sections = navItems.map(item => item.href.slice(1));
+      const currentSection = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+
+      if (currentSection) {
+        setActiveSection(currentSection);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -35,77 +52,163 @@ export function Header() {
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <motion.header
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className={`fixed top-0 left-0 right-0 z-50 smooth-transition ${
         isScrolled
-          ? 'bg-light-bg/80 dark:bg-dark-bg/80 backdrop-blur-lg border-b border-light-border dark:border-dark-border shadow-lg'
-          : 'bg-transparent'
+          ? 'glass-strong border-b-2 border-primary/30 shadow-2xl'
+          : 'glass-light border-b-2 border-primary/10'
       }`}
     >
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center space-x-2 group"
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary blur-md opacity-50 group-hover:opacity-75 transition-opacity" />
-              <div className="relative w-10 h-10 bg-dark-surface dark:bg-light-surface rounded-lg flex items-center justify-center">
-                <HiCode className="w-6 h-6 text-primary" />
+            <Link
+              href="/"
+              className="flex items-center space-x-3 group"
+            >
+              <div className="relative">
+                {/* Animated glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary blur-lg opacity-50 group-hover:opacity-100 smooth-transition rounded-xl" />
+
+                {/* Icon container */}
+                <div className="relative w-12 h-12 glass-strong border-2 border-primary/50 rounded-xl flex items-center justify-center group-hover:border-primary smooth-transition group-hover:glow-primary">
+                  <HiCode className="w-7 h-7 text-primary group-hover:rotate-180 smooth-transition" />
+                </div>
               </div>
-            </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent group-hover:scale-105 transition-transform">
-              Nakamoto
-            </span>
-          </Link>
+
+              <span className="text-2xl font-black gradient-text group-hover:scale-110 smooth-transition">
+                {siteConfig.name}
+              </span>
+            </Link>
+          </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.href}
-                onClick={() => scrollToSection(item.href)}
-                className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium"
-              >
-                {item.label}
-              </button>
-            ))}
-            <ThemeToggle />
+          <div className="hidden md:flex items-center space-x-2">
+            {navItems.map((item, index) => {
+              const isActive = activeSection === item.href.slice(1);
+              return (
+                <motion.button
+                  key={item.href}
+                  onClick={() => scrollToSection(item.href)}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`relative px-4 py-2 rounded-xl font-bold smooth-transition ${
+                    isActive
+                      ? 'glass-strong border-2 border-primary text-primary glow-primary'
+                      : 'glass border border-primary/20 text-gray-200 hover:border-primary/50 hover:text-primary'
+                  }`}
+                >
+                  {item.label}
+
+                  {/* Active indicator dot */}
+                  {isActive && (
+                    <motion.span
+                      layoutId="activeSection"
+                      className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full glow-primary"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                    />
+                  )}
+                </motion.button>
+              );
+            })}
+
+            <div className="ml-4">
+              <ThemeToggle />
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex md:hidden items-center space-x-4">
             <ThemeToggle />
-            <button
+            <motion.button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-gray-700 dark:text-gray-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-3 glass-strong border-2 border-primary/30 hover:border-primary rounded-xl smooth-transition"
               aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? (
-                <HiX className="w-6 h-6" />
-              ) : (
-                <HiMenu className="w-6 h-6" />
-              )}
-            </button>
+              <AnimatePresence mode="wait">
+                {isMobileMenuOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <HiX className="w-6 h-6 text-primary" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <HiMenu className="w-6 h-6 text-primary" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 py-4 space-y-4 border-t border-light-border dark:border-dark-border">
-            {navItems.map((item) => (
-              <button
-                key={item.href}
-                onClick={() => scrollToSection(item.href)}
-                className="block w-full text-left text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium py-2"
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        )}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden overflow-hidden"
+            >
+              <div className="mt-4 py-4 space-y-2 border-t-2 border-primary/30">
+                {navItems.map((item, index) => {
+                  const isActive = activeSection === item.href.slice(1);
+                  return (
+                    <motion.button
+                      key={item.href}
+                      onClick={() => scrollToSection(item.href)}
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      exit={{ x: -20, opacity: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                      whileHover={{ x: 10 }}
+                      whileTap={{ scale: 0.98 }}
+                      className={`block w-full text-left px-4 py-3 rounded-xl font-bold smooth-transition ${
+                        isActive
+                          ? 'glass-strong border-2 border-primary text-primary glow-primary'
+                          : 'glass border border-primary/20 text-gray-200 hover:border-primary/50'
+                      }`}
+                    >
+                      <span className="flex items-center justify-between">
+                        {item.label}
+                        {isActive && (
+                          <span className="w-2 h-2 bg-primary rounded-full glow-primary animate-pulse" />
+                        )}
+                      </span>
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
-    </header>
+    </motion.header>
   );
 }

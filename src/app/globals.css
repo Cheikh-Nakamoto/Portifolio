@@ -6,18 +6,72 @@
 
 @layer base {
   :root {
-    --primary: 0 255 135;
-    --secondary: 0 217 255;
-    --accent: 255 0 128;
+    /* Neo-Brutalist Palette 2025 - Flat Colors */
+    --primary: 0 153 255;      /* Electric blue */
+    --secondary: 255 107 53;   /* Burnt orange */
+    --accent: 255 255 255;     /* Pure white */
+    --neutral-darkest: 0 0 0;  /* Pure black */
+    --neutral-dark: 26 26 26;
+    --neutral-medium: 45 45 45;
   }
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
-    @apply bg-light-bg dark:bg-dark-bg text-gray-900 dark:text-white;
+    @apply bg-light-bg dark:bg-neutral-dark text-gray-900 dark:text-white;
     font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Hide default cursor for custom cursor */
+  * {
+    cursor: none !important;
+  }
+
+  /* Make interactive elements still appear interactive */
+  button, a, input, textarea, select {
+    cursor: none !important;
+  }
+}
+
+@layer components {
+  /* Glassmorphism utilities */
+  .glass {
+    @apply bg-glass-bg backdrop-blur-md border border-glass-border;
+  }
+
+  .glass-strong {
+    @apply bg-glass-bg backdrop-blur-xl border border-glass-border;
+  }
+
+  .glass-light {
+    @apply bg-glass-bg/50 backdrop-blur-sm border border-glass-border/50;
+  }
+
+  /* Neo-Brutalist Glow effects - Bold shadows */
+  .glow-primary {
+    box-shadow: 0 0 20px rgba(0, 153, 255, 0.5), 0 0 40px rgba(0, 153, 255, 0.3);
+  }
+
+  .glow-secondary {
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.5), 0 0 40px rgba(255, 107, 53, 0.3);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Flat text color - NO gradients */
+  .gradient-text {
+    @apply text-primary font-black;
+  }
+
+  /* Neo border - thick and bold */
+  .neon-border {
+    @apply border-2 border-primary shadow-[0_0_15px_rgba(0,153,255,0.4)];
   }
 }
 
@@ -26,24 +80,45 @@
     text-wrap: balance;
   }
 
-  /* Custom scrollbar */
+  /* Custom scrollbar with new palette */
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-light-surface dark:bg-dark-surface;
+    @apply bg-neutral-medium;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-primary/50 rounded-full hover:bg-primary/70;
+    @apply bg-primary/30 rounded-full hover:bg-primary/50;
+    box-shadow: 0 0 6px rgba(0, 153, 255, 0.3);
   }
 
   /* Line clamp utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
   .line-clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  /* Prevent text selection on interactive 3D elements */
+  .no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Smooth animations */
+  .smooth-transition {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
