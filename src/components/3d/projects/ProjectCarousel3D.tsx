@@ -14,24 +14,18 @@ export function ProjectCarousel3D({ projects }: ProjectCarousel3DProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
-  if (!projects || projects.length === 0) {
-    return null;
-  }
-
   // Navigation handlers with infinite loop
-  const goToNext = () => {
+  const goToNext = React.useCallback(() => {
+    if (!projects || projects.length === 0) return;
     setDirection(1);
     setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length);
-  };
+  }, [projects]);
 
-  const goToPrevious = () => {
+  const goToPrevious = React.useCallback(() => {
+    if (!projects || projects.length === 0) return;
     setDirection(-1);
     setCurrentIndex((prevIndex) => (prevIndex - 1 + projects.length) % projects.length);
-  };
-
-  // Get indices for prev, current, next (with wrapping)
-  const getPrevIndex = () => (currentIndex - 1 + projects.length) % projects.length;
-  const getNextIndex = () => (currentIndex + 1) % projects.length;
+  }, [projects]);
 
   // Keyboard navigation
   React.useEffect(() => {
@@ -41,7 +35,16 @@ export function ProjectCarousel3D({ projects }: ProjectCarousel3DProps) {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentIndex]);
+  }, [goToNext, goToPrevious]);
+
+  // Early return after hooks
+  if (!projects || projects.length === 0) {
+    return null;
+  }
+
+  // Get indices for prev, current, next (with wrapping)
+  const getPrevIndex = () => (currentIndex - 1 + projects.length) % projects.length;
+  const getNextIndex = () => (currentIndex + 1) % projects.length;
 
   return (
     <div className="relative w-full py-12">
