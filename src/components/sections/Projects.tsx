@@ -1,56 +1,24 @@
 'use client';
 
-import React, { Suspense } from 'react';
-import dynamic from 'next/dynamic';
-import { motion } from 'framer-motion';
+import React from 'react';
 import { useGithubProjects } from '@/hooks/useGithubProjects';
-import { useInView } from '@/hooks/useInView';
 import { HiRefresh } from 'react-icons/hi';
-import { ProjectCarousel3D } from '@/components/3d/projects/ProjectCarousel3D';
-
-// Dynamically import 3D components
-const Scene = dynamic(() => import('@/components/3d/Scene').then(mod => ({ default: mod.Scene })), { ssr: false });
-const CodeParticles = dynamic(() => import('@/components/3d/projects/CodeParticles').then(mod => ({ default: mod.CodeParticles })), { ssr: false });
+import { ProjectCard } from '@/components/ProjectCard';
 
 export function Projects() {
   const { projects, loading, error } = useGithubProjects();
-  const { ref, isInView } = useInView({ threshold: 0.1 });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
 
   return (
-    <section id="projects" ref={ref} className="relative py-12 px-6 bg-neutral-dark overflow-hidden">
-      {/* 3D Background with Code Particles */}
-      <div className="absolute inset-0 z-0 opacity-30">
-        <Suspense fallback={<div className="w-full h-full bg-neutral-dark" />}>
-          <Scene camera={{ position: [0, 0, 8], fov: 75 }} enablePostProcessing={false}>
-            <CodeParticles />
-          </Scene>
-        </Suspense>
-      </div>
-
+    <section id="projects" className="relative py-12 px-6 bg-neutral-dark overflow-hidden">
       {/* Content Overlay */}
       <div className="container mx-auto max-w-7xl relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.5 }}
-          className="text-center space-y-4 mb-12"
-        >
+        <div className="text-center space-y-4 mb-12">
           <h2 className="text-5xl md:text-6xl font-black gradient-text">Mes Projets</h2>
           <div className="w-32 h-1.5 bg-primary mx-auto rounded-full glow-primary" />
           <p className="text-lg text-gray-200 max-w-2xl mx-auto">
             Découvrez mes projets open source et mes contributions sur GitHub
           </p>
-        </motion.div>
+        </div>
 
         {loading && (
           <div className="flex flex-col items-center justify-center py-20 space-y-6">
@@ -92,39 +60,27 @@ export function Projects() {
         )}
 
         {!loading && !error && projects.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6 }}
-          >
-            <ProjectCarousel3D projects={projects} />
-          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <ProjectCard key={project.id || index} project={project} index={index} />
+            ))}
+          </div>
         )}
 
         {!loading && !error && projects.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="text-center mt-16"
-          >
-            <motion.a
+          <div className="text-center mt-16">
+            <a
               href="https://github.com/cheikh-nakamoto"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-3 glass-strong px-8 py-4 rounded-2xl border-2 border-primary/50 hover:border-primary text-white font-bold text-lg hover:glow-primary smooth-transition"
+              className="inline-flex items-center gap-3 glass-strong px-8 py-4 rounded-2xl border-2 border-primary/50 hover:border-primary text-white font-bold text-lg hover:glow-primary hover:scale-105 active:scale-95 smooth-transition"
             >
               Voir tous mes projets sur GitHub
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              >
+              <div>
                 <HiRefresh className="w-6 h-6" />
-              </motion.div>
-            </motion.a>
-          </motion.div>
+              </div>
+            </a>
+          </div>
         )}
       </div>
     </section>

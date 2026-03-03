@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef } from 'react';
 import Lenis from 'lenis';
-import { useSceneStore } from '@/store/scene.store';
 
 interface SmoothScrollProviderProps {
   children: React.ReactNode;
@@ -10,11 +9,10 @@ interface SmoothScrollProviderProps {
 
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   const lenisRef = useRef<Lenis | null>(null);
-  const setScrollProgress = useSceneStore((state) => state.setScrollProgress);
-  const prefersReducedMotion = useSceneStore((state) => state.prefersReducedMotion);
 
   useEffect(() => {
-    // Skip smooth scroll if user prefers reduced motion
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
     // Initialize Lenis
@@ -29,11 +27,6 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
 
     lenisRef.current = lenis;
 
-    // Update scroll progress
-    lenis.on('scroll', ({ progress }: { progress: number }) => {
-      setScrollProgress(progress);
-    });
-
     // Animation loop
     function raf(time: number) {
       lenis.raf(time);
@@ -46,7 +39,7 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     return () => {
       lenis.destroy();
     };
-  }, [setScrollProgress, prefersReducedMotion]);
+  }, []);
 
   return <>{children}</>;
 }

@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Project } from '@/types';
@@ -14,49 +13,9 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
-  // 3D Tilt effect
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseXSpring = useSpring(x);
-  const mouseYSpring = useSpring(y);
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['7.5deg', '-7.5deg']);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-7.5deg', '7.5deg']);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-    x.set(xPct);
-    y.set(yPct);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: 'preserve-3d',
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      whileHover={{ scale: 1.02 }}
-      className="h-full"
-    >
-      <div className="glass-strong p-6 rounded-3xl h-full flex flex-col border-2 border-primary/20 hover:border-primary/50 smooth-transition group relative overflow-hidden">
+    <div className="h-full">
+      <div className="glass-strong p-6 rounded-3xl h-full flex flex-col border-2 border-primary/20 hover:border-primary/50 hover:-translate-y-2 smooth-transition group relative overflow-hidden transition-transform duration-300">
         {/* Holographic overlay effect */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 smooth-transition pointer-events-none" />
 
@@ -89,13 +48,12 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         {project.topics && project.topics.length > 0 && (
           <div className="flex flex-wrap gap-2 mb-4 relative z-10">
             {project.topics.slice(0, 5).map((topic) => (
-              <motion.span
+              <span
                 key={topic}
-                whileHover={{ scale: 1.1 }}
-                className="glass px-3 py-1 rounded-lg text-xs font-semibold text-primary border border-primary/30 hover:border-primary smooth-transition"
+                className="glass px-3 py-1 rounded-lg text-xs font-semibold text-primary border border-primary/30 hover:border-primary hover:scale-105 smooth-transition inline-block"
               >
                 {topic}
-              </motion.span>
+              </span>
             ))}
             {project.topics.length > 5 && (
               <span className="glass px-3 py-1 rounded-lg text-xs font-semibold text-secondary border border-secondary/30">
@@ -119,28 +77,24 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
         {/* Actions */}
         <div className="flex gap-3 mt-auto relative z-10">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <button
             onClick={() => window.open(project.githubUrl, '_blank')}
-            className="flex-1 glass-strong px-4 py-3 rounded-xl font-bold border-2 border-secondary/50 hover:border-secondary text-white hover:glow-secondary smooth-transition flex items-center justify-center gap-2"
+            className="flex-1 glass-strong px-4 py-3 rounded-xl font-bold border-2 border-secondary/50 hover:border-secondary text-white hover:glow-secondary hover:scale-105 active:scale-95 smooth-transition flex items-center justify-center gap-2"
           >
             <FaGithub />
             GitHub
-          </motion.button>
+          </button>
           {project.demoUrl && (
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <button
               onClick={() => window.open(project.demoUrl, '_blank')}
-              className="flex-1 glass-strong px-4 py-3 rounded-xl font-bold border-2 border-primary/50 hover:border-primary bg-gradient-to-r from-primary/10 to-secondary/10 text-white hover:glow-primary smooth-transition flex items-center justify-center gap-2"
+              className="flex-1 glass-strong px-4 py-3 rounded-xl font-bold border-2 border-primary/50 hover:border-primary bg-gradient-to-r from-primary/10 to-secondary/10 text-white hover:glow-primary hover:scale-105 active:scale-95 smooth-transition flex items-center justify-center gap-2"
             >
               <FaExternalLinkAlt />
               Demo
-            </motion.button>
+            </button>
           )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

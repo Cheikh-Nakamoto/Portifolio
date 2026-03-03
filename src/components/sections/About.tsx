@@ -1,12 +1,9 @@
 'use client';
 
-import React, { Suspense } from 'react';
-import dynamic from 'next/dynamic';
-import { motion } from 'framer-motion';
+import React from 'react';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { siteConfig } from '@/config/site';
-import { useInView } from '@/hooks/useInView';
 import {
   HiCode,
   HiLightningBolt,
@@ -15,12 +12,6 @@ import {
   HiBadgeCheck,
   HiCube,
 } from 'react-icons/hi';
-
-// Dynamically import 3D components
-const Scene = dynamic(() => import('@/components/3d/Scene').then(mod => ({ default: mod.Scene })), { ssr: false });
-const Timeline3D = dynamic(() => import('@/components/3d/about/Timeline3D').then(mod => ({ default: mod.Timeline3D })), { ssr: false });
-const SkillCubes = dynamic(() => import('@/components/3d/about/SkillCubes').then(mod => ({ default: mod.SkillCubes })), { ssr: false });
-const CertBadges = dynamic(() => import('@/components/3d/about/CertBadges').then(mod => ({ default: mod.CertBadges })), { ssr: false });
 
 const values = [
   {
@@ -46,23 +37,6 @@ const values = [
 ];
 
 export function About() {
-  const { ref, isInView } = useInView({ threshold: 0.1 });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
-
   const skillsByCategory = {
     languages: siteConfig.skills.filter((s) => s.category === 'language'),
     frameworks: siteConfig.skills.filter((s) => s.category === 'framework'),
@@ -72,42 +46,21 @@ export function About() {
   return (
     <section
       id="about"
-      ref={ref}
       className="relative py-20 px-6 bg-neutral-darkest overflow-hidden min-h-screen"
     >
-      {/* 3D Background Layer */}
-      <div className="absolute inset-0 z-0 opacity-40">
-        <Suspense fallback={<div className="w-full h-full bg-neutral-dark" />}>
-          <Scene camera={{ position: [0, 0, 10], fov: 75 }} enablePostProcessing={false}>
-            <Timeline3D />
-            <group position={[0, -4, 0]}>
-              <SkillCubes />
-            </group>
-            <group position={[0, 4, 0]}>
-              <CertBadges />
-            </group>
-          </Scene>
-        </Suspense>
-      </div>
-
       {/* Content Overlay */}
       <div className="container mx-auto max-w-6xl relative z-10">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          className="space-y-12"
-        >
+        <div className="space-y-12">
           {/* Section Header with glass effect */}
-          <motion.div variants={itemVariants} className="text-center space-y-4">
+          <div className="text-center space-y-4">
             <h2 className="text-5xl md:text-6xl font-black gradient-text">
               À propos de moi
             </h2>
             <div className="w-32 h-1.5 bg-primary mx-auto rounded-full glow-primary" />
-          </motion.div>
+          </div>
 
           {/* About Content with glassmorphism */}
-          <motion.div variants={itemVariants}>
+          <div>
             <div className="glass-strong p-8 rounded-3xl max-w-4xl mx-auto neon-border">
               <div className="space-y-6">
                 <p className="text-lg text-gray-200 leading-relaxed">
@@ -141,19 +94,18 @@ export function About() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Values with glassmorphism cards */}
-          <motion.div variants={itemVariants}>
+          <div>
             <h3 className="text-3xl md:text-4xl font-bold text-center mb-8 gradient-text">
               Mes valeurs
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {values.map((value, index) => (
-                <motion.div
+                <div
                   key={value.title}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  className="glass p-6 rounded-2xl text-center border-2 border-transparent hover:border-primary/50 smooth-transition group"
+                  className="glass p-6 rounded-2xl text-center border-2 border-transparent hover:border-primary/50 smooth-transition group hover:-translate-y-1 hover:scale-105"
                 >
                   <div className="w-16 h-16 mx-auto mb-4 rounded-2xl glass-strong border-2 border-primary/30 flex items-center justify-center group-hover:glow-primary smooth-transition">
                     <value.icon className="w-9 h-9 text-primary" />
@@ -162,23 +114,22 @@ export function About() {
                   <p className="text-sm text-gray-300">
                     {value.description}
                   </p>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Certifications with enhanced glassmorphism */}
           {siteConfig.certifications && siteConfig.certifications.length > 0 && (
-            <motion.div variants={itemVariants}>
+            <div>
               <h3 className="text-3xl md:text-4xl font-bold text-center mb-8 gradient-text">
                 Certifications
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                 {siteConfig.certifications.map((cert) => (
-                  <motion.div
+                  <div
                     key={cert.name}
-                    whileHover={{ scale: 1.02, y: -3 }}
-                    className="glass-strong p-6 rounded-2xl border-2 border-secondary/30 hover:border-secondary smooth-transition group"
+                    className="glass-strong p-6 rounded-2xl border-2 border-secondary/30 hover:border-secondary smooth-transition group hover:-translate-y-1 hover:scale-[1.02]"
                   >
                     <div className="flex items-start space-x-4">
                       <div className="w-14 h-14 rounded-2xl glass border-2 border-secondary/50 flex items-center justify-center flex-shrink-0 group-hover:glow-secondary smooth-transition">
@@ -200,15 +151,15 @@ export function About() {
                         )}
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           )}
 
           {/* Blockchain Activities */}
           {siteConfig.blockchainActivities && (
-            <motion.div variants={itemVariants}>
+            <div>
               <h3 className="text-2xl md:text-3xl font-bold text-center mb-8">
                 Activités Blockchain & Hackathons
               </h3>
@@ -309,11 +260,11 @@ export function About() {
                   )}
                 </div>
               </Card>
-            </motion.div>
+            </div>
           )}
 
           {/* Skills with modern glassmorphism */}
-          <motion.div variants={itemVariants}>
+          <div>
             <h3 className="text-3xl md:text-4xl font-bold text-center mb-8 gradient-text">
               Compétences techniques
             </h3>
@@ -327,14 +278,13 @@ export function About() {
                   </h4>
                   <div className="flex flex-wrap gap-3">
                     {skillsByCategory.languages.map((skill) => (
-                      <motion.span
+                      <span
                         key={skill.name}
-                        whileHover={{ scale: 1.1 }}
                         className="glass px-4 py-2 rounded-xl border-2 border-primary/30 hover:border-primary
-                          text-white font-semibold smooth-transition hover:glow-primary cursor-pointer"
+                          text-white font-semibold smooth-transition hover:glow-primary cursor-pointer hover:scale-110 inline-block transition-transform"
                       >
                         {skill.name}
-                      </motion.span>
+                      </span>
                     ))}
                   </div>
                 </div>
@@ -347,14 +297,13 @@ export function About() {
                   </h4>
                   <div className="flex flex-wrap gap-3">
                     {skillsByCategory.frameworks.map((skill) => (
-                      <motion.span
+                      <span
                         key={skill.name}
-                        whileHover={{ scale: 1.1 }}
                         className="glass px-4 py-2 rounded-xl border-2 border-secondary/30 hover:border-secondary
-                          text-white font-semibold smooth-transition hover:glow-secondary cursor-pointer"
+                          text-white font-semibold smooth-transition hover:glow-secondary cursor-pointer hover:scale-110 inline-block transition-transform"
                       >
                         {skill.name}
-                      </motion.span>
+                      </span>
                     ))}
                   </div>
                 </div>
@@ -367,21 +316,20 @@ export function About() {
                   </h4>
                   <div className="flex flex-wrap gap-3">
                     {skillsByCategory.tools.map((skill) => (
-                      <motion.span
+                      <span
                         key={skill.name}
-                        whileHover={{ scale: 1.1 }}
                         className="glass px-4 py-2 rounded-xl border-2 border-accent/30 hover:border-accent
-                          text-white font-semibold smooth-transition hover:glow-accent cursor-pointer"
+                          text-white font-semibold smooth-transition hover:glow-accent cursor-pointer hover:scale-110 inline-block transition-transform"
                       >
                         {skill.name}
-                      </motion.span>
+                      </span>
                     ))}
                   </div>
                 </div>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
