@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { siteConfig } from '@/config/site';
 import { HiMenu, HiX, HiCode } from 'react-icons/hi';
@@ -51,16 +52,22 @@ export function Header() {
   };
 
   return (
-    <header
+    <motion.header
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ type: "spring", stiffness: 100, damping: 20 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-          ? 'glass-strong border-b-2 border-primary/30 shadow-2xl'
-          : 'glass-light border-b-2 border-primary/10'
+        ? 'glass-strong border-b-2 border-primary/30 shadow-2xl'
+        : 'glass-light border-b-2 border-primary/10'
         }`}
     >
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="hover:scale-105 transition-transform">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             <Link
               href="/"
               className="flex items-center space-x-3 group"
@@ -71,7 +78,12 @@ export function Header() {
 
                 {/* Icon container */}
                 <div className="relative w-12 h-12 glass-strong border-2 border-primary/50 rounded-xl flex items-center justify-center group-hover:border-primary smooth-transition group-hover:glow-primary">
-                  <HiCode className="w-7 h-7 text-primary group-hover:rotate-180 smooth-transition" />
+                  <motion.div
+                    whileHover={{ rotate: 180 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <HiCode className="w-7 h-7 text-primary" />
+                  </motion.div>
                 </div>
               </div>
 
@@ -79,87 +91,132 @@ export function Header() {
                 {siteConfig.name}
               </span>
             </Link>
-          </div>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-2">
-            {navItems.map((item) => {
+            {navItems.map((item, index) => {
               const isActive = activeSection === item.href.slice(1);
               return (
-                <button
+                <motion.button
                   key={item.href}
                   onClick={() => scrollToSection(item.href)}
-                  className={`relative px-4 py-2 rounded-xl font-bold transition-all hover:-translate-y-0.5 hover:scale-105 active:scale-95 ${isActive
-                      ? 'glass-strong border-2 border-primary text-primary glow-primary'
-                      : 'glass border border-primary/20 text-gray-200 hover:border-primary/50 hover:text-primary'
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.3 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`relative px-4 py-2 rounded-xl font-bold transition-all ${isActive
+                    ? 'glass-strong border-2 border-primary text-primary glow-primary'
+                    : 'glass border border-primary/20 text-gray-200 hover:border-primary/50 hover:text-primary'
                     }`}
                 >
                   {item.label}
 
                   {/* Active indicator dot */}
                   {isActive && (
-                    <span
+                    <motion.span
+                      layoutId="nav-indicator"
                       className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full glow-primary"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     />
                   )}
-                </button>
+                </motion.button>
               );
             })}
 
-            <div className="ml-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="ml-4"
+            >
               <ThemeToggle />
-            </div>
+            </motion.div>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex md:hidden items-center space-x-4">
             <ThemeToggle />
-            <button
+            <motion.button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-3 glass-strong border-2 border-primary/30 hover:border-primary rounded-xl transition-all hover:scale-110 active:scale-95"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-3 glass-strong border-2 border-primary/30 hover:border-primary rounded-xl transition-all"
               aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? (
-                <div className="transition-transform duration-200">
-                  <HiX className="w-6 h-6 text-primary" />
-                </div>
-              ) : (
-                <div className="transition-transform duration-200">
-                  <HiMenu className="w-6 h-6 text-primary" />
-                </div>
-              )}
-            </button>
+              <AnimatePresence mode="wait">
+                {isMobileMenuOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <HiX className="w-6 h-6 text-primary" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <HiMenu className="w-6 h-6 text-primary" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden overflow-hidden transition-all">
-            <div className="mt-4 py-4 space-y-2 border-t-2 border-primary/30">
-              {navItems.map((item) => {
-                const isActive = activeSection === item.href.slice(1);
-                return (
-                  <button
-                    key={item.href}
-                    onClick={() => scrollToSection(item.href)}
-                    className={`block w-full text-left px-4 py-3 rounded-xl font-bold transition-all hover:translate-x-2 active:scale-95 ${isActive
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="md:hidden overflow-hidden"
+            >
+              <div className="mt-4 py-4 space-y-2 border-t-2 border-primary/30">
+                {navItems.map((item, index) => {
+                  const isActive = activeSection === item.href.slice(1);
+                  return (
+                    <motion.button
+                      key={item.href}
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      exit={{ x: -20, opacity: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      onClick={() => scrollToSection(item.href)}
+                      className={`block w-full text-left px-4 py-3 rounded-xl font-bold transition-all ${isActive
                         ? 'glass-strong border-2 border-primary text-primary glow-primary'
                         : 'glass border border-primary/20 text-gray-200 hover:border-primary/50'
-                      }`}
-                  >
-                    <span className="flex items-center justify-between">
-                      {item.label}
-                      {isActive && (
-                        <span className="w-2 h-2 bg-primary rounded-full glow-primary animate-pulse" />
-                      )}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
+                        }`}
+                    >
+                      <span className="flex items-center justify-between">
+                        {item.label}
+                        {isActive && (
+                          <motion.span
+                            layoutId="mobile-nav-indicator"
+                            className="w-2 h-2 bg-primary rounded-full glow-primary animate-pulse"
+                          />
+                        )}
+                      </span>
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
-    </header>
+    </motion.header>
   );
 }
