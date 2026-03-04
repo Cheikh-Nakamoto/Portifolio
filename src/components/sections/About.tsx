@@ -63,7 +63,7 @@ export function About() {
   return (
     <section
       id="about"
-      className="relative py-20 px-6 bg-neutral-darkest overflow-hidden min-h-screen"
+      className="relative py-20 px-6 bg-gray-50 dark:bg-neutral-darkest overflow-hidden min-h-screen"
     >
       {/* Content Overlay */}
       <div className="container mx-auto max-w-6xl relative z-10">
@@ -84,12 +84,12 @@ export function About() {
 
           {/* About Content with glassmorphism */}
           <motion.div variants={itemVariants}>
-            <div className="glass-strong p-8 rounded-3xl max-w-4xl mx-auto neon-border transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,229,255,0.15)]">
+            <div className="glass-strong p-8 rounded-3xl max-w-4xl mx-auto neon-border transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,153,255,0.15)]">
               <div className="space-y-6">
-                <p className="text-lg text-gray-200 leading-relaxed">
+                <p className="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
                   {siteConfig.about.introduction}
                 </p>
-                <p className="text-lg text-gray-200 leading-relaxed">
+                <p className="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
                   {siteConfig.about.journey}
                 </p>
 
@@ -100,7 +100,7 @@ export function About() {
                       <HiCode className="w-7 h-7 text-primary" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-white">
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
                         {siteConfig.experience.role}
                       </h3>
                       <p className="text-primary font-bold text-lg">
@@ -109,7 +109,7 @@ export function About() {
                       <p className="text-sm text-primary/70 font-medium">
                         {siteConfig.experience.period}
                       </p>
-                      <p className="text-gray-200 mt-3 leading-relaxed">
+                      <p className="text-gray-700 dark:text-gray-200 mt-3 leading-relaxed">
                         {siteConfig.experience.description}
                       </p>
                     </div>
@@ -135,8 +135,8 @@ export function About() {
                   <div className="w-16 h-16 mx-auto mb-4 rounded-2xl glass-strong border-2 border-primary/30 flex items-center justify-center group-hover:glow-primary smooth-transition">
                     <value.icon className="w-9 h-9 text-primary transition-transform duration-300 group-hover:scale-110" />
                   </div>
-                  <h4 className="font-bold text-xl mb-2 text-white">{value.title}</h4>
-                  <p className="text-sm text-gray-300">
+                  <h4 className="font-bold text-xl mb-2 text-gray-900 dark:text-white">{value.title}</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
                     {value.description}
                   </p>
                 </motion.div>
@@ -162,7 +162,7 @@ export function About() {
                         <HiBadgeCheck className="w-7 h-7 text-secondary transition-transform duration-300 group-hover:scale-110" />
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-bold text-xl mb-1 text-white">{cert.name}</h4>
+                        <h4 className="font-bold text-xl mb-1 text-gray-900 dark:text-white">{cert.name}</h4>
                         <p className="text-secondary font-bold text-sm">{cert.issuer}</p>
                         <p className="text-primary/70 text-sm font-medium">{cert.date}</p>
                         {cert.url && cert.url !== '#' && (
@@ -186,7 +186,7 @@ export function About() {
           {/* Blockchain Activities */}
           {siteConfig.blockchainActivities && (
             <motion.div variants={itemVariants}>
-              <h3 className="text-2xl md:text-3xl font-bold text-center mb-10 text-white">
+              <h3 className="text-2xl md:text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white">
                 Activités Blockchain & Hackathons
               </h3>
 
@@ -203,7 +203,7 @@ export function About() {
                           <h4 className="text-xl font-bold text-secondary">
                             {siteConfig.blockchainActivities.featuredHackathon.name}
                           </h4>
-                          <p className="text-sm text-gray-300 mt-1">
+                          <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
                             Track: {siteConfig.blockchainActivities.featuredHackathon.track} • {siteConfig.blockchainActivities.featuredHackathon.year}
                           </p>
                         </div>
@@ -211,10 +211,10 @@ export function About() {
                     </div>
 
                     <div className="pl-[72px]">
-                      <h5 className="font-bold text-lg mb-2 text-white">
+                      <h5 className="font-bold text-lg mb-2 text-gray-900 dark:text-white">
                         {siteConfig.blockchainActivities.featuredHackathon.project.name}
                       </h5>
-                      <p className="text-gray-300 mb-4">
+                      <p className="text-gray-600 dark:text-gray-300 mb-4">
                         {siteConfig.blockchainActivities.featuredHackathon.project.description}
                       </p>
 
@@ -223,7 +223,7 @@ export function About() {
                         <p className="font-semibold text-sm text-accent">Fonctionnalités clés :</p>
                         <ul className="space-y-1">
                           {siteConfig.blockchainActivities.featuredHackathon.project.features.map((feature, index) => (
-                            <li key={index} className="flex items-start space-x-2 text-sm text-gray-300">
+                            <li key={index} className="flex items-start space-x-2 text-sm text-gray-600 dark:text-gray-300">
                               <span className="text-secondary mt-1">✓</span>
                               <span>{feature}</span>
                             </li>
@@ -250,7 +250,7 @@ export function About() {
               {/* General Blockchain Activities */}
               <Card className="max-w-4xl mx-auto border-2 border-white/5 bg-white/5 backdrop-blur-md">
                 <div className="space-y-4">
-                  <p className="text-gray-300 leading-relaxed">
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                     {siteConfig.blockchainActivities.description}
                   </p>
 
@@ -261,8 +261,8 @@ export function About() {
                       </p>
                       {siteConfig.additionalTraining.map((training) => (
                         <div key={training.name} className="mb-2">
-                          <p className="font-medium text-white">{training.name}</p>
-                          <p className="text-sm text-gray-400">
+                          <p className="font-medium text-gray-900 dark:text-white">{training.name}</p>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">
                             {training.description} • {training.period}
                           </p>
                         </div>
@@ -308,7 +308,7 @@ export function About() {
                         key={skill.name}
                         whileHover={{ scale: 1.1 }}
                         className="glass px-4 py-2 rounded-xl border-2 border-primary/30 hover:border-primary
-                          text-white font-semibold transition-colors duration-300 hover:glow-primary cursor-pointer inline-block"
+                          text-gray-800 dark:text-white font-semibold transition-colors duration-300 hover:glow-primary cursor-pointer inline-block"
                       >
                         {skill.name}
                       </motion.span>
@@ -328,7 +328,7 @@ export function About() {
                         key={skill.name}
                         whileHover={{ scale: 1.1 }}
                         className="glass px-4 py-2 rounded-xl border-2 border-secondary/30 hover:border-secondary
-                          text-white font-semibold transition-colors duration-300 hover:glow-secondary cursor-pointer inline-block"
+                          text-gray-800 dark:text-white font-semibold transition-colors duration-300 hover:glow-secondary cursor-pointer inline-block"
                       >
                         {skill.name}
                       </motion.span>
@@ -348,7 +348,7 @@ export function About() {
                         key={skill.name}
                         whileHover={{ scale: 1.1 }}
                         className="glass px-4 py-2 rounded-xl border-2 border-accent/30 hover:border-accent
-                          text-white font-semibold transition-colors duration-300 hover:glow-accent cursor-pointer inline-block"
+                          text-gray-800 dark:text-white font-semibold transition-colors duration-300 hover:glow-accent cursor-pointer inline-block"
                       >
                         {skill.name}
                       </motion.span>

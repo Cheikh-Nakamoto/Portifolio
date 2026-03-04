@@ -27,7 +27,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         {/* Header */}
         <div className="flex items-start justify-between mb-4 relative z-10">
           <div className="flex-1">
-            <h3 className="text-2xl font-bold mb-2 text-white group-hover:text-primary transition-colors duration-300">
+            <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white group-hover:text-primary transition-colors duration-300">
               {project.title}
             </h3>
             {project.language && (
@@ -36,7 +36,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                   className="w-3 h-3 rounded-full animate-pulse"
                   style={{ backgroundColor: getLanguageColor(project.language), boxShadow: `0 0 8px ${getLanguageColor(project.language)}` }}
                 />
-                <span className="text-gray-300 font-medium group-hover:text-white transition-colors">
+                <span className="text-gray-600 dark:text-gray-300 font-medium group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
                   {project.language}
                 </span>
               </div>
@@ -45,7 +45,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
 
         {/* Description */}
-        <p className="text-gray-300 mb-6 flex-grow line-clamp-3 relative z-10 leading-relaxed group-hover:text-gray-100 transition-colors">
+        <p className="text-gray-600 dark:text-gray-300 mb-6 flex-grow line-clamp-3 relative z-10 leading-relaxed group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors">
           {project.description}
         </p>
 
@@ -72,11 +72,11 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         <div className="flex items-center space-x-6 mb-6 text-sm relative z-10">
           <div className="flex items-center space-x-2 glass px-3 py-1.5 rounded-lg border border-transparent group-hover:border-yellow-400/30 transition-colors">
             <FaStar className="text-yellow-400" />
-            <span className="font-bold text-white">{project.stars}</span>
+            <span className="font-bold text-gray-900 dark:text-white">{project.stars}</span>
           </div>
           <div className="flex items-center space-x-2 glass px-3 py-1.5 rounded-lg border border-transparent group-hover:border-primary/30 transition-colors">
             <FaCodeBranch className="text-primary" />
-            <span className="font-bold text-white">{project.forks}</span>
+            <span className="font-bold text-gray-900 dark:text-white">{project.forks}</span>
           </div>
         </div>
 
@@ -86,7 +86,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => window.open(project.githubUrl, '_blank')}
-            className="flex-1 glass-strong px-4 py-3 rounded-xl font-bold border-2 border-secondary/50 hover:border-secondary text-white transition-colors flex items-center justify-center gap-2"
+            className="flex-1 glass-strong px-4 py-3 rounded-xl font-bold border-2 border-secondary/50 hover:border-secondary text-gray-900 dark:text-white transition-colors flex items-center justify-center gap-2"
           >
             <FaGithub />
             GitHub
@@ -96,7 +96,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => window.open(project.demoUrl, '_blank')}
-              className="flex-1 glass-strong px-4 py-3 rounded-xl font-bold border-2 border-primary/50 hover:border-primary bg-gradient-to-r from-primary/10 to-secondary/10 hover:from-primary/20 hover:to-secondary/20 text-white transition-all flex items-center justify-center gap-2"
+              className="flex-1 glass-strong px-4 py-3 rounded-xl font-bold border-2 border-primary/50 hover:border-primary bg-gradient-to-r from-primary/10 to-secondary/10 hover:from-primary/20 hover:to-secondary/20 text-gray-900 dark:text-white transition-all flex items-center justify-center gap-2"
             >
               <FaExternalLinkAlt />
               Demo

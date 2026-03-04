@@ -108,7 +108,7 @@ export function Header() {
                   whileTap={{ scale: 0.95 }}
                   className={`relative px-4 py-2 rounded-xl font-bold transition-all ${isActive
                     ? 'glass-strong border-2 border-primary text-primary glow-primary'
-                    : 'glass border border-primary/20 text-gray-200 hover:border-primary/50 hover:text-primary'
+                    : 'glass border border-primary/20 text-gray-700 dark:text-gray-200 hover:border-primary/50 hover:text-primary'
                     }`}
                 >
                   {item.label}
@@ -197,7 +197,7 @@ export function Header() {
                       onClick={() => scrollToSection(item.href)}
                       className={`block w-full text-left px-4 py-3 rounded-xl font-bold transition-all ${isActive
                         ? 'glass-strong border-2 border-primary text-primary glow-primary'
-                        : 'glass border border-primary/20 text-gray-200 hover:border-primary/50'
+                        : 'glass border border-primary/20 text-gray-700 dark:text-gray-200 hover:border-primary/50'
                         }`}
                     >
                       <span className="flex items-center justify-between">

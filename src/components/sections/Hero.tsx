@@ -35,7 +35,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden bg-neutral-darkest"
+      className="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden bg-gray-50 dark:bg-neutral-darkest"
     >
       {/* Background Particles Layer */}
       <BackgroundParticles />
@@ -69,7 +69,7 @@ export function Hero() {
           {/* Name - Large & Bold */}
           <motion.h1
             variants={itemVariants}
-            className="text-7xl md:text-8xl lg:text-9xl font-black tracking-tight text-white mb-4"
+            className="text-7xl md:text-8xl lg:text-9xl font-black tracking-tight text-gray-900 dark:text-white mb-4"
           >
             {siteConfig.name}
           </motion.h1>
@@ -91,8 +91,8 @@ export function Hero() {
               onClick={() => scrollToSection('#projects')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-10 py-5 rounded-2xl font-bold text-xl bg-primary text-black
-                hover:shadow-[0_0_30px_rgba(0,229,255,0.6)] transition-all duration-300 relative overflow-hidden group"
+              className="px-10 py-5 rounded-2xl font-bold text-xl bg-primary text-white
+                hover:shadow-[0_0_30px_rgba(0,153,255,0.6)] transition-all duration-300 relative overflow-hidden group"
             >
               <span className="relative z-10">Voir mes projets</span>
               {/* Shine effect */}
@@ -104,8 +104,8 @@ export function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-10 py-5 rounded-2xl font-bold text-xl
-                border-2 border-primary text-white
-                hover:shadow-[0_0_20px_rgba(0,229,255,0.4)] hover:bg-primary/10 transition-all duration-300"
+                border-2 border-primary text-gray-900 dark:text-white
+                hover:shadow-[0_0_20px_rgba(0,153,255,0.4)] hover:bg-primary/10 transition-all duration-300"
             >
               Me contacter
             </motion.button>
@@ -114,7 +114,7 @@ export function Hero() {
       </div>
 
       {/* Dark overlay to balance the particle brightness if needed */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-neutral-darkest/80 -z-0 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gray-50/80 dark:to-neutral-darkest/80 -z-0 pointer-events-none" />
     </section>
   );
 }

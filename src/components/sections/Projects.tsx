@@ -44,7 +44,7 @@ export function Projects() {
   };
 
   return (
-    <section id="projects" className="relative py-20 px-6 bg-neutral-darkest overflow-hidden min-h-screen">
+    <section id="projects" className="relative py-20 px-6 bg-gray-50 dark:bg-neutral-darkest overflow-hidden min-h-screen">
       {/* Content Overlay */}
       <div className="container mx-auto max-w-7xl relative z-10">
         <motion.div
@@ -56,7 +56,7 @@ export function Projects() {
         >
           <h2 className="text-5xl md:text-6xl font-black gradient-text">Mes Projets</h2>
           <div className="w-32 h-1.5 bg-primary mx-auto rounded-full glow-primary" />
-          <p className="text-xl text-gray-200 max-w-2xl mx-auto pt-4 font-medium">
+          <p className="text-xl text-gray-700 dark:text-gray-200 max-w-2xl mx-auto pt-4 font-medium">
             Découvrez mes projets open source et mes contributions sur GitHub
           </p>
         </motion.div>
@@ -69,7 +69,7 @@ export function Projects() {
                 <div className="absolute inset-2 border-4 border-secondary/30 border-b-secondary rounded-full animate-spin" style={{ animationDirection: 'reverse', animationDuration: '1.5s' }} />
               </div>
             </div>
-            <p className="text-gray-200 font-medium text-lg">
+            <p className="text-gray-800 dark:text-gray-200 font-medium text-lg">
               Chargement des projets depuis GitHub...
             </p>
           </div>
@@ -83,7 +83,7 @@ export function Projects() {
               </div>
             </div>
             <p className="text-accent font-bold text-lg">{error}</p>
-            <p className="text-sm text-gray-300 max-w-md text-center">
+            <p className="text-sm text-gray-600 dark:text-gray-300 max-w-md text-center">
               Vérifiez votre connexion internet et le username GitHub dans la configuration
             </p>
           </div>
@@ -105,7 +105,7 @@ export function Projects() {
             {/* Prev Button */}
             <button
               onClick={scrollLeft}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 md:-ml-6 lg:-ml-8 w-12 h-12 md:w-14 md:h-14 rounded-full glass-strong border-2 border-primary/30 hover:border-primary text-white flex items-center justify-center hover:glow-primary hover:scale-110 active:scale-95 transition-all shadow-lg opacity-0 group-hover/carousel:opacity-100 disabled:opacity-0 focus:opacity-100 hidden md:flex"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 md:-ml-6 lg:-ml-8 w-12 h-12 md:w-14 md:h-14 rounded-full glass-strong border-2 border-primary/30 hover:border-primary text-gray-900 dark:text-white flex items-center justify-center hover:glow-primary hover:scale-110 active:scale-95 transition-all shadow-lg opacity-0 group-hover/carousel:opacity-100 disabled:opacity-0 focus:opacity-100 hidden md:flex"
               aria-label="Previous Project"
             >
               <HiChevronLeft className="w-8 h-8" />
@@ -134,7 +134,7 @@ export function Projects() {
             {/* Next Button */}
             <button
               onClick={scrollRight}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 md:-mr-6 lg:-mr-8 w-12 h-12 md:w-14 md:h-14 rounded-full glass-strong border-2 border-primary/30 hover:border-primary text-white flex items-center justify-center hover:glow-primary hover:scale-110 active:scale-95 transition-all shadow-lg opacity-0 group-hover/carousel:opacity-100 disabled:opacity-0 focus:opacity-100 hidden md:flex"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 md:-mr-6 lg:-mr-8 w-12 h-12 md:w-14 md:h-14 rounded-full glass-strong border-2 border-primary/30 hover:border-primary text-gray-900 dark:text-white flex items-center justify-center hover:glow-primary hover:scale-110 active:scale-95 transition-all shadow-lg opacity-0 group-hover/carousel:opacity-100 disabled:opacity-0 focus:opacity-100 hidden md:flex"
               aria-label="Next Project"
             >
               <HiChevronRight className="w-8 h-8" />
@@ -154,7 +154,7 @@ export function Projects() {
               href="https://github.com/cheikh-nakamoto"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 glass-strong px-10 py-5 rounded-2xl border-2 border-primary/50 text-white font-bold text-xl transition-all duration-300 hover:scale-105 active:scale-95 group relative overflow-hidden"
+              className="inline-flex items-center gap-3 glass-strong px-10 py-5 rounded-2xl border-2 border-primary/50 text-gray-800 dark:text-white font-bold text-xl transition-all duration-300 hover:scale-105 active:scale-95 group relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-primary/30 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute inset-0 border-2 border-transparent group-hover:border-primary group-hover:glow-primary rounded-xl transition-all duration-300" />
