@@ -2,64 +2,62 @@
 
 import React from 'react';
 import { siteConfig } from '@/config/site';
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
-
-const socialLinks = [
-  {
-    name: 'GitHub',
-    url: siteConfig.links.github,
-    icon: FaGithub,
-  },
-  {
-    name: 'LinkedIn',
-    url: siteConfig.links.linkedin,
-    icon: FaLinkedin,
-  },
-  {
-    name: 'Twitter',
-    url: siteConfig.links.twitter,
-    icon: FaTwitter,
-  },
-  {
-    name: 'Email',
-    url: `mailto:${siteConfig.links.email}`,
-    icon: HiMail,
-  },
-];
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-light-surface dark:bg-dark-surface border-t border-light-border dark:border-dark-border py-12">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col items-center space-y-6">
-          {/* Social Links */}
-          <div className="flex space-x-6">
-            {socialLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-lg bg-light-bg dark:bg-dark-bg border border-light-border dark:border-dark-border hover:border-primary transition-all hover:scale-110 hover:shadow-lg hover:shadow-primary/20"
-                aria-label={link.name}
-              >
-                <link.icon className="w-5 h-5 text-gray-700 dark:text-gray-300 hover:text-primary" />
-              </a>
-            ))}
+    <footer className="relative border-t border-white/[0.06]">
+      {/* Gradient divider */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent" />
+
+      <div className="max-w-6xl mx-auto px-6 py-12">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Brand */}
+          <div className="text-center md:text-left">
+            <p className="text-sm font-semibold gradient-text">
+              {siteConfig.name.split(' ')[0]} {siteConfig.name.split(' ')[1]}
+            </p>
+            <p className="text-xs text-[rgb(var(--color-text-muted))] mt-1">
+              Fullstack Engineer & Freelancer
+            </p>
+          </div>
+
+          {/* Social */}
+          <div className="flex items-center gap-2">
+            <a
+              href={siteConfig.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.04] text-[rgb(var(--color-text-muted))] hover:text-white hover:bg-white/[0.06] hover:border-white/[0.10] transition-all duration-300"
+              aria-label="GitHub"
+            >
+              <FaGithub className="w-4 h-4" />
+            </a>
+            <a
+              href={siteConfig.links.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.04] text-[rgb(var(--color-text-muted))] hover:text-white hover:bg-white/[0.06] hover:border-white/[0.10] transition-all duration-300"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin className="w-4 h-4" />
+            </a>
+            <a
+              href={`mailto:${siteConfig.links.email}`}
+              className="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.04] text-[rgb(var(--color-text-muted))] hover:text-white hover:bg-white/[0.06] hover:border-white/[0.10] transition-all duration-300"
+              aria-label="Email"
+            >
+              <HiMail className="w-4 h-4" />
+            </a>
           </div>
 
           {/* Copyright */}
-          <div className="text-center">
-            <p className="text-gray-600 dark:text-gray-400 text-sm">
-              © {currentYear} {siteConfig.name}. Tous droits réservés.
-            </p>
-            <p className="text-gray-500 dark:text-gray-500 text-xs mt-2">
-              Conçu et développé avec passion 💚
-            </p>
-          </div>
+          <p className="text-xs text-[rgb(var(--color-text-muted))]">
+            &copy; {currentYear} &mdash; All rights reserved
+          </p>
         </div>
       </div>
     </footer>

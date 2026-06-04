@@ -4,12 +4,8 @@ import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { ContactForm } from '@/types';
 import { siteConfig } from '@/config/site';
-import {
-  HiMail,
-  HiLocationMarker,
-  HiCheckCircle,
-  HiExclamation,
-} from 'react-icons/hi';
+import { motion } from 'framer-motion';
+import { HiMail, HiLocationMarker, HiCheckCircle, HiExclamation, HiPaperAirplane } from 'react-icons/hi';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 export function Contact() {
@@ -24,208 +20,199 @@ export function Contact() {
     e.preventDefault();
     setStatus('loading');
 
-    // Vérifier que les clés EmailJS sont configurées
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
     if (!serviceId || !templateId || !publicKey ||
       serviceId.includes('ton_') || templateId.includes('ton_') || publicKey.includes('ta_')) {
-      console.error('EmailJS not configured. Please add your keys in .env.local');
       setStatus('error');
       setTimeout(() => setStatus('idle'), 5000);
       return;
     }
 
     try {
-      // Préparer les données pour le template EmailJS
-      const templateParams = {
+      await emailjs.send(serviceId, templateId, {
         name: formData.name,
         email: formData.email,
         message: formData.message,
-        time: new Date().toLocaleString('fr-FR', {
-          dateStyle: 'short',
-          timeStyle: 'short'
-        }),
-        // Variables optionnelles pour plus de flexibilité
+        time: new Date().toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' }),
         from_name: formData.name,
         from_email: formData.email,
         to_name: siteConfig.name,
-      };
-
-      // Envoyer l'email avec EmailJS
-      await emailjs.send(
-        serviceId,
-        templateId,
-        templateParams,
-        publicKey
-      );
+      }, publicKey);
 
       setStatus('success');
       setFormData({ name: '', email: '', message: '' });
-
-      // Reset status après 5 secondes
       setTimeout(() => setStatus('idle'), 5000);
-    } catch (error) {
-      console.error('Error sending email:', error);
+    } catch {
       setStatus('error');
       setTimeout(() => setStatus('idle'), 5000);
     }
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const contactInfo = [
-    {
-      icon: HiMail,
-      label: 'Email',
-      value: siteConfig.links.email,
-      href: `mailto:${siteConfig.links.email}`,
-    },
-    {
-      icon: HiLocationMarker,
-      label: 'Location',
-      value: 'Dakar, Sénégal',
-      href: null,
-    },
-  ];
-
-  const socialLinks = [
-    { icon: FaGithub, href: siteConfig.links.github, label: 'GitHub', url: siteConfig.links.github },
-    { icon: FaLinkedin, href: siteConfig.links.linkedin, label: 'LinkedIn', url: siteConfig.links.linkedin },
-    { icon: FaTwitter, href: siteConfig.links.twitter, label: 'Twitter', url: siteConfig.links.twitter },
-  ];
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, delay: i * 0.1, ease: [0.25, 0.46, 0.45, 0.94] as const },
+    }),
+  };
 
   return (
-    <section
-      id="contact"
-      className="relative py-20 px-6 bg-gray-100 dark:bg-neutral-dark overflow-hidden min-h-screen"
-    >
-      {/* Content Overlay */}
-      <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="text-center space-y-4 mb-12">
-          <h2 className="text-5xl md:text-6xl font-black gradient-text">Contactez-moi</h2>
-          <div className="w-32 h-1.5 bg-primary mx-auto rounded-full glow-primary" />
-          <p className="text-lg text-gray-700 dark:text-gray-200 max-w-2xl mx-auto">
-            Une question ? Un projet ? N&apos;hésitez pas à me contacter !
-          </p>
+    <section id="contact" className="section-container">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-100px' }}
+        className="space-y-16"
+      >
+        {/* Header */}
+        <div className="text-center space-y-4">
+          <motion.p
+            variants={{ hidden: { opacity: 0, y: -10 }, visible: { opacity: 1, y: 0 } }}
+            className="text-xs tracking-widest uppercase text-[rgb(var(--color-text-muted))] font-medium"
+          >
+            [ Contact ]
+          </motion.p>
+          <motion.h2
+            variants={{ hidden: { opacity: 0, y: -20 }, visible: { opacity: 1, y: 0 } }}
+            className="section-title gradient-text"
+          >
+            Get in Touch
+          </motion.h2>
+          <motion.p
+            variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
+            className="section-subtitle mx-auto"
+          >
+            Available for freelance missions &mdash; remote or on-site in Dakar
+          </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Contact Info */}
-          <div className="space-y-6">
-            {/* Information Card */}
-            <div className="glass-strong p-8 rounded-3xl border-2 border-primary/30 hover:border-primary/50 smooth-transition group">
-              <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white group-hover:gradient-text smooth-transition">
-                Informations
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {/* Info Column */}
+          <motion.div
+            custom={0}
+            variants={itemVariants}
+            className="lg:col-span-1 space-y-4"
+          >
+            {/* Email Card */}
+            <div className="rounded-2xl border border-white/[0.06] bg-gradient-to-b from-[rgb(var(--color-surface))] to-[rgb(var(--color-surface-hover))] p-6 space-y-5">
+              <h3 className="text-sm font-semibold tracking-wider uppercase text-[rgb(var(--color-text-muted))]">
+                Contact Info
               </h3>
-              <div className="space-y-4">
-                {contactInfo.map((info) => (
-                  <div
-                    key={info.label}
-                    className="flex items-start space-x-4 transition-transform hover:translate-x-1"
-                  >
-                    <div className="w-12 h-12 rounded-xl glass border border-primary/30 flex items-center justify-center flex-shrink-0 group-hover:border-primary smooth-transition">
-                      <info.icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-800 dark:text-gray-200">
-                        {info.label}
-                      </p>
-                      {info.href ? (
-                        <a
-                          href={info.href}
-                          className="text-primary hover:text-secondary smooth-transition hover:underline"
-                        >
-                          {info.value}
-                        </a>
-                      ) : (
-                        <p className="text-gray-600 dark:text-gray-300">
-                          {info.value}
-                        </p>
-                      )}
-                    </div>
+
+              <a
+                href={`mailto:${siteConfig.links.email}`}
+                className="flex items-center gap-4 group"
+              >
+                <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center group-hover:bg-indigo-500/20 transition-colors">
+                  <HiMail className="w-5 h-5 text-indigo-400" />
+                </div>
+                <div>
+                  <p className="text-xs text-[rgb(var(--color-text-muted))]">Email</p>
+                  <p className="font-medium text-sm group-hover:text-indigo-400 transition-colors">
+                    {siteConfig.links.email}
+                  </p>
+                </div>
+              </a>
+
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center">
+                  <HiLocationMarker className="w-5 h-5 text-purple-400" />
+                </div>
+                <div>
+                  <p className="text-xs text-[rgb(var(--color-text-muted))]">Location</p>
+                  <p className="font-medium text-sm">Dakar, Senegal &mdash; GMT</p>
+                </div>
+              </div>
+
+              {/* Availability Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                </span>
+                <span className="text-xs font-medium text-emerald-400">Available for hire</span>
+              </div>
+            </div>
+
+            {/* Social Card */}
+            <div className="rounded-2xl border border-white/[0.06] bg-gradient-to-b from-[rgb(var(--color-surface))] to-[rgb(var(--color-surface-hover))] p-6">
+              <h3 className="text-sm font-semibold tracking-wider uppercase text-[rgb(var(--color-text-muted))] mb-4">
+                Social
+              </h3>
+              <div className="flex gap-2">
+                <a
+                  href={siteConfig.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 p-3 rounded-xl bg-white/[0.03] border border-white/[0.04] text-[rgb(var(--color-text-muted))] hover:text-white hover:bg-white/[0.06] hover:border-white/[0.10] transition-all duration-300 text-sm"
+                >
+                  <FaGithub className="w-4 h-4" />
+                  GitHub
+                </a>
+                <a
+                  href={siteConfig.links.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 p-3 rounded-xl bg-white/[0.03] border border-white/[0.04] text-[rgb(var(--color-text-muted))] hover:text-white hover:bg-white/[0.06] hover:border-white/[0.10] transition-all duration-300 text-sm"
+                >
+                  <FaLinkedin className="w-4 h-4" />
+                  LinkedIn
+                </a>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Form Column */}
+          <motion.div
+            custom={1}
+            variants={itemVariants}
+            className="lg:col-span-2"
+          >
+            <div className="rounded-2xl border border-white/[0.08] bg-gradient-to-b from-[rgb(var(--color-surface))] to-[rgb(var(--color-surface-hover))] p-6 md:p-8">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="name" className="block text-xs font-medium text-[rgb(var(--color-text-muted))] mb-2 uppercase tracking-wider">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] focus:border-indigo-500/50 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 transition-all duration-200 text-[rgb(var(--color-text))] placeholder:text-[rgb(var(--color-text-muted))]/50 text-sm"
+                      placeholder="John Doe"
+                    />
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Social Links Card */}
-            <div className="glass-strong p-8 rounded-3xl border-2 border-secondary/30 hover:border-secondary/50 smooth-transition group">
-              <h3 className="text-xl font-bold mb-6 text-gray-900 dark:text-white group-hover:gradient-text smooth-transition">
-                Suivez-moi
-              </h3>
-              <div className="flex space-x-4">
-                {socialLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-4 rounded-xl glass border-2 border-primary/30 hover:border-primary hover:glow-primary hover:scale-110 active:scale-95 hover:-translate-y-1 smooth-transition group/icon inline-block transition-transform"
-                    aria-label={link.label}
-                  >
-                    <link.icon className="w-7 h-7 text-gray-800 dark:text-white group-hover/icon:text-primary smooth-transition" />
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Contact Form */}
-          <div>
-            <div className="glass-strong p-8 rounded-3xl border-2 border-primary/30 hover:border-primary/50 smooth-transition">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-bold mb-2 text-gray-800 dark:text-gray-200"
-                  >
-                    Nom complet
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-xl glass border-2 border-primary/20 focus:border-primary focus:glow-primary outline-none smooth-transition text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 border-box"
-                    placeholder="Votre nom"
-                  />
+                  <div>
+                    <label htmlFor="email" className="block text-xs font-medium text-[rgb(var(--color-text-muted))] mb-2 uppercase tracking-wider">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] focus:border-indigo-500/50 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 transition-all duration-200 text-[rgb(var(--color-text))] placeholder:text-[rgb(var(--color-text-muted))]/50 text-sm"
+                      placeholder="john@example.com"
+                    />
+                  </div>
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-bold mb-2 text-gray-800 dark:text-gray-200"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-xl glass border-2 border-primary/20 focus:border-primary focus:glow-primary outline-none smooth-transition text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 border-box"
-                    placeholder="votre@email.com"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-bold mb-2 text-gray-800 dark:text-gray-200"
-                  >
+                  <label htmlFor="message" className="block text-xs font-medium text-[rgb(var(--color-text-muted))] mb-2 uppercase tracking-wider">
                     Message
                   </label>
                   <textarea
@@ -235,52 +222,47 @@ export function Contact() {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 rounded-xl glass border-2 border-primary/20 focus:border-primary focus:glow-primary outline-none smooth-transition resize-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 border-box"
-                    placeholder="Votre message..."
+                    className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] focus:border-indigo-500/50 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 transition-all duration-200 resize-none text-[rgb(var(--color-text))] placeholder:text-[rgb(var(--color-text-muted))]/50 text-sm"
+                    placeholder="Tell me about your project, timeline, and budget..."
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="w-full px-6 py-4 rounded-xl font-bold text-lg border-2 border-primary bg-primary/20 hover:bg-primary/30 text-gray-900 dark:text-white hover:glow-primary hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="btn-primary w-full justify-center disabled:opacity-50 text-sm"
                 >
                   {status === 'loading' ? (
-                    <span className="flex items-center justify-center gap-3">
-                      <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Envoi en cours...
-                    </span>
+                    <>
+                      <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      Sending...
+                    </>
                   ) : (
-                    'Envoyer le message'
+                    <>
+                      <HiPaperAirplane className="w-4 h-4" />
+                      Send Message
+                    </>
                   )}
                 </button>
 
                 {status === 'success' && (
-                  <div className="flex items-center space-x-3 glass border-2 border-primary/50 p-4 rounded-xl animate-fade-in">
-                    <HiCheckCircle className="w-6 h-6 text-primary flex-shrink-0" />
-                    <div>
-                      <p className="text-sm font-bold text-primary">Message envoyé avec succès !</p>
-                      <p className="text-xs text-gray-600 dark:text-gray-300 mt-1">L&apos;avion en papier a décollé 🚀</p>
-                    </div>
+                  <div className="flex items-center gap-3 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 animate-fade-in">
+                    <HiCheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+                    <p className="text-sm text-emerald-400">Message sent! I&apos;ll get back to you within 24h.</p>
                   </div>
                 )}
 
                 {status === 'error' && (
-                  <div className="flex items-center space-x-3 glass border-2 border-accent/50 p-4 rounded-xl animate-fade-in">
-                    <HiExclamation className="w-6 h-6 text-accent flex-shrink-0" />
-                    <div>
-                      <p className="text-sm font-bold text-accent">Erreur lors de l&apos;envoi</p>
-                      <p className="text-xs text-gray-600 dark:text-gray-300 mt-1">
-                        Vérifiez que EmailJS est bien configuré dans .env.local
-                      </p>
-                    </div>
+                  <div className="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20 animate-fade-in">
+                    <HiExclamation className="w-5 h-5 text-red-400 flex-shrink-0" />
+                    <p className="text-sm text-red-400">Error sending message. Please email me directly.</p>
                   </div>
                 )}
               </form>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

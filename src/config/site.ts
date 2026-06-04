@@ -1,167 +1,119 @@
 export const siteConfig = {
   name: "Cheikh Mounirou Coly Diouf",
-  title: "Cheikh Diouf - Junior Full Stack Developer & Blockchain Enthusiast",
-  description: "Junior full-stack developer passionné par la blockchain, l'open source et les technologies décentralisées. Participant actif aux hackathons blockchain.",
-  tagline: "Junior Full Stack Developer @ 01 Talent Sénégal | Blockchain Enthusiast",
-  phone: "77 887 90 40",
+  title: "Cheikh Diouf — Fullstack Engineer | Go, Java, Rust",
+  description: "Fullstack Engineer with 3+ years building production SaaS platforms. Kay-Point (Ministry of Education), TradeFlowSN (live logistics SaaS), Generateur-d-architecture (7 stars). Go, Java, Rust, TypeScript.",
+  tagline: "Fullstack Engineer & Freelancer — Go, Java, Rust, TypeScript",
+  phone: "+221 778 879 040",
 
   github: {
-    username: "cheikh-nakamoto",
+    username: "Cheikh-Nakamoto",
     apiUrl: "https://api.github.com",
   },
 
-  // Links sociaux
   links: {
-    github: "https://github.com/cheikh-nakamoto",
-    linkedin: "https://linkedin.com/in/cheikh-mounirou-coly-diouf",
-    twitter: "https://twitter.com/DerouMax",
+    github: "https://github.com/Cheikh-Nakamoto",
+    linkedin: "https://www.linkedin.com/in/cheikh-mounirou-coly-diouf-3549b6241",
     email: "feppdougou@gmail.com",
   },
 
-  // Bio et compétences
-  bio: "Développeur full-stack junior, passionné par la blockchain et l’open source. En formation à 01 Talent Sénégal, je maîtrise Go, Rust, Angular et Java. Participant actif à des hackathons blockchain, j’aspire à contribuer prochainement à la migration de Bitcoin vers Rust. Autodidacte, curieux et toujours prêt à relever de nouveaux défis techniques.",
-  
+  bio: "Fullstack Engineer with 3+ years delivering production applications across Go, Java, Rust, and TypeScript. I build complete products — from database schema to Docker-deployed infrastructure to pixel-perfect frontends. Shipped 10+ SaaS applications including Kay-Point (Senegal's Ministry of Education), TradeFlowSN (live at tradeflowsn.com), and Generateur-d-architecture (7 GitHub stars).",
+
   skills: [
-    // Langages
     { name: "Go", category: "language" as const },
+    { name: "Java 17", category: "language" as const },
     { name: "Rust", category: "language" as const },
     { name: "TypeScript", category: "language" as const },
     { name: "JavaScript", category: "language" as const },
-    { name: "Java", category: "language" as const },
-    { name: "C", category: "language" as const },
     { name: "Python", category: "language" as const },
-    { name: "HTML", category: "language" as const },
-    { name: "CSS", category: "language" as const },
-
-    // Frameworks & Libraries
-    { name: "Angular", category: "framework" as const },
-    { name: "Spring Boot", category: "framework" as const },
-    { name: "React", category: "framework" as const },
+    { name: "C", category: "language" as const },
+    { name: "React 19", category: "framework" as const },
     { name: "Next.js", category: "framework" as const },
-    { name: "Node.js", category: "framework" as const },
-
-    // Tools & Technologies
+    { name: "Angular 17", category: "framework" as const },
+    { name: "Spring Boot 3", category: "framework" as const },
+    { name: "Flutter", category: "framework" as const },
     { name: "Docker", category: "tool" as const },
+    { name: "PostgreSQL", category: "tool" as const },
+    { name: "Redis", category: "tool" as const },
     { name: "Git", category: "tool" as const },
+    { name: "GitHub Actions", category: "tool" as const },
+    { name: "Jenkins", category: "tool" as const },
     { name: "Linux", category: "tool" as const },
-    { name: "Blockchain", category: "tool" as const },
-    { name: "CI/CD", category: "tool" as const },
-    { name: "SonarQube", category: "tool" as const },
-    { name: "Sqlite", category: "tool" as const },
-    { name: "MySql", category: "tool" as const },
-    { name: "MongoDB", category: "tool" as const },
+    { name: "Prometheus", category: "tool" as const },
+    { name: "Grafana", category: "tool" as const },
   ],
 
   experience: {
-    company: "01 Talent Sénégal (Zone 01 Dakar)",
-    role: "Junior Full Stack Developer - En formation",
-    period: "Depuis 2023",
-    description: "Formation intensive en développement web et blockchain dans un centre d'intelligence collective. Développement de projets open source en Go, Rust, Java et Angular. Passionné par les systèmes décentralisés et les technologies blockchain. Participation active aux hackathons blockchain."
+    company: "01 Talent Senegal (Zone 01 Dakar)",
+    role: "Fullstack Engineer",
+    period: "Jan 2023 — April 2026",
+    description: "Delivered 10+ fullstack applications for clients across EdTech, logistics, and fintech. Architected Kay-Point, a sovereign multi-tenant SaaS for Senegal's Ministry of Education (23k+ lines of Go). Built TradeFlowSN (live at tradeflowsn.com, 233 tests). Led Docker CI/CD and mentored 12 developers."
   },
 
-  // Certifications
   certifications: [
     {
-      name: "Certification Hedera",
-      issuer: "Hedera",
-      date: "2024",
+      name: "Hedera Certified Developer",
+      issuer: "Hedera Hashgraph",
+      date: "2025",
       url: "https://certs.hashgraphdev.com/7136d939-5f09-483f-a93f-19e7d504f314.pdf"
-    }
-  ],
-
-  // Formations complémentaires
-  additionalTraining: [
-    {
-      name: "Btrust Builder",
-      description: "Formation sur la blockchain Bitcoin - expérience pratique en technologies blockchain et systèmes décentralisés",
-      period: "2024"
-    }
-  ],
-
-  // Activités blockchain
-  blockchainActivities: {
-    hackathons: true,
-    description: "Participant actif aux hackathons blockchain. Notamment au hackathon Hedera Hashgraph où j'ai proposé une solution innovante pour le track 'DLT For Operations' : un système de santé complet intégrant tous les acteurs (patients, médecins, analystes techniques, hôpitaux) sur la blockchain Hedera.",
-
-    // Projet phare du hackathon
-    featuredHackathon: {
-      name: "Hedera Hashgraph Hackathon",
-      year: "2024",
-      track: "DLT For Operations",
-      project: {
-        name: "Healthcare DLT System",
-        description: "Système de santé décentralisé intégrant l'ensemble de l'écosystème médical sur la blockchain Hedera",
-        features: [
-          "Gestion décentralisée des dossiers patients",
-          "Intégration patients, médecins, analystes et hôpitaux",
-          "Traçabilité complète des opérations médicales",
-          "Sécurité et confidentialité des données de santé",
-          "Infrastructure basée sur Hedera Hashgraph"
-        ],
-        technologies: ["Hedera Hashgraph", "DLT", "Smart Contracts", "Healthcare IT"]
-      }
     },
-
-    interests: [
-      "Hedera Hashgraph",
-      "DLT (Distributed Ledger Technology)",
-      "Healthcare Blockchain",
-      "Smart Contracts",
-      "DeFi (Finance décentralisée)",
-      "Web3",
-      "Systèmes décentralisés"
-    ]
-  },
-
-  // Projets notables
-  featuredProjects: [
-    "Real-Time-Forum",
-    "ascii-art-web",
-    "rust-capstone-project",
-    "groupie-tracker-filters",
-    "FadjMa",
-    "Data_Collect_Project"
-  ],
-
-  // Projets blockchain spéciaux (non sur GitHub)
-  blockchainProjects: [
     {
-      name: "Healthcare DLT System",
-      type: "Hackathon Hedera",
-      description: "Système de santé décentralisé pour le hackathon Hedera Hashgraph (Track: DLT For Operations)",
-      year: "2024",
-      technologies: ["Hedera Hashgraph", "DLT", "Smart Contracts", "Healthcare"],
-      role: "Developer",
-      achievement: "Solution complète intégrant patients, médecins, analystes et hôpitaux"
+      name: "Java Development Certificate",
+      issuer: "01 Talent Senegal",
+      date: "2025",
+      url: "#"
     }
   ],
 
-  // Section About enrichie
-  about: {
-    introduction: "Junior developer full-stack passionné par la blockchain, l'open source et les technologies décentralisées. En formation à 01 Talent Sénégal, je suis autodidacte et curieux, capable de monter rapidement en compétence sur de nouveaux langages et frameworks. J'ai participé au hackathon Hedera Hashgraph où j'ai développé une solution DLT pour le secteur de la santé, intégrant l'ensemble de l'écosystème médical sur blockchain.",
-
-    journey: "Mon parcours à 01 Talent Sénégal (Zone 01 Dakar), centre d'intelligence collective, m'a permis de maîtriser des technologies diverses comme Go, Rust, Angular et Java, tout en développant de solides compétences en travail d'équipe et collaboration. Passionné par la blockchain, j'ai suivi une formation Bitcoin blockchain avec Btrust Builder et participé au hackathon Hedera Hashgraph (Track: DLT For Operations) où j'ai proposé un système de santé décentralisé complet. Chaque projet est une opportunité d'explorer de nouvelles solutions et de repousser les limites techniques, particulièrement dans l'univers blockchain, DLT et systèmes décentralisés. Flexible et adaptable, j'apprécie autant le travail en autonomie que la collaboration pour atteindre des résultats impactants.",
-
-    values: [
-      "Code propre et maintenable",
-      "Performance et scalabilité",
-      "Apprentissage continu",
-      "Open source et décentralisation"
-    ]
-  },
-
-  // Langues
-  languages: [
-    { name: "Français", level: "Natif" },
-    { name: "Anglais", level: "Intermédiaire" }
+  featuredProjects: [
+    {
+      name: "Kay-Point",
+      description: "Sovereign multi-tenant SaaS for Senegal's Ministry of Education — teacher attendance management across 16 regions. 23k+ lines of Go, React 19, Flutter.",
+      stack: ["Go", "Gin", "React 19", "Flutter", "PostgreSQL", "Redis"],
+      url: "https://github.com/Cheikh-Nakamoto/Kay-Pointe",
+      highlight: true,
+    },
+    {
+      name: "TradeFlowSN",
+      description: "Container logistics SaaS live at tradeflowsn.com. Multi-currency (EUR/USD/XOF), 233 tests, Jenkins CI/CD.",
+      stack: ["Go", "React", "PostgreSQL", "Redis", "Jenkins"],
+      url: "https://github.com/Cheikh-Nakamoto/TradeFlowSN",
+      live: "https://tradeflowsn.com",
+      highlight: true,
+    },
+    {
+      name: "Generateur-d'architecture",
+      description: "Rust desktop app with 7 GitHub stars. AI-powered project scaffolding via Google Gemini. Material Design 3 GUI.",
+      stack: ["Rust", "Slint", "Gemini API"],
+      url: "https://github.com/Cheikh-Nakamoto/Generateur-d-architecture-",
+      highlight: true,
+    },
+    {
+      name: "Agile-Factory-Kernel",
+      description: "Production-grade multi-tenant SaaS boilerplate in Go 1.25. Clean Architecture, zero framework dependencies.",
+      stack: ["Go", "Clean Architecture", "Docker"],
+      url: "https://github.com/Cheikh-Nakamoto/agile-factory-kernel",
+      highlight: false,
+    },
+    {
+      name: "Neo4Flix",
+      description: "Graph-powered movie recommendation engine. 7 Spring Boot microservices, Neo4j graph DB, Angular frontend.",
+      stack: ["Java 17", "Spring Cloud", "Neo4j", "Angular"],
+      url: "https://github.com/Cheikh-Nakamoto/neo4flix",
+      highlight: false,
+    },
   ],
 
-  // Soft skills
+  languages: [
+    { name: "French", level: "Native" },
+    { name: "English", level: "Professional" },
+    { name: "Wolof", level: "Native" },
+  ],
+
   softSkills: [
     "Autodidacte",
-    "Rapide à apprendre",
+    "Mentorat technique",
     "Travail en équipe",
-    "Travail en remote",
-    "Passionné par l'innovation"
+    "Remote work",
+    "Architecture logicielle",
   ]
 }
