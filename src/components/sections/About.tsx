@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { siteConfig } from '@/config/site';
-import { HiBadgeCheck, HiBriefcase, HiAcademicCap, HiHeart } from 'react-icons/hi';
+import { HiBadgeCheck, HiBriefcase, HiAcademicCap } from 'react-icons/hi';
 
 export function About() {
   const skillsByCategory = {

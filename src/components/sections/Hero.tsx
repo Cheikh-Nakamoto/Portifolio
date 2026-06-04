@@ -25,7 +25,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-12"
     >
       {/* Ambient background */}
       <div className="absolute inset-0 bg-[rgb(var(--color-bg))]">
@@ -90,7 +90,7 @@ export function Hero() {
               <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-indigo-400 via-purple-400 to-cyan-400 opacity-60 blur-sm" />
               <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden ring-2 ring-white/10">
                 <Image
-                  src={imageError ? '/avatar-original.jpeg' : '/avatar-original.jpeg'}
+                  src={imageError ? '/images/avatar-fallback.png' : '/avatar-original.jpeg'}
                   alt={siteConfig.name}
                   width={176}
                   height={176}

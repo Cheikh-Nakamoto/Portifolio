@@ -6,7 +6,7 @@ import { ContactForm } from '@/types';
 import { siteConfig } from '@/config/site';
 import { motion } from 'framer-motion';
 import { HiMail, HiLocationMarker, HiCheckCircle, HiExclamation, HiPaperAirplane } from 'react-icons/hi';
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 export function Contact() {
   const [formData, setFormData] = useState<ContactForm>({
