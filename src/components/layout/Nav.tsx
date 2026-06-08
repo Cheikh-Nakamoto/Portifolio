@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { useTheme } from '@/contexts/ThemeContext';
 import { siteConfig } from '@/config/site';
 import { HiSun, HiMoon, HiMenu, HiX } from 'react-icons/hi';
@@ -44,9 +45,9 @@ export function Nav() {
       >
         <div className="container-px flex items-center justify-between h-[72px]">
           <a href="#top" aria-label="Accueil" className="flex items-center gap-2.5 font-display font-semibold text-[1.05rem] tracking-tight">
-            <span className="w-[30px] h-[30px] rounded-lg grid place-items-center font-mono font-bold text-[.9rem]" style={{ background: 'var(--accent)', color: 'var(--accent-ink)' }}>
-              {siteConfig.name.charAt(0)}
-            </span>
+            <div className="relative w-[30px] h-[30px] rounded-lg overflow-hidden border" style={{ borderColor: 'var(--line-2)' }}>
+              <Image src="/f.jpeg" alt="Logo" fill className="object-cover" sizes="30px" />
+            </div>
             <span>mounirou<span style={{ color: 'var(--accent)' }}>.</span>dev</span>
           </a>
 
