@@ -53,7 +53,7 @@ export function Hero() {
                 <span className="ml-2 font-mono text-[.78rem]" style={{ color: 'var(--text-3)' }}>~/cheikh/profile.ts</span>
               </div>
               <div className="p-5 font-mono text-[.83rem] leading-[1.85]" style={{ color: 'var(--text-2)' }}>
-                <div><span style={{ color: 'var(--text-3)' }}>// engineer.ts</span></div>
+                <div><span style={{ color: 'var(--text-3)' }}>{"// engineer.ts"}</span></div>
                 <div><span style={{ color: 'var(--accent)' }}>const</span> cheikh = {'{'}</div>
                 <div>&nbsp;&nbsp;<span style={{ color: 'var(--accent)' }}>role</span>: <span style={{ color: '#7ec699' }}>&quot;Full Stack · Backend · DevOps&quot;</span>,</div>
                 <div>&nbsp;&nbsp;<span style={{ color: 'var(--accent)' }}>focus</span>: [<span style={{ color: '#7ec699' }}>&quot;API&quot;</span>, <span style={{ color: '#7ec699' }}>&quot;Cloud&quot;</span>, <span style={{ color: '#7ec699' }}>&quot;DX&quot;</span>],</div>
@@ -61,7 +61,7 @@ export function Hero() {
                 <div>&nbsp;&nbsp;<span style={{ color: 'var(--accent)' }}>ship</span>: <span style={{ color: '#e0b25a' }}>async</span> () =&gt; <span style={{ color: '#7ec699' }}>&quot;production-ready&quot;</span>,</div>
                 <div>{'};'}</div>
                 <div>&nbsp;</div>
-                <div><span style={{ color: 'var(--text-3)' }}>// → disponible pour votre prochain sprint</span></div>
+                <div><span style={{ color: 'var(--text-3)' }}>{"// → disponible pour votre prochain sprint"}</span></div>
               </div>
             </div>
           </Reveal>
