@@ -46,7 +46,7 @@ export function Nav() {
         <div className="container-px flex items-center justify-between h-[72px]">
           <a href="#top" aria-label="Accueil" className="flex items-center gap-2.5 font-display font-semibold text-[1.05rem] tracking-tight">
             <div className="relative w-[30px] h-[30px] rounded-lg overflow-hidden border" style={{ borderColor: 'var(--line-2)' }}>
-              <Image src="/f.jpeg" alt="Logo" fill className="object-cover" sizes="30px" />
+              <Image src="/avatar-original.jpeg" alt="Logo" fill className="object-cover" sizes="30px" />
             </div>
             <span>mounirou<span style={{ color: 'var(--accent)' }}>.</span>dev</span>
           </a>
