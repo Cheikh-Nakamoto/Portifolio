@@ -91,7 +91,7 @@ export const siteConfig = {
       description: "Plateforme logistique de suivi de conteneurs. Multi-devises (EUR/USD/XOF), 233 tests automatisés, pipeline Jenkins CI/CD.",
       stack: ["Go", "React", "PostgreSQL", "Redis", "Jenkins"],
       url: "https://github.com/Cheikh-Nakamoto/TradeFlowSN",
-      image: "/tradeflow.png", // TODO: Ajouter le lien de l'image/screenshot
+      image: "/tradeflowsn.png", // TODO: Ajouter le lien de l'image/screenshot
       live: "https://tradeflowsn.com",
       highlight: true,
     },

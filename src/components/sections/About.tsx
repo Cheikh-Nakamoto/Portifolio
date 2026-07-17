@@ -25,12 +25,12 @@ export function About() {
               Un ingénieur passionné, toujours en apprentissage.
             </h2>
             <p className="text-[clamp(1.05rem,1.7vw,1.32rem)] leading-relaxed mb-4" style={{ color: 'var(--text-2)' }}>
-              Je m&apos;appelle Cheikh Mounirou. Depuis plus de 3 ans, je développe des projets logiciels —
-              en apprentissage, en hackathon ou en solo — pour transformer des idées en code concret.
+              Je m&apos;appelle Cheikh Mounirou. Depuis plus de 3 ans, je développe des projets logiciels
+              en apprentissage, en hackathon ou en solo, pour transformer des idées en code concret.
             </p>
             <p style={{ color: 'var(--text-2)' }}>
               Parmi mes projets notables : Kay-Point, un concept de SaaS multi-tenant de gestion de présence
-              (23k+ lignes de Go, pas encore en prod), TradeFlowSN — une plateforme logistique avec 233 tests —
+              (23k+ lignes de Go, pas encore en prod), TradeFlowSN, une plateforme logistique avec 233 tests,
               et Generateur-d&apos;architecture (7 ⭐ GitHub). Bénévole sur le site d&apos;artiste graphiste RBS.
               Crypto-enthousiaste et futur contributeur open source, j&apos;accompagne les porteurs d&apos;idées
               à matérialiser leurs projets.

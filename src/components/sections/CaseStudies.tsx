@@ -15,7 +15,7 @@ const CASES = [
       { n: 'CI/CD', l: 'GitHub Actions + Jenkins' },
     ],
     tags: ['Go', 'Gin', 'Next.js 14', 'PostgreSQL', 'Docker', 'Jenkins'],
-    media: 'capture produit — 380 Solutions',
+    media: '/380.png',
   },
   {
     sector: 'LOGISTIQUE',
@@ -28,7 +28,7 @@ const CASES = [
       { n: 'CI/CD', l: 'pipeline Jenkins' },
     ],
     tags: ['Go', 'React', 'PostgreSQL', 'Redis', 'Jenkins'],
-    media: 'capture produit — TradeFlowSN',
+    media: '/tradeflowsn.png',
   },
   {
     sector: 'E-COMMERCE',
@@ -41,7 +41,7 @@ const CASES = [
       { n: 'RBAC', l: 'admin multi-rôles' },
     ],
     tags: ['Go', 'chi', 'Next.js 16', 'PostgreSQL', 'Redis', 'Stripe'],
-    media: 'capture produit — RBS Crew SN',
+    media: '/rbs-crew.png',
   },
 ];
 
@@ -61,7 +61,7 @@ export function CaseStudies() {
               style={{ borderColor: 'var(--line)' }}
             >
               <div className={i % 2 === 1 ? 'md:order-2' : ''}>
-                <div className="ph aspect-[4/3]"><span className="ph__label">{c.media}</span></div>
+                <div className="ph aspect-[4/3]"><span className="ph__label"><img className="w-full h-full aspect-video object-contain" src={c.media} alt="" /></span></div>
               </div>
               <div>
                 <div className="flex gap-4 items-center mb-4 font-mono text-[.78rem]" style={{ color: 'var(--text-3)' }}>
