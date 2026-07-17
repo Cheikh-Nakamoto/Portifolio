@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: "Cheikh Mounirou Coly Diouf",
   title: "Cheikh Diouf — Fullstack Engineer | Go, Java, Rust",
-  description: "Fullstack Engineer with 3+ years building production SaaS platforms. Kay-Point (Ministry of Education), TradeFlowSN (live logistics SaaS), Generateur-d-architecture (7 stars). Go, Java, Rust, TypeScript.",
-  tagline: "Fullstack Engineer & Freelancer — Go, Java, Rust, TypeScript",
+  description: "Fullstack Engineer avec 3+ ans d'expérience en ingénierie logicielle. 30+ projets (apprentissage, hackathons, projets perso). Go, Java, Rust, TypeScript. Crypto-enthousiaste & future open source contributor.",
+  tagline: "Fullstack Engineer — Go, Java, Rust, TypeScript",
   phone: "+221 778 879 040",
 
   github: {
@@ -16,7 +16,14 @@ export const siteConfig = {
     email: "feppdougou@gmail.com",
   },
 
-  bio: "Fullstack Engineer with 3+ years delivering production applications across Go, Java, Rust, and TypeScript. I build complete products — from database schema to Docker-deployed infrastructure to pixel-perfect frontends. Shipped 10+ SaaS applications including Kay-Point (Senegal's Ministry of Education), TradeFlowSN (live at tradeflowsn.com), and Generateur-d-architecture (7 GitHub stars).",
+  bio: "Fullstack Engineer avec 3+ ans d'expérience en ingénierie logicielle. J'ai développé plus de 30 projets — certains en apprentissage, d'autres lors de hackathons ou comme projets personnels. Je construis des produits complets, du schéma de base de données au déploiement Docker. Crypto-enthousiaste, futur contributeur open source, et j'accompagne les 'idea guys' à matérialiser leurs idées.",
+
+  aspirations: [
+    "Crypto-enthousiaste",
+    "Future open source contributor",
+  ],
+
+  mission: "J'accompagne les 'idea guys' à matérialiser leurs idées.",
 
   skills: [
     { name: "Go", category: "language" as const },
@@ -44,9 +51,15 @@ export const siteConfig = {
 
   experience: {
     company: "01 Talent Senegal (Zone 01 Dakar)",
-    role: "Fullstack Engineer",
+    role: "Apprenant Ingénieur Fullstack",
     period: "Jan 2023 — April 2026",
-    description: "Delivered 10+ fullstack applications for clients across EdTech, logistics, and fintech. Architected Kay-Point, a sovereign multi-tenant SaaS for Senegal's Ministry of Education (23k+ lines of Go). Built TradeFlowSN (live at tradeflowsn.com, 233 tests). Led Docker CI/CD and mentored 12 developers."
+    description: "Formation intensive en ingénierie logicielle par la pédagogie par les pairs. Développement de 30+ projets couvrant le backend (Go, Java, Rust), le frontend (React, Angular), le mobile (Flutter) et le DevOps (Docker, Jenkins, CI/CD). Participation à des hackathons et réalisation de projets personnels ambitieux."
+  },
+
+  volunteer: {
+    organization: "RBS",
+    role: "Développeur bénévole",
+    description: "Développement bénévole sur le site d'artiste graphiste RBS.",
   },
 
   certifications: [
@@ -67,38 +80,59 @@ export const siteConfig = {
   featuredProjects: [
     {
       name: "Kay-Point",
-      description: "Sovereign multi-tenant SaaS for Senegal's Ministry of Education — teacher attendance management across 16 regions. 23k+ lines of Go, React 19, Flutter.",
+      description: "Projet de SaaS multi-tenant de gestion de présence des enseignants — concept ambitieux conçu comme exercice d'architecture à grande échelle. 23k+ lignes de Go, React 19, Flutter. Pas encore en production.",
       stack: ["Go", "Gin", "React 19", "Flutter", "PostgreSQL", "Redis"],
       url: "https://github.com/Cheikh-Nakamoto/Kay-Pointe",
+      image: "/Kay-pointé.png", // TODO: Ajouter le lien de l'image/screenshot
       highlight: true,
     },
     {
       name: "TradeFlowSN",
-      description: "Container logistics SaaS live at tradeflowsn.com. Multi-currency (EUR/USD/XOF), 233 tests, Jenkins CI/CD.",
+      description: "Plateforme logistique de suivi de conteneurs. Multi-devises (EUR/USD/XOF), 233 tests automatisés, pipeline Jenkins CI/CD.",
       stack: ["Go", "React", "PostgreSQL", "Redis", "Jenkins"],
       url: "https://github.com/Cheikh-Nakamoto/TradeFlowSN",
+      image: "/tradeflow.png", // TODO: Ajouter le lien de l'image/screenshot
       live: "https://tradeflowsn.com",
       highlight: true,
     },
     {
       name: "Generateur-d'architecture",
-      description: "Rust desktop app with 7 GitHub stars. AI-powered project scaffolding via Google Gemini. Material Design 3 GUI.",
+      description: "Application desktop en Rust avec 7 GitHub stars. Scaffolding de projets piloté par l'IA via Google Gemini. Interface Material Design 3.",
       stack: ["Rust", "Slint", "Gemini API"],
       url: "https://github.com/Cheikh-Nakamoto/Generateur-d-architecture-",
+      image: "/generateur-architecture.png", // TODO: Ajouter le lien de l'image/screenshot
+      highlight: true,
+    },
+    {
+      name: "380_Solution",
+      description: "Plateforme web pour une société solaire sénégalaise : FAQ, pré-dimensionnement automatique (panneaux, batteries, onduleur), devis PDF, chatbot IA BYOK. Clean Architecture Go + Next.js 14, bilingue FR/Wolof.",
+      stack: ["Go", "Gin", "Next.js 14", "PostgreSQL", "Docker", "Jenkins"],
+      url: "https://github.com/Cheikh-Nakamoto/380_Solution",
+      image: "/380.png", // TODO: Ajouter le lien de l'image/screenshot
+      highlight: true,
+    },
+    {
+      name: "RBS_Crew_SN",
+      description: "Plateforme e-commerce et vitrine pour artistes graphistes RBS — monorepo avec Go API (chi, pgx, sqlc), Next.js 16, paiements multi-provider (Stripe, Wave, Orange Money), stockage Cloudflare R2.",
+      stack: ["Go", "Next.js 16", "PostgreSQL", "Redis", "Docker", "Stripe"],
+      url: "https://github.com/Cheikh-Nakamoto/RBS_Crew_SN",
+      image: "/rbs-crew.png", // TODO: Ajouter le lien de l'image/screenshot
       highlight: true,
     },
     {
       name: "Agile-Factory-Kernel",
-      description: "Production-grade multi-tenant SaaS boilerplate in Go 1.25. Clean Architecture, zero framework dependencies.",
+      description: "Boilerplate multi-tenant SaaS en Go 1.25. Clean Architecture, zéro dépendance framework.",
       stack: ["Go", "Clean Architecture", "Docker"],
       url: "https://github.com/Cheikh-Nakamoto/agile-factory-kernel",
+      image: "/agile-factory.png", // TODO: Ajouter le lien de l'image/screenshot
       highlight: false,
     },
     {
       name: "Neo4Flix",
-      description: "Graph-powered movie recommendation engine. 7 Spring Boot microservices, Neo4j graph DB, Angular frontend.",
+      description: "Moteur de recommandation de films basé sur les graphes. 7 microservices Spring Boot, Neo4j, frontend Angular.",
       stack: ["Java 17", "Spring Cloud", "Neo4j", "Angular"],
       url: "https://github.com/Cheikh-Nakamoto/neo4flix",
+      image: "/neo4flix.png", // TODO: Ajouter le lien de l'image/screenshot
       highlight: false,
     },
   ],
@@ -111,9 +145,10 @@ export const siteConfig = {
 
   softSkills: [
     "Autodidacte",
-    "Mentorat technique",
+    "Crypto-enthousiaste",
     "Travail en équipe",
     "Remote work",
     "Architecture logicielle",
+    "Future open source contributor",
   ]
 }

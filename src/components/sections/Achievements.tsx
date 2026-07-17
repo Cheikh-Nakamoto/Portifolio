@@ -8,23 +8,23 @@ const ITEMS = [
   {
     icon: HiBadgeCheck,
     stat: 'Hedera Certified Developer',
-    text: 'Certification délivrée par Hedera Hashgraph en 2025, validant mes compétences sur le développement d’applications décentralisées sur le réseau Hedera.',
+    text: 'Certification délivrée par Hedera Hashgraph en 2025, validant mes compétences sur le développement d\u2019applications décentralisées sur le réseau Hedera.',
     by: 'Hedera Hashgraph',
     role: 'Certification · 2025',
   },
   {
     icon: HiStar,
     stat: '7 étoiles GitHub',
-    text: 'Generateur-d’architecture, mon outil desktop en Rust qui scaffold des architectures de projet via l’IA, a été remarqué et adopté par la communauté open source.',
+    text: 'Generateur-d\u2019architecture, mon outil desktop en Rust qui scaffold des architectures de projet via l\u2019IA, a été remarqué et adopté par la communauté open source.',
     by: 'github.com/Cheikh-Nakamoto',
     role: 'Projet open source · Rust',
   },
   {
     icon: HiUserGroup,
-    stat: '12 développeurs encadrés',
-    text: 'Mentorat technique au sein de 01 Talent Senegal (Zone 01 Dakar) — accompagnement de pairs sur l’architecture logicielle et les bonnes pratiques fullstack.',
+    stat: '30+ projets développés',
+    text: 'Plus de 30 projets réalisés en 3 ans : projets d\u2019apprentissage, hackathons et projets personnels couvrant le fullstack, le mobile et le DevOps.',
     by: '01 Talent Senegal',
-    role: 'Mentorat · Zone 01 Dakar',
+    role: 'Apprenant · Zone 01 Dakar',
   },
 ];
 

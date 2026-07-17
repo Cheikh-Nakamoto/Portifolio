@@ -6,7 +6,7 @@ import { Reveal } from '@/components/ui/Reveal';
 const FACTS = [
   { k: 'Basé à', v: 'Dakar · 100% remote' },
   { k: 'Langues', v: 'FR · EN · Wolof' },
-  { k: 'Format', v: 'Régie / Forfait' },
+  { k: 'Passion', v: 'Crypto · Open Source' },
 ];
 
 export function About() {
@@ -16,24 +16,24 @@ export function About() {
         <div className="grid grid-cols-1 md:grid-cols-[.9fr_1.1fr] gap-12 lg:gap-20 items-center">
           <Reveal>
             <div className="ph aspect-[4/5] rounded-[18px]">
-              <span className="ph__label">portrait — photo pro</span>
+              <img className="w-full h-full object-cover" src="/portrait.jpg" alt="" />
             </div>
           </Reveal>
           <Reveal delay={0.1}>
             <span className="eyebrow">À propos</span>
             <h2 className="display text-[clamp(2rem,4vw,3.1rem)] my-4 mb-6">
-              Un partenaire d&apos;ingénierie, pas seulement une paire de mains.
+              Un ingénieur passionné, toujours en apprentissage.
             </h2>
             <p className="text-[clamp(1.05rem,1.7vw,1.32rem)] leading-relaxed mb-4" style={{ color: 'var(--text-2)' }}>
-              Je m&apos;appelle Cheikh Mounirou. Depuis plus de 3 ans, j&apos;accompagne des équipes produit pour
-              transformer des idées en logiciels solides — du premier commit jusqu&apos;au déploiement à grande échelle.
+              Je m&apos;appelle Cheikh Mounirou. Depuis plus de 3 ans, je développe des projets logiciels —
+              en apprentissage, en hackathon ou en solo — pour transformer des idées en code concret.
             </p>
             <p style={{ color: 'var(--text-2)' }}>
-              J&apos;ai notamment architecturé Kay-Point, un SaaS souverain multi-tenant pour le Ministère de
-              l&apos;Éducation du Sénégal (23k+ lignes de Go déployées dans 16 régions), construit TradeFlowSN — une
-              plateforme logistique en production à tradeflowsn.com — et encadré 12 développeurs chez 01 Talent
-              Senegal. Mon approche est pragmatique : comprendre l&apos;enjeu métier, choisir l&apos;architecture la
-              plus simple qui tient la promesse, et instrumenter pour que vous dormiez tranquille.
+              Parmi mes projets notables : Kay-Point, un concept de SaaS multi-tenant de gestion de présence
+              (23k+ lignes de Go, pas encore en prod), TradeFlowSN — une plateforme logistique avec 233 tests —
+              et Generateur-d&apos;architecture (7 ⭐ GitHub). Bénévole sur le site d&apos;artiste graphiste RBS.
+              Crypto-enthousiaste et futur contributeur open source, j&apos;accompagne les porteurs d&apos;idées
+              à matérialiser leurs projets.
             </p>
             <div className="flex flex-wrap gap-12 mt-12">
               {FACTS.map((f) => (

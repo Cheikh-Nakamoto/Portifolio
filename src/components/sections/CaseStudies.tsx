@@ -5,23 +5,23 @@ import { Reveal } from '@/components/ui/Reveal';
 
 const CASES = [
   {
-    sector: 'ÉDUCATION',
-    meta: 'secteur public · SaaS souverain',
-    title: 'Un SaaS souverain multi-tenant déployé dans 16 régions',
-    desc: "Architecture et développement de Kay-Point, la plateforme de gestion de présence des enseignants pour le Ministère de l'Éducation du Sénégal — pensée pour tourner à l'échelle nationale, en pleine autonomie vis-à-vis des fournisseurs cloud étrangers.",
+    sector: 'ÉNERGIE SOLAIRE',
+    meta: 'projet client · Clean Architecture',
+    title: 'Une plateforme solaire intelligente avec IA et pré-dimensionnement',
+    desc: "Développement de 380 Solutions, une plateforme web pour une société solaire sénégalaise — FAQ bilingue (FR/Wolof), pré-dimensionnement automatique (panneaux, batteries, onduleur), génération de devis PDF et chatbot IA BYOK (DeepSeek/Qwen/OpenRouter).",
     metrics: [
-      { n: '23k+', l: 'lignes de Go' },
-      { n: '16', l: 'régions couvertes' },
-      { n: '2', l: 'frontends — React 19 & Flutter' },
+      { n: 'BYOK', l: 'IA multi-provider' },
+      { n: '2', l: 'langues (FR · Wolof)' },
+      { n: 'CI/CD', l: 'GitHub Actions + Jenkins' },
     ],
-    tags: ['Go', 'Gin', 'React 19', 'Flutter', 'PostgreSQL', 'Redis'],
-    media: 'capture produit — Kay-Point',
+    tags: ['Go', 'Gin', 'Next.js 14', 'PostgreSQL', 'Docker', 'Jenkins'],
+    media: 'capture produit — 380 Solutions',
   },
   {
     sector: 'LOGISTIQUE',
-    meta: 'SaaS B2B · en production',
-    title: 'Une plateforme logistique multi-devises exploitée en prod',
-    desc: 'Conception et développement de TradeFlowSN, une plateforme de suivi de conteneurs en ligne sur tradeflowsn.com — gestion multi-devises (EUR / USD / XOF), couverture de tests complète et déploiements automatisés via Jenkins.',
+    meta: 'projet personnel · en production',
+    title: 'Une plateforme logistique multi-devises avec 233 tests',
+    desc: 'Conception et développement de TradeFlowSN, une plateforme de suivi de conteneurs — gestion multi-devises (EUR / USD / XOF), couverture de tests complète et déploiements automatisés via Jenkins.',
     metrics: [
       { n: '233', l: 'tests automatisés' },
       { n: '3', l: 'devises gérées' },
@@ -31,17 +31,17 @@ const CASES = [
     media: 'capture produit — TradeFlowSN',
   },
   {
-    sector: 'OUTILLAGE',
-    meta: 'projet open source · Rust',
-    title: "Un générateur de projets piloté par l'IA, salué par la communauté",
-    desc: 'Application desktop en Rust qui transforme une description en langage naturel en architecture de projet prête à coder, via l’API Google Gemini — interface Material Design 3 construite avec Slint.',
+    sector: 'E-COMMERCE',
+    meta: 'bénévolat · monorepo fullstack',
+    title: 'Une plateforme e-commerce pour artistes graphistes',
+    desc: "Développement bénévole de RBS Crew SN — monorepo avec API Go (chi, pgx, sqlc), Next.js 16 (App Router, React 19), paiements multi-provider (Stripe, Wave, Orange Money), stockage média Cloudflare R2 et migration depuis WordPress.",
     metrics: [
-      { n: '7', l: 'étoiles GitHub' },
-      { n: 'Rust', l: '+ Slint (GUI native)' },
-      { n: 'Gemini', l: 'API pour le scaffolding' },
+      { n: '4', l: 'providers de paiement' },
+      { n: 'R2', l: 'stockage média cloud' },
+      { n: 'RBAC', l: 'admin multi-rôles' },
     ],
-    tags: ['Rust', 'Slint', 'Gemini API'],
-    media: 'schéma — Generateur-d’architecture',
+    tags: ['Go', 'chi', 'Next.js 16', 'PostgreSQL', 'Redis', 'Stripe'],
+    media: 'capture produit — RBS Crew SN',
   },
 ];
 

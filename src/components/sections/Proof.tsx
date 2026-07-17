@@ -3,14 +3,14 @@
 import React from 'react';
 import { Reveal } from '@/components/ui/Reveal';
 
-const PROOF = ['01 Talent Senegal', "Ministère de l'Éducation", 'TradeFlowSN', 'Hedera Hashgraph', 'GitHub'];
+const PROOF = ['01 Talent Senegal', 'RBS-CREW (Bénévolat)', '380 Solutions', 'TradeFlowSN', 'Hedera Hashgraph', 'GitHub'];
 
 export function Proof() {
   return (
     <section className="border-y py-12" style={{ borderColor: 'var(--line)' }}>
       <Reveal className="container-px">
         <p className="font-mono text-[.74rem] tracking-[.16em] uppercase text-center mb-8" style={{ color: 'var(--text-3)' }}>
-          La confiance d&apos;équipes produit, d&apos;institutions &amp; de scale-ups
+          Environnements et communautés avec lesquels j&apos;ai travaillé
         </p>
         <div className="flex flex-wrap items-center justify-center gap-12">
           {PROOF.map((name) => (

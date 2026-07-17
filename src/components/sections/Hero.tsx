@@ -4,9 +4,9 @@ import React from 'react';
 import { Reveal } from '@/components/ui/Reveal';
 
 const STATS = [
-  { num: '3+ ans', lbl: "d'ingénierie produit" },
-  { num: '10+', lbl: 'apps livrées en prod' },
-  { num: '16 régions', lbl: 'couvertes par Kay-Point' },
+  { num: '3+ ans', lbl: "d'ingénierie logicielle" },
+  { num: '30+', lbl: 'projets développés' },
+  { num: '7 ⭐', lbl: 'GitHub stars (Generateur)' },
 ];
 
 export function Hero() {
@@ -22,13 +22,13 @@ export function Hero() {
               <span className="pulse-dot" /> Disponible pour de nouvelles missions · Q3 2026
             </span>
             <h1 className="display text-[clamp(2.6rem,6.2vw,4.7rem)] mb-6">
-              J&apos;aide les équipes à livrer des produits{' '}
-              <em className="not-italic" style={{ color: 'var(--accent)' }}>fiables, rapides et scalables.</em>
+              Je transforme les idées en logiciels{' '}
+              <em className="not-italic" style={{ color: 'var(--accent)' }}>concrets, fiables et scalables.</em>
             </h1>
             <p className="text-[clamp(1.05rem,1.7vw,1.32rem)] leading-relaxed max-w-[540px] mb-12" style={{ color: 'var(--text-2)' }}>
-              Ingénieur Full Stack, Backend &amp; DevOps freelance basé à Dakar. Je conçois des architectures robustes
-              en Go, Java et Rust, des API performantes et des infrastructures cloud qui tiennent la charge — de
-              l&apos;idée à la production.
+              Ingénieur Full Stack &amp; Backend basé à Dakar. Crypto-enthousiaste et futur contributeur open source.
+              J&apos;accompagne les porteurs d&apos;idées à transformer leurs visions en logiciels concrets
+              — en Go, Java, Rust et TypeScript.
             </p>
             <div className="flex flex-wrap gap-4 items-center">
               <a href="#contact" className="btn btn-primary">Démarrer un projet <span className="arrow">→</span></a>
@@ -55,13 +55,14 @@ export function Hero() {
               <div className="p-5 font-mono text-[.83rem] leading-[1.85]" style={{ color: 'var(--text-2)' }}>
                 <div><span style={{ color: 'var(--text-3)' }}>{"// engineer.ts"}</span></div>
                 <div><span style={{ color: 'var(--accent)' }}>const</span> cheikh = {'{'}</div>
-                <div>&nbsp;&nbsp;<span style={{ color: 'var(--accent)' }}>role</span>: <span style={{ color: '#7ec699' }}>&quot;Full Stack · Backend · DevOps&quot;</span>,</div>
+                <div>&nbsp;&nbsp;<span style={{ color: 'var(--accent)' }}>role</span>: <span style={{ color: '#7ec699' }}>&quot;Full Stack · Backend · Crypto Enthusiast&quot;</span>,</div>
                 <div>&nbsp;&nbsp;<span style={{ color: 'var(--accent)' }}>focus</span>: [<span style={{ color: '#7ec699' }}>&quot;API&quot;</span>, <span style={{ color: '#7ec699' }}>&quot;Cloud&quot;</span>, <span style={{ color: '#7ec699' }}>&quot;DX&quot;</span>],</div>
                 <div>&nbsp;&nbsp;<span style={{ color: 'var(--accent)' }}>stack</span>: [<span style={{ color: '#7ec699' }}>&quot;Go&quot;</span>, <span style={{ color: '#7ec699' }}>&quot;Java&quot;</span>, <span style={{ color: '#7ec699' }}>&quot;Rust&quot;</span>, <span style={{ color: '#7ec699' }}>&quot;TypeScript&quot;</span>],</div>
-                <div>&nbsp;&nbsp;<span style={{ color: 'var(--accent)' }}>ship</span>: <span style={{ color: '#e0b25a' }}>async</span> () =&gt; <span style={{ color: '#7ec699' }}>&quot;production-ready&quot;</span>,</div>
+                <div>&nbsp;&nbsp;<span style={{ color: 'var(--accent)' }}>aspire</span>: [<span style={{ color: '#7ec699' }}>&quot;OSS contributor&quot;</span>, <span style={{ color: '#7ec699' }}>&quot;Crypto builder&quot;</span>],</div>
+                <div>&nbsp;&nbsp;<span style={{ color: 'var(--accent)' }}>ship</span>: <span style={{ color: '#e0b25a' }}>async</span> () =&gt; <span style={{ color: '#7ec699' }}>&quot;ideas → reality&quot;</span>,</div>
                 <div>{'};'}</div>
                 <div>&nbsp;</div>
-                <div><span style={{ color: 'var(--text-3)' }}>{"// → disponible pour votre prochain sprint"}</span></div>
+                <div><span style={{ color: 'var(--text-3)' }}>{"// → j'accompagne les idea guys 🚀"}</span></div>
               </div>
             </div>
           </Reveal>
