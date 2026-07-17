@@ -1,0 +1,210 @@
+% ============================================================
+%  Cheikh Mounirou Coly Diouf — Fullstack Engineer
+%  Version: Learner & Open Source | Single Column | Max 2 Pages
+%  GitHub-verified projects via gh CLI
+% ============================================================
+
+\documentclass[10pt,a4paper]{article}
+
+% ---- PACKAGES ----
+\usepackage[top=1.0cm, bottom=1.0cm, left=1.4cm, right=1.4cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\pagestyle{empty}
+
+% ---- SECTION FORMATTING ----
+\titleformat{\section}
+  {\large\bfseries\uppercase}
+  {}
+  {0em}
+  {}
+  [\vspace{-2pt}\rule{\linewidth}{0.6pt}]
+\titlespacing{\section}{0pt}{7pt}{4pt}
+
+% ---- LIST FORMATTING ----
+\setlist[itemize]{
+  leftmargin=1.5em,
+  topsep=2pt,
+  itemsep=1.5pt,
+  parsep=0pt,
+  label=\textbullet
+}
+
+% ---- CUSTOM COMMANDS ----
+\newcommand{\expheader}[4]{%
+  \noindent\textbf{#1} \hfill \textit{#2}\\
+  \noindent\textit{#3} \hfill \textit{#4}
+}
+
+\newcommand{\projheader}[3]{%
+  \noindent\textbf{#1} \hfill \textit{#2}\\
+  \noindent\textit{#3}
+}
+
+\begin{document}
+
+% ============================================================
+%  HEADER
+% ============================================================
+\begin{center}
+  {\LARGE\textbf{Cheikh Mounirou Coly Diouf}}\\[4pt]
+  {\normalsize Fullstack Engineer \textbar{} Go, Java, Rust \textbar{} SaaS \& Cloud Native}\\[4pt]
+  {\small
+    Dakar, Senegal \textbar{} Available for Opportunities \textbar{}
+    +221 778 879 040 \textbar{}
+    \href{mailto:feppdougou@gmail.com}{feppdougou@gmail.com}
+  }\\[2pt]
+  {\small
+    \href{https://www.linkedin.com/in/cheikh-mounirou-coly-diouf-3549b6241}{LinkedIn}
+    \textbar{}
+    \href{https://github.com/Cheikh-Nakamoto}{GitHub (60+ repos)}
+    \textbar{}
+    \href{https://portifolio.cheikhmodiouf.org/}{Portfolio}
+    \textbar{}
+    \href{https://tradeflowsn.com}{tradeflowsn.com} (live)
+  }
+\end{center}
+
+\vspace{2pt}
+
+% ============================================================
+%  PROFESSIONAL SUMMARY
+% ============================================================
+\section*{Professional Summary}
+
+Passionate Fullstack Engineering Learner with 3+ years of intensive software engineering experience. I build complete products — from database schema to Docker-deployed infrastructure to pixel-perfect frontends. Developed 30+ projects (learning, hackathons, and personal) including: Kay-Point, an ambitious multi-tenant SaaS architecture concept (23k+ lines of Go); TradeFlowSN, a logistics platform with 233 automated tests; and Generateur-d'architecture, a 7-starred Rust AI tool. Dedicated to open source contribution and helping idea generators materialize their vision. GMT timezone, clean documented code.
+
+% ============================================================
+%  TECHNICAL SKILLS
+% ============================================================
+\section*{Technical Skills}
+
+\noindent
+\textbf{Backend Languages:} Go, Java 17, Rust, TypeScript, Node.js, Python, C
+
+\noindent
+\textbf{Backend Frameworks:} Gin, Spring Boot 3.x, Spring Cloud, Axum, Tokio, GORM, Hibernate
+
+\noindent
+\textbf{Frontend:} React 19, Angular 17, Next.js, Flutter, React Native, Tailwind CSS 4, Vite, Zustand
+
+\noindent
+\textbf{Databases:} PostgreSQL 16, Neo4j, Redis 7, TimescaleDB, MySQL, MinIO
+
+\noindent
+\textbf{Architecture:} Multi-Tenant SaaS, Clean Architecture, Microservices, Event-Driven, API Gateway
+
+\noindent
+\textbf{DevOps \& Cloud:} Docker, Docker Compose, GitHub Actions, Jenkins, Nginx, Prometheus, Grafana, Loki, Linux
+
+\noindent
+\textbf{Security:} JWT, bcrypt, RBAC, 2FA, Audit Trail, Rate Limiting, OWASP compliance
+
+\noindent
+\textbf{Testing:} Go Test, JUnit, Cargo Test, Testify, 233+ test suites in production, TDD
+
+% ============================================================
+%  PROFESSIONAL EXPERIENCE
+% ============================================================
+\section*{Professional Experience}
+
+% ---- ZONE 01 ----
+\expheader{Fullstack Engineering Learner}{Jan 2023 -- April 2026}
+{01 Talent Senegal -- Zone 01 Dakar}{Dakar, Senegal}
+\begin{itemize}
+  \item Developed 30+ fullstack projects across Go, Java, Rust, and TypeScript stacks through intensive peer-to-peer learning, focusing on architecture, testing, and deployment.
+  \item Architected Kay-Point, an ambitious multi-tenant SaaS concept designed as a large-scale architecture exercise with 23,300+ lines of Go, React 19 web dashboard, and Flutter mobile app.
+  \item Designed hierarchical user roles, GPS geolocation check-in (Haversine formula), full audit trails, and JWT/2FA authentication for various projects.
+  \item Built and deployed TradeFlowSN, a container logistics SaaS live at tradeflowsn.com with 233 automated tests, multi-currency conversion (EUR/USD/XOF), JWT/RBAC security, and Jenkins CI/CD.
+  \item Published Generateur-d-architecture (7 GitHub stars), a Rust desktop app with Material Design 3 UI and Google Gemini AI integration.
+  \item Designed agile-factory-kernel, a multi-tenant SaaS boilerplate in Go 1.25 following Clean Architecture.
+  \item Gained extensive experience in Docker containerization and automated GitHub Actions/Jenkins CI/CD pipelines to streamline deployment processes.
+  \item Actively participated in peer-to-peer pedagogy, conducting code reviews and pair programming on Go, Rust, and Java best practices.
+\end{itemize}
+
+% ============================================================
+%  SELECTED PROJECTS
+% ============================================================
+\section*{Selected Projects}
+
+% ---- KAY-POINT ----
+\projheader{Kay-Point \textbar{} Architecture Concept}{2025}{Ambitious Multi-Tenant SaaS Exercise}
+\noindent\textit{Go (Gin) \textbar{} React 19 \textbar{} Flutter \textbar{} PostgreSQL 16 \textbar{} Redis 7 \textbar{} Prometheus/Grafana/Loki}
+\begin{itemize}
+  \item Large-scale SaaS concept for teacher attendance management. 23k+ lines of Clean Architecture Go backend. 8 user roles. Haversine geolocation. Offline-capable Flutter app with WebRTC. GitHub Actions CI.
+\end{itemize}
+
+\vspace{3pt}
+
+% ---- TRADEFLOWSN ----
+\projheader{TradeFlowSN \textbar{} Live at tradeflowsn.com}{2025}{Container Logistics SaaS}
+\noindent\textit{Go 1.24 \textbar{} React 18 \textbar{} PostgreSQL \textbar{} Redis \textbar{} Jenkins CI/CD \textbar{} 233 tests}
+\begin{itemize}
+  \item Fullstack import-export platform with multi-container tracking, automated EUR/USD/XOF conversion, RBAC security, and real-time KPI dashboards. Deployed with zero-downtime CI/CD.
+\end{itemize}
+
+\vspace{3pt}
+
+% ---- GENERATEUR ----
+\projheader{Generateur-d'architecture}{2025}{AI-Powered Project Scaffolder \textbar{} 7 GitHub Stars}
+\noindent\textit{Rust \textbar{} Slint GUI \textbar{} Gemini 2.0 Flash \textbar{} Material Design 3}
+\begin{itemize}
+  \item Desktop app + CLI that generates project structures from README descriptions via Google Gemini AI. Pre-built templates for Rust, Python, Web, CLI, Microservice projects.
+\end{itemize}
+
+\vspace{3pt}
+
+% ---- AGILE-FACTORY-KERNEL ----
+\projheader{Agile-Factory-Kernel}{2025}{Multi-Tenant SaaS Boilerplate for Go}
+\noindent\textit{Go 1.25 \textbar{} Clean Architecture \textbar{} net/http \textbar{} log/slog \textbar{} Zero Framework Dependencies}
+\begin{itemize}
+  \item Production-grade kernel/platform/modules architecture. Structured fan-out logging. Reduced new project setup from 2 weeks to 2 days.
+\end{itemize}
+
+% ============================================================
+%  KEY AREAS OF EXPERTISE
+% ============================================================
+\section*{Key Areas of Expertise}
+
+\noindent\textbf{Backend Development:} REST APIs, Microservices, Database Design, Performance Optimization
+
+\noindent\textbf{Fullstack Development:} SaaS platforms, MVP from zero to production, Real-time dashboards
+
+\noindent\textbf{Architecture:} Multi-Tenant design, Clean Architecture, Event-Driven systems
+
+\noindent\textbf{DevOps:} Docker deployment, CI/CD pipeline setup, Monitoring (Prometheus/Grafana)
+
+\noindent\textbf{Tech Stack Flexibility:} Go, Java, Rust, TypeScript — I adapt to your existing stack
+
+% ============================================================
+%  CERTIFICATIONS
+% ============================================================
+\section*{Certifications}
+
+\noindent\textbf{Hedera Certified Developer} \hfill 2025\\
+Hedera Hashgraph -- HCS, HTS
+
+\vspace{3pt}
+
+\noindent\textbf{Java Development Certificate} \hfill April 2025\\
+01 Talent Senegal -- Advanced Java 17, Spring Boot, Microservices
+
+% ============================================================
+%  EDUCATION
+% ============================================================
+\section*{Education}
+
+\noindent\textbf{Lycee Demba Diop -- Mbour} \hfill 2018 -- 2021\\
+\textit{Baccalaureate in Science (S2)} -- Mathematics \& Physics
+
+% ============================================================
+%  LANGUAGES
+% ============================================================
+\section*{Languages}
+
+\noindent French (Native) \textbar{} Wolof (Native) \textbar{} English (Professional Working Proficiency)
+
+\end{document}

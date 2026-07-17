@@ -13,6 +13,13 @@ const ITEMS = [
     role: 'Certification · 2025',
   },
   {
+    icon: HiBadgeCheck,
+    stat: 'Java Development Certificate',
+    text: 'Certification délivrée par 01 Talent Senegal en 2025, validant mes compétences en développement backend avec l\'écosystème Java.',
+    by: '01 Talent Senegal',
+    role: 'Certification · 2025',
+  },
+  {
     icon: HiStar,
     stat: '7 étoiles GitHub',
     text: 'Generateur-d\u2019architecture, mon outil desktop en Rust qui scaffold des architectures de projet via l\u2019IA, a été remarqué et adopté par la communauté open source.',
@@ -36,7 +43,7 @@ export function Achievements() {
           <span className="eyebrow">Reconnaissance</span>
           <h2 className="display text-[clamp(2rem,4vw,3.1rem)] mt-4">Ce qui valide le travail accompli</h2>
         </Reveal>
-        <Reveal className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Reveal className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
           {ITEMS.map(({ icon: Icon, stat, text, by, role }) => (
             <div key={stat} className="card flex flex-col h-full">
               <div className="w-11 h-11 rounded-xl grid place-items-center mb-4" style={{ background: 'var(--accent-soft)', border: '1px solid var(--accent-line)', color: 'var(--accent)' }}>
