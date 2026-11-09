@@ -1,5 +1,3 @@
-'use client';
-
 import { Nav } from '@/components/layout/Nav';
 import { Footer } from '@/components/layout/Footer';
 import { Hero } from '@/components/sections/Hero';
@@ -16,8 +14,11 @@ import { Pricing } from '@/components/sections/Pricing';
 import { FAQ } from '@/components/sections/FAQ';
 import { CTA } from '@/components/sections/CTA';
 import { Contact } from '@/components/sections/Contact';
+import { LatestPosts } from '@/components/sections/LatestPosts';
+import { getAllPosts } from '@/lib/blog';
 
 export default function Home() {
+  const latestPosts = getAllPosts().slice(0, 3);
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg)', color: 'var(--text)' }}>
       <Nav />
@@ -30,6 +31,7 @@ export default function Home() {
         <CaseStudies />
         <Projects />
         <Achievements />
+        <LatestPosts posts={latestPosts} />
         <Process />
         <Stack />
         <Pricing />

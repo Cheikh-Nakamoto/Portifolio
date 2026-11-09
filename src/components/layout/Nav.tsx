@@ -2,23 +2,27 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useTheme } from '@/contexts/ThemeContext';
 import { siteConfig } from '@/config/site';
 import { HiSun, HiMoon, HiMenu, HiX } from 'react-icons/hi';
 
 const LINKS = [
-  { href: '#services', label: 'Services' },
-  { href: '#cas', label: 'Études de cas' },
-  { href: '#projets', label: 'Projets' },
-  { href: '#stack', label: 'Stack' },
-  { href: '#tarifs', label: 'Tarifs' },
-  { href: '#faq', label: 'FAQ' },
+  { href: '/a-propos', label: 'À propos' },
+  { href: '/#services', label: 'Services' },
+  { href: '/#projets', label: 'Projets' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/#tarifs', label: 'Tarifs' },
+  { href: '/#faq', label: 'FAQ' },
 ];
 
 export function Nav() {
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const isActive = (href: string) => !href.includes('#') && pathname.startsWith(href);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -44,18 +48,24 @@ export function Nav() {
         }`}
       >
         <div className="container-px flex items-center justify-between h-[72px]">
-          <a href="#top" aria-label="Accueil" className="flex items-center gap-2.5 font-display font-semibold text-[1.05rem] tracking-tight">
+          <Link href="/" aria-label="Accueil" className="flex items-center gap-2.5 font-display font-semibold text-[1.05rem] tracking-tight">
             <div className="relative w-[30px] h-[30px] rounded-lg overflow-hidden border" style={{ borderColor: 'var(--line-2)' }}>
               <Image src="/avatar-original.jpeg" alt="Logo" fill className="object-cover" sizes="30px" />
             </div>
             <span>mounirou<span style={{ color: 'var(--accent)' }}>.</span>dev</span>
-          </a>
+          </Link>
 
           <nav aria-label="Navigation principale" className="hidden md:flex items-center gap-6 lg:gap-8">
             {LINKS.map((l) => (
-              <a key={l.href} href={l.href} className="text-[.95rem] transition-colors hover:text-[var(--text)]" style={{ color: 'var(--text-2)' }}>
+              <Link
+                key={l.href}
+                href={l.href}
+                aria-current={isActive(l.href) ? 'page' : undefined}
+                className="text-[.95rem] transition-colors hover:text-[var(--text)]"
+                style={{ color: isActive(l.href) ? 'var(--text)' : 'var(--text-2)' }}
+              >
                 {l.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -69,8 +79,8 @@ export function Nav() {
             >
               {theme === 'light' ? <HiMoon className="w-[19px] h-[19px]" /> : <HiSun className="w-[19px] h-[19px]" />}
             </button>
-            <a href="#contact" className="btn btn-ghost hidden lg:inline-flex">Me contacter</a>
-            <a href="#contact" className="btn btn-primary hidden lg:inline-flex">Réserver un appel <span className="arrow">→</span></a>
+            <a href="/#contact" className="btn btn-ghost hidden lg:inline-flex">Me contacter</a>
+            <a href="/#contact" className="btn btn-primary hidden lg:inline-flex">Réserver un appel <span className="arrow">→</span></a>
             <button
               onClick={() => setOpen((v) => !v)}
               aria-label="Ouvrir le menu"
@@ -88,10 +98,10 @@ export function Nav() {
         className={`fixed inset-0 z-[99] flex flex-col justify-center gap-6 px-8 transition-transform duration-400 md:hidden ${open ? 'translate-y-0' : '-translate-y-full'}`}
         style={{ background: 'var(--bg)' }}
       >
-        {LINKS.concat([{ href: '#contact', label: 'Contact' }]).map((l) => (
-          <a key={l.href} href={l.href} onClick={closeMenu} className="font-display text-[1.8rem] font-semibold" style={{ color: 'var(--text)' }}>
+        {LINKS.concat([{ href: '/#contact', label: 'Contact' }]).map((l) => (
+          <Link key={l.href} href={l.href} onClick={closeMenu} className="font-display text-[1.8rem] font-semibold" style={{ color: 'var(--text)' }}>
             {l.label}
-          </a>
+          </Link>
         ))}
         <div className="font-mono text-[.8rem] mt-6" style={{ color: 'var(--text-3)' }}>
           {siteConfig.links.email} · Disponible Q3 2026

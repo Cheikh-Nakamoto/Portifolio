@@ -22,8 +22,14 @@ const mono = JetBrains_Mono({
   variable: '--font-mono',
 });
 
+const themeScript = `try{var t=localStorage.getItem('theme');document.documentElement.classList.add(t==='light'?'light':'dark')}catch(e){document.documentElement.classList.add('dark')}`;
+
 export const metadata: Metadata = {
-  title: siteConfig.title,
+  metadataBase: new URL(siteConfig.url),
+  title: { default: siteConfig.title, template: `%s — ${siteConfig.name}` },
+  alternates: {
+    types: { 'application/rss+xml': [{ url: '/blog/rss.xml', title: 'Blog — Cheikh Diouf' }] },
+  },
   description: siteConfig.description,
   keywords: [
     'portfolio',
@@ -44,7 +50,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    url: siteConfig.links.github,
+    url: siteConfig.url,
     title: siteConfig.title,
     description: siteConfig.description,
     siteName: siteConfig.name,
@@ -64,6 +70,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" suppressHydrationWarning className={`${display.variable} ${body.variable} ${mono.variable}`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="font-sans">
         <ThemeProvider>{children}</ThemeProvider>
       </body>

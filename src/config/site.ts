@@ -4,6 +4,7 @@ export const siteConfig = {
   description: "Fullstack Engineer avec 3+ ans d'expérience en ingénierie logicielle. 30+ projets (apprentissage, hackathons, projets perso). Go, Java, Rust, TypeScript. Crypto-enthousiaste & future open source contributor.",
   tagline: "Fullstack Engineer — Go, Java, Rust, TypeScript",
   phone: "+221 778 879 040",
+  url: "https://portifolio.cheikhmodiouf.org",
 
   github: {
     username: "Cheikh-Nakamoto",

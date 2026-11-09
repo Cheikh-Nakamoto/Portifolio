@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { Reveal } from '@/components/ui/Reveal';
 
 const FACTS = [
@@ -42,6 +43,10 @@ export function About() {
                   <div className="font-display font-semibold mt-1">{f.v}</div>
                 </div>
               ))}
+            </div>
+            <div className="flex flex-wrap gap-3 mt-10">
+              <Link href="/a-propos" className="btn btn-primary">Lire mon histoire <span className="arrow">→</span></Link>
+              <a href="/cv-cheikh-diouf.pdf" download className="btn btn-ghost">CV (PDF) ↓</a>
             </div>
           </Reveal>
         </div>

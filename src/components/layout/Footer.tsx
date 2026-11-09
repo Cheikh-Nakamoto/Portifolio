@@ -7,19 +7,21 @@ const NAV_COLS = [
   {
     title: 'Naviguer',
     links: [
-      { href: '#services', label: 'Services' },
-      { href: '#cas', label: 'Études de cas' },
-      { href: '#projets', label: 'Projets' },
-      { href: '#stack', label: 'Stack' },
+      { href: '/a-propos', label: 'À propos' },
+      { href: '/blog', label: 'Blog' },
+      { href: '/#services', label: 'Services' },
+      { href: '/#cas', label: 'Études de cas' },
+      { href: '/#projets', label: 'Projets' },
+      { href: '/#stack', label: 'Stack' },
     ],
   },
   {
     title: 'Infos',
     links: [
-      { href: '#tarifs', label: 'Tarifs' },
-      { href: '#faq', label: 'FAQ' },
-      { href: '#processus', label: 'Processus' },
-      { href: '#contact', label: 'Contact' },
+      { href: '/#tarifs', label: 'Tarifs' },
+      { href: '/#faq', label: 'FAQ' },
+      { href: '/#processus', label: 'Processus' },
+      { href: '/#contact', label: 'Contact' },
     ],
   },
   {
@@ -38,7 +40,7 @@ export function Footer() {
       <div className="container-px">
         <div className="flex flex-wrap justify-between gap-12 mb-16">
           <div className="max-w-[300px]">
-            <a href="#top" className="flex items-center gap-2.5 font-display font-semibold text-[1.05rem] tracking-tight">
+            <a href="/" className="flex items-center gap-2.5 font-display font-semibold text-[1.05rem] tracking-tight">
               <span className="w-[30px] h-[30px] rounded-lg grid place-items-center font-mono font-bold text-[.9rem]" style={{ background: 'var(--accent)', color: 'var(--accent-ink)' }}>
                 {siteConfig.name.charAt(0)}
               </span>
