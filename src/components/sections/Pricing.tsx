@@ -24,10 +24,10 @@ const PLANS = [
   },
   {
     name: 'Ongoing backend partner',
-    desc: 'A dedicated backend developer on your team, at a junior-level monthly rate.',
+    desc: 'A part-time backend developer on your team, at a junior-level monthly rate.',
     amt: '$750',
-    per: '/ month · full-time',
-    feats: ['40 hours a week', 'Joins your standups (GMT)', 'Priority on incidents', 'Long-term contracts welcome'],
+    per: '/ month · part-time',
+    feats: ['20 hours a week', 'Joins your standups (GMT)', 'Priority on incidents', 'Long-term contracts welcome'],
     cta: 'ghost',
   },
 ];
