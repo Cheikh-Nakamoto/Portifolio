@@ -24,7 +24,7 @@ export function Hero() {
               className="inline-flex items-center gap-2.5 font-mono text-[.8rem] rounded-full border px-3.5 py-[7px] mb-6"
               style={{ color: 'var(--text-2)', borderColor: 'var(--line-2)' }}
             >
-              <span className="pulse-dot" /> Available for new projects · GMT
+              <span className="pulse-dot" /> Available for new projects, GMT
             </span>
             <h1 className="display text-[clamp(2.2rem,5.2vw,4rem)] mb-6">
               Java &amp; Go Backend Developer{' '}

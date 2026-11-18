@@ -134,8 +134,8 @@ export function Contact() {
                 {status === 'success'
                   ? 'Thanks! I’ll reply within 24 hours.'
                   : status === 'error'
-                    ? 'Email is not configured — please write to me directly.'
-                    : 'Reply within 24h · your details stay confidential'}
+                    ? 'Email is not configured, please write to me directly.'
+                    : 'Reply within 24h, your details stay confidential'}
               </p>
             </form>
           </Reveal>

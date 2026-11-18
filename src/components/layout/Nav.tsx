@@ -94,7 +94,7 @@ export function Nav() {
           </a>
         ))}
         <div className="font-mono text-[.8rem] mt-6" style={{ color: 'var(--text-3)' }}>
-          {siteConfig.links.email} · Available for new projects
+          {siteConfig.links.email}, available for new projects
         </div>
       </div>
     </>

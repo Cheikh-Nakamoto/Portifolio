@@ -7,7 +7,7 @@ const ITEMS = [
   {
     no: '01',
     title: 'Isolation by design',
-    desc: 'The tenant is resolved once per request — from the JWT, never from a URL parameter the user can change — and every query is scoped to it. One customer can’t read another’s data, even by accident.',
+    desc: 'The tenant is resolved once per request, from the JWT and never from a URL parameter the user can change, and every query is scoped to it. One customer can’t read another’s data, even by accident.',
     tags: ['Tenant middleware', 'tenant_id on every table', 'Scoped repositories'],
   },
   {

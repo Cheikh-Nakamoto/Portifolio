@@ -46,7 +46,7 @@ export function Projects() {
               </div>
               <p className="text-[.93rem]" style={{ color: 'var(--text-2)' }}>{p.description}</p>
               <div className="font-mono text-[.76rem] mt-auto pt-3" style={{ color: 'var(--text-3)' }}>
-                {p.stack.join(' · ')}
+                {p.stack.join(', ')}
               </div>
             </a>
           ))}

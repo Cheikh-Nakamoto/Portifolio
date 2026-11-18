@@ -70,8 +70,8 @@ export function Footer() {
           </div>
         </div>
         <div className="flex flex-wrap justify-between items-center gap-5 pt-8 border-t" style={{ borderColor: 'var(--line)' }}>
-          <p className="font-mono text-[.86rem]" style={{ color: 'var(--text-3)' }}>© {new Date().getFullYear()} {siteConfig.name} — All rights reserved</p>
-          <p className="font-mono text-[.86rem]" style={{ color: 'var(--text-3)' }}>Dakar, Senegal · GMT · remote</p>
+          <p className="font-mono text-[.86rem]" style={{ color: 'var(--text-3)' }}>© {new Date().getFullYear()} {siteConfig.name}. All rights reserved</p>
+          <p className="font-mono text-[.86rem]" style={{ color: 'var(--text-3)' }}>Dakar, Senegal, GMT, remote</p>
         </div>
       </div>
     </footer>

@@ -6,15 +6,15 @@ import { Reveal } from '@/components/ui/Reveal';
 // Each case is told as Situation → Complication → Action → Result.
 const CASES = [
   {
-    sector: 'SAAS · LIVE',
-    label: 'My own SaaS · live, in active development',
-    title: 'XewXew — a SaaS that gives every event its own website',
+    sector: 'LIVE SAAS',
+    label: 'My own SaaS, in active development',
+    title: 'XewXew: a SaaS that gives every event its own website',
     link: 'https://xewxew.click',
     star: [
       { k: 'Situation', v: 'Families and wedding planners in Senegal share event details through scattered WhatsApp messages. XewXew lets anyone pick a template, add their info and share a link like your-event.xewxew.click.' },
-      { k: 'Complication', v: 'One platform serves individuals, agencies with many clients, and guests — each must only see and edit their own events. Payments run on mobile money, and AI image credits must never be lost or double-charged.' },
+      { k: 'Complication', v: 'One platform serves individuals, agencies with many clients, and guests, and each must only see and edit their own events. Payments run on mobile money, and AI image credits must never be lost or double-charged.' },
       { k: 'Action', v: 'Built a Go modular monolith (hexagonal, one PostgreSQL schema per module, boundaries enforced by architecture tests). Permission-based roles at platform, organisation and event level, a credit ledger with idempotent reserve/refund, signed Wave / Orange Money webhooks, an outbox + background workers, and OpenTelemetry tracing.' },
-      { k: 'Result', v: 'Live at xewxew.click with a wildcard subdomain per event — 69k lines of Go backed by 55k lines of tests, 118 migrations and 54 architecture decision records.' },
+      { k: 'Result', v: 'Live at xewxew.click with a wildcard subdomain per event, 69k lines of Go backed by 55k lines of tests, 118 migrations and 54 architecture decision records.' },
     ],
     metrics: [
       { n: '12', l: 'backend modules' },
@@ -23,17 +23,17 @@ const CASES = [
     ],
     tags: ['Go', 'PostgreSQL 16', 'Redis', 'RBAC', 'Mobile money', 'OpenTelemetry', 'Next.js 15'],
     media: '/xewxew.png',
-    video: { src: '/videos/xewxew-intro.mp4', poster: '/videos/xewxew-intro-poster.jpg', caption: 'XewXew product video · 50 s' },
+    video: { src: '/videos/xewxew-intro.mp4', poster: '/videos/xewxew-intro-poster.jpg', caption: 'XewXew product video, 50 s' },
   },
   {
     sector: 'MULTI-TENANT SAAS',
-    label: 'Personal project · not in production yet',
-    title: 'Kay-Point — one platform, many isolated organisations',
+    label: 'Personal project, not in production yet',
+    title: 'Kay-Point: one platform, many isolated organisations',
     star: [
       { k: 'Situation', v: 'Teacher attendance in Senegalese schools is still tracked on paper, across a national hierarchy: ministry → regional inspectorates → schools.' },
-      { k: 'Complication', v: 'Each inspectorate must see only its own schools and teachers, while the ministry needs a national view — classic multi-tenant isolation with a hierarchy on top.' },
+      { k: 'Complication', v: 'Each inspectorate must see only its own schools and teachers, while the ministry needs a national view, which is classic multi-tenant isolation with a hierarchy on top.' },
       { k: 'Action', v: 'Designed a Go (Gin) API where a middleware builds a tenant scope from JWT claims on every request; 8 RBAC roles, 2FA, audit trail, geolocation check-in, PostgreSQL + Redis.' },
-      { k: 'Result', v: 'A working multi-tenant backend with web (React) and mobile (Flutter) clients — the architecture I now reuse for SaaS backends.' },
+      { k: 'Result', v: 'A working multi-tenant backend with web (React) and mobile (Flutter) clients, and the architecture I now reuse for SaaS backends.' },
     ],
     metrics: [
       { n: '3', l: 'tenant hierarchy levels' },
@@ -45,8 +45,8 @@ const CASES = [
   },
   {
     sector: 'LOGISTICS',
-    label: 'Live product · tradeflowsn.com',
-    title: 'TradeFlowSN — a tested backend for container tracking',
+    label: 'Live product, tradeflowsn.com',
+    title: 'TradeFlowSN: a tested backend for container tracking',
     star: [
       { k: 'Situation', v: 'Importers need to follow each container and its costs from purchase to delivery, in one place.' },
       { k: 'Complication', v: 'Prices come in EUR, USD and XOF, and a wrong conversion means a wrong invoice.' },
@@ -64,7 +64,7 @@ const CASES = [
   {
     sector: 'JAVA MICROSERVICES',
     label: 'Personal project',
-    title: 'Neo4Flix — Spring Boot microservices behind one gateway',
+    title: 'Neo4Flix: Spring Boot microservices behind one gateway',
     star: [
       { k: 'Situation', v: 'A movie platform that recommends films from what users and similar users have rated.' },
       { k: 'Complication', v: 'Users, catalogue, ratings and recommendations scale differently and need to deploy independently.' },
@@ -87,7 +87,7 @@ export function CaseStudies() {
       <div className="container-px">
         <Reveal className="max-w-[760px] mb-16">
           <span className="eyebrow">Case studies</span>
-          <h2 className="display text-[clamp(2rem,4vw,3.1rem)] mt-4">Have I done this before? Yes — here’s how.</h2>
+          <h2 className="display text-[clamp(2rem,4vw,3.1rem)] mt-4">Have I done this before? Yes, here’s how.</h2>
           <p className="text-[clamp(1.05rem,1.7vw,1.32rem)] mt-4" style={{ color: 'var(--text-2)' }}>
             Every project is labelled honestly: client work, live product or personal project.
           </p>
@@ -120,7 +120,7 @@ export function CaseStudies() {
               </div>
               <div>
                 <div className="flex flex-wrap gap-x-4 gap-y-1 items-center mb-4 font-mono text-[.78rem]" style={{ color: 'var(--text-3)' }}>
-                  <span style={{ color: 'var(--accent)' }}>{c.sector}</span> · {c.label}
+                  <span style={{ color: 'var(--accent)' }}>{c.sector}</span> <span>{c.label}</span>
                 </div>
                 <h3 className="font-display font-semibold text-[1.6rem] tracking-tight mb-5">{c.title}</h3>
                 {'link' in c && c.link && (

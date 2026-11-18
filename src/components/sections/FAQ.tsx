@@ -6,10 +6,10 @@ import { Reveal } from '@/components/ui/Reveal';
 const QUESTIONS = [
   {
     q: 'What does “multi-tenant” mean for my SaaS?',
-    a: 'One application and one codebase serve many customers (tenants), and each customer only ever sees its own data. I choose the isolation model with you — shared schema with a tenant_id, schema per tenant, or database per tenant — based on your customers, compliance needs and budget.',
+    a: 'One application and one codebase serve many customers (tenants), and each customer only ever sees its own data. I choose the isolation model with you (shared schema with a tenant_id, schema per tenant, or database per tenant) based on your customers, compliance needs and budget.',
   },
   {
-    q: 'Java (Spring Boot) or Go — which should I pick?',
+    q: 'Java (Spring Boot) or Go, which should I pick?',
     a: 'Spring Boot is a great fit if your team already knows Java or you need its large ecosystem (security, integrations). Go gives small, fast services that are cheap to run. If you don’t have a preference, I’ll recommend one in our first call and explain why.',
   },
   {

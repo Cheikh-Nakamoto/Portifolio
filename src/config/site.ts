@@ -4,9 +4,9 @@ export const siteConfig = {
   title: "Java & Go Backend Developer | Multi-Tenant SaaS APIs | Spring Boot",
   description:
     "Building a SaaS? Your backend must keep each customer's data isolated, secure and fast as you grow. I build multi-tenant backends and APIs in Java (Spring Boot) and Go that do exactly that.",
-  tagline: "Java & Go Backend Developer — Multi-Tenant SaaS APIs",
+  tagline: "Java & Go Backend Developer, Multi-Tenant SaaS APIs",
   location: "Dakar, Senegal (GMT)",
-  timezoneNote: "GMT — full overlap with Europe, US mornings",
+  timezoneNote: "GMT, full overlap with Europe, US mornings",
   phone: "+221 778 879 040",
 
   github: {
@@ -48,8 +48,8 @@ export const siteConfig = {
 
   experience: {
     company: "01 Talent Senegal (Zone 01 Dakar)",
-    role: "Software Engineering Program — Backend track",
-    period: "Jan 2023 — Apr 2026",
+    role: "Software Engineering Program, Backend track",
+    period: "Jan 2023 to Apr 2026",
     description:
       "3+ years of project-based software engineering with peer review. 30+ projects, mostly backend: Go and Java (Spring Boot) APIs, PostgreSQL schema design, Docker and Jenkins CI/CD.",
   },
@@ -73,7 +73,7 @@ export const siteConfig = {
   featuredProjects: [
     {
       name: "XewXew",
-      label: "My own SaaS · live",
+      label: "My own SaaS, live",
       description:
         "Event-website SaaS: each event gets its own subdomain. Go modular monolith, platform / organisation / event roles, credit ledger, mobile-money payments, background workers.",
       stack: ["Go", "PostgreSQL", "Redis", "Next.js 15", "Cloudflare R2"],
@@ -96,7 +96,7 @@ export const siteConfig = {
       name: "Agile-Factory-Kernel",
       label: "Open source",
       description:
-        "Multi-tenant SaaS starter kernel in Go 1.25. Clean Architecture, no framework dependency — the base I reuse to start a tenant-aware API quickly.",
+        "Multi-tenant SaaS starter kernel in Go 1.25. Clean Architecture, no framework dependency. It's the base I reuse to start a tenant-aware API quickly.",
       stack: ["Go", "Clean Architecture", "PostgreSQL", "Docker"],
       url: "https://github.com/Cheikh-Nakamoto/agile-factory-kernel",
       image: "/agile-factory.png",

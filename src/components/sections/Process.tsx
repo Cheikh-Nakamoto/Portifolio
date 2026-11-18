@@ -7,7 +7,7 @@ const STEPS = [
   { n: '01', title: 'You tell me what you’re building', text: 'A short message or a 30-minute call. Within 24 hours I tell you honestly whether I’m the right fit.' },
   { n: '02', title: 'Tight scope', text: 'A written plan: tenant model, endpoints, milestones and a fixed or hourly estimate. No surprises later.' },
   { n: '03', title: 'Build in the open', text: 'Repository access from day one, short async updates, and a demo at every milestone.' },
-  { n: '04', title: 'Handover', text: 'Deployed, documented and tested — so your team (or the next developer) can take it from there.' },
+  { n: '04', title: 'Handover', text: 'Deployed, documented and tested, so your team (or the next developer) can take it from there.' },
 ];
 
 export function Process() {

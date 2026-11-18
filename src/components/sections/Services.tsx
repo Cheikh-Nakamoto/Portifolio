@@ -8,7 +8,7 @@ const SERVICES = [
   {
     icon: HiOutlineServer,
     title: 'Multi-tenant SaaS backend',
-    desc: 'A backend where every customer’s data stays separate — from the first tenant to the thousandth.',
+    desc: 'A backend where every customer’s data stays separate, from the first tenant to the thousandth.',
     items: ['Tenant isolation strategy (shared schema, schema or DB per tenant)', 'PostgreSQL data model with tenant_id everywhere', 'Tenant hierarchies & onboarding'],
   },
   {
@@ -39,7 +39,7 @@ export function Services() {
           <span className="eyebrow">What I build</span>
           <h2 className="display text-[clamp(2rem,4vw,3.1rem)] mt-4">Backend work for SaaS teams</h2>
           <p className="text-[clamp(1.05rem,1.7vw,1.32rem)] mt-4" style={{ color: 'var(--text-2)' }}>
-            Pick one piece — or hand me the whole backend. I don&apos;t do “a bit of everything”: I do the server side of SaaS products, properly.
+            Pick one piece, or hand me the whole backend. I don&apos;t do a bit of everything. I do the server side of SaaS products, and I do it properly.
           </p>
         </Reveal>
         <Reveal className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
