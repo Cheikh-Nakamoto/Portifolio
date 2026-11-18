@@ -23,7 +23,7 @@ const CASES = [
     ],
     tags: ['Go', 'PostgreSQL 16', 'Redis', 'RBAC', 'Mobile money', 'OpenTelemetry', 'Next.js 15'],
     media: '/xewxew.png',
-    video: { src: '/videos/xewxew-launch.mp4', poster: '/videos/xewxew-launch-poster.jpg', caption: 'XewXew launch video · 12 s' },
+    video: { src: '/videos/xewxew-intro.mp4', poster: '/videos/xewxew-intro-poster.jpg', caption: 'XewXew product video · 50 s' },
   },
   {
     sector: 'MULTI-TENANT SAAS',
