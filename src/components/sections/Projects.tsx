@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { Reveal } from '@/components/ui/Reveal';
 import { siteConfig } from '@/config/site';
 import { HiOutlineArrowUpRight } from 'react-icons/hi2';
@@ -24,7 +25,13 @@ export function Projects() {
               rel="noopener noreferrer"
               className="card card-hover group flex flex-col gap-4 h-full"
             >
-              <div className="ph aspect-[16/10] mb-0.5"><span className="ph__label">aperçu projet</span></div>
+              {p.image ? (
+                <div className="relative aspect-[16/10] mb-0.5 rounded-lg overflow-hidden">
+                  <Image src={p.image} alt={`Aperçu ${p.name}`} fill className="object-cover" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+                </div>
+              ) : (
+                <div className="ph aspect-[16/10] mb-0.5"><span className="ph__label">aperçu projet</span></div>
+              )}
               <div className="flex items-center justify-between gap-4">
                 <h3 className="font-display font-semibold text-[1.18rem]">{p.name}</h3>
                 <span
