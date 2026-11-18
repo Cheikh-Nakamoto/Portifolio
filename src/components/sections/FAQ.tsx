@@ -5,28 +5,28 @@ import { Reveal } from '@/components/ui/Reveal';
 
 const QUESTIONS = [
   {
-    q: "Comment se déroule le démarrage d'une mission ?",
-    a: "Tout commence par un appel de cadrage gratuit de 30 minutes. J'évalue le besoin, puis je vous envoie sous 48h une proposition claire avec périmètre, approche technique et estimation. Une fois validée, je peux généralement démarrer sous une semaine.",
+    q: 'What does “multi-tenant” mean for my SaaS?',
+    a: 'One application and one codebase serve many customers (tenants), and each customer only ever sees its own data. I choose the isolation model with you — shared schema with a tenant_id, schema per tenant, or database per tenant — based on your customers, compliance needs and budget.',
   },
   {
-    q: 'Travaillez-vous en remote ou sur site ?',
-    a: "Je travaille à 100% en remote depuis Dakar, avec une disponibilité sur les fuseaux européens et africains. Des déplacements ponctuels sont possibles pour les ateliers de cadrage ou les moments clés du projet, selon vos besoins.",
+    q: 'Java (Spring Boot) or Go — which should I pick?',
+    a: 'Spring Boot is a great fit if your team already knows Java or you need its large ecosystem (security, integrations). Go gives small, fast services that are cheap to run. If you don’t have a preference, I’ll recommend one in our first call and explain why.',
   },
   {
-    q: 'Pouvez-vous intervenir sur un projet existant ?',
-    a: 'Absolument. Une grande partie de mes missions consistent à reprendre, auditer ou faire évoluer des bases de code existantes. Je commence systématiquement par un diagnostic pour cartographier l’existant avant toute intervention.',
+    q: 'Can you work on an existing backend?',
+    a: 'Yes. I start with a short review of the code and data model, point out tenant-isolation and security risks, then fix or extend from there.',
   },
   {
-    q: 'Comment garantissez-vous la qualité du code ?',
-    a: 'Tests automatisés, revues de code, intégration continue et documentation font partie de chaque livrable — comme pour TradeFlowSN (233 tests) ou Kay-Point. Vous gardez un accès complet au dépôt à tout moment.',
+    q: 'What time zone do you work in?',
+    a: 'I’m in Dakar, on GMT all year. That gives full overlap with UK and European working hours, and US East Coast mornings.',
   },
   {
-    q: 'Que se passe-t-il après la livraison ?',
-    a: 'Chaque projet au forfait inclut 30 jours de support pour corriger les éventuels ajustements. Au-delà, je propose des formules de maintenance ou de régie pour faire évoluer le produit sur le long terme.',
+    q: 'How do you make sure the code is good?',
+    a: 'Automated tests in CI, small pull requests, and documentation of key decisions. TradeFlowSN, for example, runs 233 automated tests on every change. You have full repository access at all times.',
   },
   {
-    q: 'Signez-vous des accords de confidentialité ?',
-    a: 'Oui, sans aucun problème. Je signe volontiers vos NDA et contrats. La confidentialité et la propriété intellectuelle de votre code et de vos données vous reviennent intégralement.',
+    q: 'Do you sign NDAs? Who owns the code?',
+    a: 'Yes, I sign NDAs. You own all the code and data I produce for you.',
   },
 ];
 
@@ -70,7 +70,7 @@ export function FAQ() {
       <div className="container-px">
         <Reveal className="max-w-[680px] mx-auto text-center mb-16">
           <span className="eyebrow center">FAQ</span>
-          <h2 className="display text-[clamp(2rem,4vw,3.1rem)] mt-4">Questions fréquentes</h2>
+          <h2 className="display text-[clamp(2rem,4vw,3.1rem)] mt-4">Questions clients usually ask</h2>
         </Reveal>
         <Reveal className="max-w-[820px] mx-auto">
           {QUESTIONS.map((item) => <FaqItem key={item.q} {...item} />)}

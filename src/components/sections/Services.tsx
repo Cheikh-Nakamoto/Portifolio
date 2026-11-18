@@ -2,32 +2,32 @@
 
 import React from 'react';
 import { Reveal } from '@/components/ui/Reveal';
-import { HiOutlineServer, HiOutlineDesktopComputer, HiOutlineCloud, HiOutlineChartBar } from 'react-icons/hi';
+import { HiOutlineServer, HiOutlineShieldCheck, HiOutlineCube, HiOutlineCloud } from 'react-icons/hi';
 
 const SERVICES = [
   {
     icon: HiOutlineServer,
-    title: 'Architecture & API backend',
-    desc: 'Conception et développement de services backend robustes, documentés et performants.',
-    items: ['Modélisation & schéma de données', 'API REST / GraphQL versionnées', 'Authentification & sécurité'],
+    title: 'Multi-tenant SaaS backend',
+    desc: 'A backend where every customer’s data stays separate — from the first tenant to the thousandth.',
+    items: ['Tenant isolation strategy (shared schema, schema or DB per tenant)', 'PostgreSQL data model with tenant_id everywhere', 'Tenant hierarchies & onboarding'],
   },
   {
-    icon: HiOutlineDesktopComputer,
-    title: 'Applications full-stack',
-    desc: 'Du MVP au produit mature : interfaces soignées connectées à un backend fiable.',
-    items: ['Web apps React / Next.js', 'Design system & composants', 'Tests & qualité de code'],
+    icon: HiOutlineCube,
+    title: 'REST APIs in Spring Boot or Go',
+    desc: 'Clean, versioned, documented APIs your front-end and integrations can rely on.',
+    items: ['Java 17 / Spring Boot 3 or Go (Gin, chi)', 'Documented, versioned endpoints', 'Automated tests in CI'],
+  },
+  {
+    icon: HiOutlineShieldCheck,
+    title: 'Auth, roles & security',
+    desc: 'Make sure users only ever see what their tenant and role allow.',
+    items: ['JWT auth & 2FA', 'Role-based access control (RBAC)', 'Audit trail of sensitive actions'],
   },
   {
     icon: HiOutlineCloud,
-    title: 'Infrastructure & DevOps',
-    desc: 'Cloud, conteneurs et automatisation pour déployer vite, souvent et sans stress.',
-    items: ['CI/CD & Infrastructure as Code', 'Conteneurisation Docker', 'Monitoring & alerting'],
-  },
-  {
-    icon: HiOutlineChartBar,
-    title: 'Audit & performance',
-    desc: "Diagnostic technique, optimisation et plan d'action concret pour reprendre le contrôle.",
-    items: ["Audit d'architecture & code", 'Optimisation latence / coûts', 'Dette technique & refonte'],
+    title: 'Deploy, monitor & scale',
+    desc: 'Ship the backend with confidence and know when something breaks.',
+    items: ['Docker & CI/CD (Jenkins, GitHub Actions)', 'Redis caching for hot paths', 'Prometheus & Grafana monitoring'],
   },
 ];
 
@@ -36,10 +36,10 @@ export function Services() {
     <section id="services" className="py-24 md:py-32">
       <div className="container-px">
         <Reveal className="max-w-[760px] mb-16">
-          <span className="eyebrow">Services</span>
-          <h2 className="display text-[clamp(2rem,4vw,3.1rem)] mt-4">Ce que je peux prendre en charge</h2>
+          <span className="eyebrow">What I build</span>
+          <h2 className="display text-[clamp(2rem,4vw,3.1rem)] mt-4">Backend work for SaaS teams</h2>
           <p className="text-[clamp(1.05rem,1.7vw,1.32rem)] mt-4" style={{ color: 'var(--text-2)' }}>
-            Des prestations cadrées, orientées résultat. Choisissez un chantier précis ou un accompagnement de bout en bout.
+            Pick one piece — or hand me the whole backend. I don&apos;t do “a bit of everything”: I do the server side of SaaS products, properly.
           </p>
         </Reveal>
         <Reveal className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

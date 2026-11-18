@@ -5,10 +5,11 @@ import { Reveal } from '@/components/ui/Reveal';
 import { siteConfig } from '@/config/site';
 
 const CATEGORIES = [
-  { title: 'Langages', sub: 'typés & performants', names: ['Go', 'Java 17', 'Rust', 'TypeScript', 'JavaScript', 'Python', 'C'] },
-  { title: 'Frameworks', sub: 'front & back', names: ['React 19', 'Next.js', 'Angular 17', 'Spring Boot 3', 'Flutter'] },
-  { title: 'Données', sub: 'stockage & flux', names: ['PostgreSQL', 'Redis'] },
-  { title: 'Cloud & DevOps', sub: 'déploiement & ops', names: ['Docker', 'GitHub Actions', 'Jenkins', 'Linux', 'Prometheus', 'Grafana', 'Git'] },
+  { title: 'Core backend', sub: 'what I’m hired for', names: ['Java 17', 'Spring Boot 3', 'Spring Cloud', 'Go', 'Gin', 'REST API', 'Microservices'] },
+  { title: 'SaaS concerns', sub: 'isolation & security', names: ['Multi-tenancy', 'JWT & RBAC', 'Clean Architecture'] },
+  { title: 'Data', sub: 'storage & caching', names: ['PostgreSQL', 'Redis'] },
+  { title: 'Delivery', sub: 'ship & monitor', names: ['Docker', 'Jenkins', 'GitHub Actions', 'Linux', 'Prometheus', 'Grafana'] },
+  { title: 'Front-end (when needed)', sub: 'to integrate your API', names: ['TypeScript', 'React', 'Next.js'] },
 ];
 
 export function Stack() {
@@ -18,8 +19,8 @@ export function Stack() {
     <section id="stack" className="py-20 md:py-24">
       <div className="container-px">
         <Reveal className="max-w-[760px] mb-16">
-          <span className="eyebrow">Stack technique</span>
-          <h2 className="display text-[clamp(2rem,4vw,3.1rem)] mt-4">Les outils que je maîtrise au quotidien</h2>
+          <span className="eyebrow">Tech stack</span>
+          <h2 className="display text-[clamp(2rem,4vw,3.1rem)] mt-4">Tools I use every week</h2>
         </Reveal>
         <Reveal>
           {CATEGORIES.map((cat) => (

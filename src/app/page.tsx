@@ -24,13 +24,13 @@ export default function Home() {
       <main>
         <Hero />
         <Proof />
-        <About />
-        <Expertise />
         <Services />
+        <Expertise />
         <CaseStudies />
+        <Process />
+        <About />
         <Projects />
         <Achievements />
-        <Process />
         <Stack />
         <Pricing />
         <FAQ />

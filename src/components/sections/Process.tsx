@@ -4,19 +4,19 @@ import React from 'react';
 import { Reveal } from '@/components/ui/Reveal';
 
 const STEPS = [
-  { n: '01', title: 'Découverte', text: 'Appel de cadrage pour comprendre vos objectifs, contraintes et le contexte technique existant.' },
-  { n: '02', title: 'Cadrage', text: 'Proposition détaillée : périmètre, architecture, jalons et estimation. Pas de zone d’ombre.' },
-  { n: '03', title: 'Build', text: 'Développement itératif avec points réguliers, démos et accès continu au code et à l’avancement.' },
-  { n: '04', title: 'Livraison & suivi', text: 'Mise en production, documentation, transfert de compétences et période de support incluse.' },
+  { n: '01', title: 'You tell me what you’re building', text: 'A short message or a 30-minute call. Within 24 hours I tell you honestly whether I’m the right fit.' },
+  { n: '02', title: 'Tight scope', text: 'A written plan: tenant model, endpoints, milestones and a fixed or hourly estimate. No surprises later.' },
+  { n: '03', title: 'Build in the open', text: 'Repository access from day one, short async updates, and a demo at every milestone.' },
+  { n: '04', title: 'Handover', text: 'Deployed, documented and tested — so your team (or the next developer) can take it from there.' },
 ];
 
 export function Process() {
   return (
-    <section id="processus" className="py-20 md:py-24">
+    <section id="process" className="py-20 md:py-24">
       <div className="container-px">
         <Reveal className="max-w-[760px] mb-16">
-          <span className="eyebrow">Processus de collaboration</span>
-          <h2 className="display text-[clamp(2rem,4vw,3.1rem)] mt-4">Une méthode claire, du premier échange à la prod</h2>
+          <span className="eyebrow">Working with me</span>
+          <h2 className="display text-[clamp(2rem,4vw,3.1rem)] mt-4">Async-first, documented, no surprises</h2>
         </Reveal>
         <Reveal className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-5">
           {STEPS.map((s) => (

@@ -8,10 +8,10 @@ import { HiSun, HiMoon, HiMenu, HiX } from 'react-icons/hi';
 
 const LINKS = [
   { href: '#services', label: 'Services' },
-  { href: '#cas', label: 'Études de cas' },
-  { href: '#projets', label: 'Projets' },
-  { href: '#stack', label: 'Stack' },
-  { href: '#tarifs', label: 'Tarifs' },
+  { href: '#cases', label: 'Case studies' },
+  { href: '#process', label: 'Process' },
+  { href: '#about', label: 'About' },
+  { href: '#pricing', label: 'Pricing' },
   { href: '#faq', label: 'FAQ' },
 ];
 
@@ -44,14 +44,14 @@ export function Nav() {
         }`}
       >
         <div className="container-px flex items-center justify-between h-[72px]">
-          <a href="#top" aria-label="Accueil" className="flex items-center gap-2.5 font-display font-semibold text-[1.05rem] tracking-tight">
+          <a href="#top" aria-label="Home" className="flex items-center gap-2.5 font-display font-semibold text-[1.05rem] tracking-tight">
             <div className="relative w-[30px] h-[30px] rounded-lg overflow-hidden border" style={{ borderColor: 'var(--line-2)' }}>
-              <Image src="/avatar-original.jpeg" alt="Logo" fill className="object-cover" sizes="30px" />
+              <Image src="/avatar-original.jpeg" alt="Cheikh Diouf" fill className="object-cover" sizes="30px" />
             </div>
             <span>mounirou<span style={{ color: 'var(--accent)' }}>.</span>dev</span>
           </a>
 
-          <nav aria-label="Navigation principale" className="hidden md:flex items-center gap-6 lg:gap-8">
+          <nav aria-label="Main navigation" className="hidden md:flex items-center gap-6 lg:gap-8">
             {LINKS.map((l) => (
               <a key={l.href} href={l.href} className="text-[.95rem] transition-colors hover:text-[var(--text)]" style={{ color: 'var(--text-2)' }}>
                 {l.label}
@@ -62,18 +62,18 @@ export function Nav() {
           <div className="flex items-center gap-3 md:gap-4">
             <button
               onClick={toggleTheme}
-              aria-label="Basculer clair / sombre"
-              title="Basculer clair / sombre"
+              aria-label="Toggle light / dark"
+              title="Toggle light / dark"
               className="w-[42px] h-[42px] rounded-[11px] border grid place-items-center transition-colors hover:text-[var(--accent)]"
               style={{ borderColor: 'var(--line-2)', color: 'var(--text)' }}
             >
               {theme === 'light' ? <HiMoon className="w-[19px] h-[19px]" /> : <HiSun className="w-[19px] h-[19px]" />}
             </button>
-            <a href="#contact" className="btn btn-ghost hidden lg:inline-flex">Me contacter</a>
-            <a href="#contact" className="btn btn-primary hidden lg:inline-flex">Réserver un appel <span className="arrow">→</span></a>
+            <a href="#contact" className="btn btn-ghost hidden lg:inline-flex">Contact</a>
+            <a href="#contact" className="btn btn-primary hidden lg:inline-flex">Hire me <span className="arrow">→</span></a>
             <button
               onClick={() => setOpen((v) => !v)}
-              aria-label="Ouvrir le menu"
+              aria-label="Open menu"
               className="md:hidden w-[42px] h-[42px] rounded-[10px] border grid place-items-center"
               style={{ borderColor: 'var(--line-2)', color: 'var(--text)' }}
             >
@@ -94,7 +94,7 @@ export function Nav() {
           </a>
         ))}
         <div className="font-mono text-[.8rem] mt-6" style={{ color: 'var(--text-3)' }}>
-          {siteConfig.links.email} · Disponible Q3 2026
+          {siteConfig.links.email} · Available for new projects
         </div>
       </div>
     </>

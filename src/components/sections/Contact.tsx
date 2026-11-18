@@ -9,17 +9,17 @@ import { HiMail, HiArrowRight } from 'react-icons/hi';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const PROJECT_TYPES = [
-  'Architecture & API backend',
-  'Application full-stack',
-  'Infrastructure & DevOps',
-  'Audit & optimisation',
-  'Autre / je ne sais pas encore',
+  'New multi-tenant SaaS backend',
+  'REST API (Spring Boot or Go)',
+  'Auth, roles & security',
+  'Review / fix an existing backend',
+  'Something else / not sure yet',
 ];
 
 const LINKS = [
   { icon: HiMail, k: 'Email', v: siteConfig.links.email, href: `mailto:${siteConfig.links.email}` },
   { icon: FaGithub, k: 'GitHub', v: 'github.com/Cheikh-Nakamoto', href: siteConfig.links.github },
-  { icon: FaLinkedin, k: 'LinkedIn', v: 'Réseau professionnel', href: siteConfig.links.linkedin },
+  { icon: FaLinkedin, k: 'LinkedIn', v: 'Professional profile', href: siteConfig.links.linkedin },
 ];
 
 export function Contact() {
@@ -48,7 +48,7 @@ export function Contact() {
         email: formData.email,
         message: formData.message,
         project_type: projectType,
-        time: new Date().toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' }),
+        time: new Date().toLocaleString('en-GB', { dateStyle: 'short', timeStyle: 'short' }),
         from_name: formData.name,
         from_email: formData.email,
         to_name: siteConfig.name,
@@ -76,9 +76,9 @@ export function Contact() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
           <Reveal>
             <span className="eyebrow">Contact</span>
-            <h2 className="display text-[clamp(2rem,4vw,3.1rem)] my-4">Parlons de votre projet</h2>
+            <h2 className="display text-[clamp(2rem,4vw,3.1rem)] my-4">Tell me what you’re building</h2>
             <p className="mb-8" style={{ color: 'var(--text-2)' }}>
-              Remplissez le formulaire ou contactez-moi directement via l&apos;un des canaux ci-dessous. Réponse garantie sous 24h ouvrées.
+              A few lines are enough: what the product does, who your customers are, and where the backend is today. I reply within 24 hours (GMT) and tell you honestly if I’m the right fit.
             </p>
             <div className="flex flex-col gap-3">
               {LINKS.map(({ icon: Icon, k, v, href }) => (
@@ -107,33 +107,33 @@ export function Contact() {
             <form onSubmit={handleSubmit} className="card p-9">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-2 mb-5">
-                  <label htmlFor="f-name" className="font-mono text-[.76rem] tracking-[.08em] uppercase" style={{ color: 'var(--text-3)' }}>Nom</label>
-                  <input id="f-name" name="name" type="text" required value={formData.name} onChange={handleChange} placeholder="Votre nom" className={inputClass} style={inputStyle} />
+                  <label htmlFor="f-name" className="font-mono text-[.76rem] tracking-[.08em] uppercase" style={{ color: 'var(--text-3)' }}>Name</label>
+                  <input id="f-name" name="name" type="text" required value={formData.name} onChange={handleChange} placeholder="Your name" className={inputClass} style={inputStyle} />
                 </div>
                 <div className="flex flex-col gap-2 mb-5">
                   <label htmlFor="f-email" className="font-mono text-[.76rem] tracking-[.08em] uppercase" style={{ color: 'var(--text-3)' }}>Email</label>
-                  <input id="f-email" name="email" type="email" required value={formData.email} onChange={handleChange} placeholder="vous@entreprise.com" className={inputClass} style={inputStyle} />
+                  <input id="f-email" name="email" type="email" required value={formData.email} onChange={handleChange} placeholder="you@company.com" className={inputClass} style={inputStyle} />
                 </div>
               </div>
               <div className="flex flex-col gap-2 mb-5">
-                <label htmlFor="f-type" className="font-mono text-[.76rem] tracking-[.08em] uppercase" style={{ color: 'var(--text-3)' }}>Type de projet</label>
+                <label htmlFor="f-type" className="font-mono text-[.76rem] tracking-[.08em] uppercase" style={{ color: 'var(--text-3)' }}>Project type</label>
                 <select id="f-type" value={projectType} onChange={(e) => setProjectType(e.target.value)} className={inputClass} style={inputStyle}>
                   {PROJECT_TYPES.map((t) => <option key={t}>{t}</option>)}
                 </select>
               </div>
               <div className="flex flex-col gap-2 mb-6">
-                <label htmlFor="f-msg" className="font-mono text-[.76rem] tracking-[.08em] uppercase" style={{ color: 'var(--text-3)' }}>Votre projet</label>
-                <textarea id="f-msg" name="message" required rows={5} value={formData.message} onChange={handleChange} placeholder="Décrivez votre besoin, votre échéance et votre contexte…" className={`${inputClass} resize-y min-h-[120px]`} style={inputStyle} />
+                <label htmlFor="f-msg" className="font-mono text-[.76rem] tracking-[.08em] uppercase" style={{ color: 'var(--text-3)' }}>Your project</label>
+                <textarea id="f-msg" name="message" required rows={5} value={formData.message} onChange={handleChange} placeholder="What are you building? How many customers / tenants? Timeline?" className={`${inputClass} resize-y min-h-[120px]`} style={inputStyle} />
               </div>
               <button type="submit" disabled={status === 'loading'} className="btn btn-primary btn-block disabled:opacity-50">
-                {status === 'loading' ? 'Envoi en cours…' : <>Envoyer le message <span className="arrow">→</span></>}
+                {status === 'loading' ? 'Sending…' : <>Send message <span className="arrow">→</span></>}
               </button>
               <p className="font-mono text-center text-[.78rem] mt-3.5" style={{ color: status === 'error' ? 'var(--accent)' : status === 'success' ? 'var(--accent)' : 'var(--text-3)' }}>
                 {status === 'success'
-                  ? 'Merci ! Je vous réponds sous 24h ouvrées.'
+                  ? 'Thanks! I’ll reply within 24 hours.'
                   : status === 'error'
-                    ? 'Configuration email manquante — contactez-moi directement par email.'
-                    : 'Réponse sous 24h ouvrées · vos données restent confidentielles'}
+                    ? 'Email is not configured — please write to me directly.'
+                    : 'Reply within 24h · your details stay confidential'}
               </p>
             </form>
           </Reveal>

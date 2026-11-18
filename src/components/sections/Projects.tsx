@@ -10,11 +10,11 @@ export function Projects() {
   const projects = siteConfig.featuredProjects.slice(0, 6);
 
   return (
-    <section id="projets" className="py-20 md:py-24">
+    <section id="projects" className="py-20 md:py-24">
       <div className="container-px">
         <Reveal className="max-w-[760px] mb-16">
-          <span className="eyebrow">Projets phares</span>
-          <h2 className="display text-[clamp(2rem,4vw,3.1rem)] mt-4">Une sélection de réalisations</h2>
+          <span className="eyebrow">More backend work</span>
+          <h2 className="display text-[clamp(2rem,4vw,3.1rem)] mt-4">Selected projects, labelled honestly</h2>
         </Reveal>
         <Reveal className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((p) => (
@@ -27,10 +27,13 @@ export function Projects() {
             >
               {p.image ? (
                 <div className="relative aspect-[16/10] mb-0.5 rounded-lg overflow-hidden">
-                  <Image src={p.image} alt={`Aperçu ${p.name}`} fill className="object-cover" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+                  <Image src={p.image} alt={`Screenshot of ${p.name}`} fill className="object-cover" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
                 </div>
               ) : (
-                <div className="ph aspect-[16/10] mb-0.5"><span className="ph__label">aperçu projet</span></div>
+                <div className="ph aspect-[16/10] mb-0.5"><span className="ph__label">project preview</span></div>
+              )}
+              {p.label && (
+                <span className="font-mono text-[.72rem] uppercase tracking-[.08em]" style={{ color: 'var(--accent)' }}>{p.label}</span>
               )}
               <div className="flex items-center justify-between gap-4">
                 <h3 className="font-display font-semibold text-[1.18rem]">{p.name}</h3>
@@ -50,7 +53,7 @@ export function Projects() {
         </Reveal>
         <Reveal className="text-center mt-12">
           <a href={siteConfig.links.github} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
-            Tout voir sur GitHub <span className="arrow">→</span>
+            See everything on GitHub <span className="arrow">→</span>
           </a>
         </Reveal>
       </div>

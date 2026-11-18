@@ -6,33 +6,36 @@ import { Reveal } from '@/components/ui/Reveal';
 const ITEMS = [
   {
     no: '01',
-    title: 'Backend & architecture',
-    desc: "Conception d'API et de systèmes distribués pensés pour durer : modélisation de données, découpage en services, performance et observabilité.",
-    tags: ['Go', 'Java 17 / Spring Boot', 'Rust', 'PostgreSQL', 'Redis'],
+    title: 'Isolation by design',
+    desc: 'The tenant is resolved once per request — from the JWT, never from a URL parameter the user can change — and every query is scoped to it. One customer can’t read another’s data, even by accident.',
+    tags: ['Tenant middleware', 'tenant_id on every table', 'Scoped repositories'],
   },
   {
     no: '02',
-    title: 'Full stack produit',
-    desc: 'Des interfaces réactives connectées à un backend solide. Je livre des produits complets, accessibles et testés, du design system au déploiement.',
-    tags: ['React 19 / Next.js', 'TypeScript', 'Angular 17', 'Flutter', 'Tests E2E'],
+    title: 'Roles inside each tenant',
+    desc: 'Real SaaS customers have admins, managers and members. I model roles and hierarchies explicitly so permissions stay correct as organisations grow.',
+    tags: ['RBAC', 'Hierarchical tenants', 'JWT & 2FA', 'Audit trail'],
   },
   {
     no: '03',
-    title: 'DevOps & cloud',
-    desc: "Infrastructure as code, pipelines CI/CD et conteneurisation. J'automatise les déploiements et je mets en place le monitoring pour des releases sereines.",
-    tags: ['Docker', 'GitHub Actions / Jenkins', 'Linux', 'Prometheus', 'Grafana'],
+    title: 'Fast as you grow',
+    desc: 'Indexes that include the tenant, Redis for hot reads, and automated tests in CI so new features don’t break existing customers.',
+    tags: ['PostgreSQL', 'Redis', 'Automated tests', 'Docker & CI/CD'],
   },
 ];
 
 export function Expertise() {
   return (
-    <section id="expertise" className="py-20 md:py-24">
+    <section id="approach" className="py-20 md:py-24">
       <div className="container-px">
         <Reveal className="max-w-[760px] mb-16">
-          <span className="eyebrow">Expertise technique</span>
+          <span className="eyebrow">How I keep tenants isolated</span>
           <h2 className="display text-[clamp(2rem,4vw,3.1rem)] mt-4">
-            Trois domaines, une seule exigence : la fiabilité.
+            Multi-tenancy is easy to start and hard to get right.
           </h2>
+          <p className="text-[clamp(1.05rem,1.7vw,1.32rem)] mt-4" style={{ color: 'var(--text-2)' }}>
+            Most data leaks in SaaS come from one forgotten filter. Here is how I make that mistake impossible.
+          </p>
         </Reveal>
         <Reveal>
           {ITEMS.map((item, i) => (

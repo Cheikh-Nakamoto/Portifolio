@@ -12,15 +12,15 @@ export function CTA() {
           className="rounded-[26px] py-20 px-8 md:px-16 text-center"
           style={{ background: 'var(--bg-inv)', color: 'var(--bg)' }}
         >
-          <span className="eyebrow center" style={{ color: 'var(--accent)' }}>Disponible Q3 2026</span>
+          <span className="eyebrow center" style={{ color: 'var(--accent)' }}>Available for new projects</span>
           <h2 className="display text-[clamp(2rem,4vw,3.1rem)] mt-4 mb-5" style={{ color: 'var(--bg)' }}>
-            Un projet en tête ?<br />Construisons-le ensemble.
+            Building a SaaS?<br />Let’s get the backend right.
           </h2>
           <p className="text-[clamp(1.05rem,1.7vw,1.32rem)] mx-auto mb-10 max-w-[560px]" style={{ color: 'color-mix(in srgb, var(--bg) 60%, var(--bg-inv))' }}>
-            Décrivez-moi votre besoin en quelques lignes. Je vous réponds sous 24h avec une première lecture honnête de la faisabilité.
+            Message me with what you’re building, and I’ll tell you within 24 hours if I’m the right fit.
           </p>
           <div className="flex flex-wrap gap-4 items-center justify-center">
-            <a href="#contact" className="btn btn-primary">Démarrer la conversation <span className="arrow">→</span></a>
+            <a href="#contact" className="btn btn-primary">Hire me <span className="arrow">→</span></a>
             <a
               href={siteConfig.links.linkedin}
               target="_blank"
@@ -28,7 +28,7 @@ export function CTA() {
               className="btn"
               style={{ borderColor: 'color-mix(in srgb, var(--bg) 30%, transparent)', color: 'var(--bg)', background: 'transparent' }}
             >
-              Me contacter sur LinkedIn
+              Connect on LinkedIn
             </a>
           </div>
         </Reveal>

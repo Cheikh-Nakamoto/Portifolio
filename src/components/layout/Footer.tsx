@@ -5,25 +5,25 @@ import { siteConfig } from '@/config/site';
 
 const NAV_COLS = [
   {
-    title: 'Naviguer',
+    title: 'Navigate',
     links: [
       { href: '#services', label: 'Services' },
-      { href: '#cas', label: 'Études de cas' },
-      { href: '#projets', label: 'Projets' },
+      { href: '#cases', label: 'Case studies' },
+      { href: '#projects', label: 'Projects' },
       { href: '#stack', label: 'Stack' },
     ],
   },
   {
-    title: 'Infos',
+    title: 'Info',
     links: [
-      { href: '#tarifs', label: 'Tarifs' },
+      { href: '#pricing', label: 'Pricing' },
       { href: '#faq', label: 'FAQ' },
-      { href: '#processus', label: 'Processus' },
+      { href: '#process', label: 'Process' },
       { href: '#contact', label: 'Contact' },
     ],
   },
   {
-    title: 'Réseaux',
+    title: 'Elsewhere',
     links: [
       { href: siteConfig.links.github, label: 'GitHub', external: true },
       { href: siteConfig.links.linkedin, label: 'LinkedIn', external: true },
@@ -45,7 +45,7 @@ export function Footer() {
               <span>mounirou<span style={{ color: 'var(--accent)' }}>.</span>dev</span>
             </a>
             <p className="text-[.93rem] mt-4" style={{ color: 'var(--text-2)' }}>
-              Ingénieur Full Stack · Backend · DevOps freelance. Des produits fiables, du code propre, des déploiements sereins.
+              Java &amp; Go backend developer for multi-tenant SaaS. Isolated data, secure APIs, calm deployments.
             </p>
           </div>
           <div className="flex flex-wrap gap-12">
@@ -69,8 +69,8 @@ export function Footer() {
           </div>
         </div>
         <div className="flex flex-wrap justify-between items-center gap-5 pt-8 border-t" style={{ borderColor: 'var(--line)' }}>
-          <p className="font-mono text-[.86rem]" style={{ color: 'var(--text-3)' }}>© {new Date().getFullYear()} {siteConfig.name} — Tous droits réservés</p>
-          <p className="font-mono text-[.86rem]" style={{ color: 'var(--text-3)' }}>Disponible Q3 2026 · Dakar &amp; remote</p>
+          <p className="font-mono text-[.86rem]" style={{ color: 'var(--text-3)' }}>© {new Date().getFullYear()} {siteConfig.name} — All rights reserved</p>
+          <p className="font-mono text-[.86rem]" style={{ color: 'var(--text-3)' }}>Dakar, Senegal · GMT · remote</p>
         </div>
       </div>
     </footer>

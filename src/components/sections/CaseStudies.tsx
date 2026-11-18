@@ -3,55 +3,74 @@
 import React from 'react';
 import { Reveal } from '@/components/ui/Reveal';
 
+// Each case is told as Situation → Complication → Action → Result.
 const CASES = [
   {
-    sector: 'ÉNERGIE SOLAIRE',
-    meta: 'projet client · Clean Architecture',
-    title: 'Une plateforme solaire intelligente avec IA et pré-dimensionnement',
-    desc: "Développement de 380 Solutions, une plateforme web pour une société solaire sénégalaise — FAQ bilingue (FR/Wolof), pré-dimensionnement automatique (panneaux, batteries, onduleur), génération de devis PDF et chatbot IA BYOK (DeepSeek/Qwen/OpenRouter).",
-    metrics: [
-      { n: 'BYOK', l: 'IA multi-provider' },
-      { n: '2', l: 'langues (FR · Wolof)' },
-      { n: 'CI/CD', l: 'GitHub Actions + Jenkins' },
+    sector: 'MULTI-TENANT SAAS',
+    label: 'Personal project · not in production yet',
+    title: 'Kay-Point — one platform, many isolated organisations',
+    star: [
+      { k: 'Situation', v: 'Teacher attendance in Senegalese schools is still tracked on paper, across a national hierarchy: ministry → regional inspectorates → schools.' },
+      { k: 'Complication', v: 'Each inspectorate must see only its own schools and teachers, while the ministry needs a national view — classic multi-tenant isolation with a hierarchy on top.' },
+      { k: 'Action', v: 'Designed a Go (Gin) API where a middleware builds a tenant scope from JWT claims on every request; 8 RBAC roles, 2FA, audit trail, geolocation check-in, PostgreSQL + Redis.' },
+      { k: 'Result', v: 'A working multi-tenant backend with web (React) and mobile (Flutter) clients — the architecture I now reuse for SaaS backends.' },
     ],
-    tags: ['Go', 'Gin', 'Next.js 14', 'PostgreSQL', 'Docker', 'Jenkins'],
-    media: '/380.png',
+    metrics: [
+      { n: '3', l: 'tenant hierarchy levels' },
+      { n: '8', l: 'RBAC roles' },
+      { n: '23k+', l: 'lines of Go' },
+    ],
+    tags: ['Go', 'Gin', 'PostgreSQL', 'Redis', 'JWT', 'RBAC'],
+    media: '/Kay-pointé.png',
   },
   {
-    sector: 'LOGISTIQUE',
-    meta: 'projet personnel · en production',
-    title: 'Une plateforme logistique multi-devises avec 233 tests',
-    desc: 'Conception et développement de TradeFlowSN, une plateforme de suivi de conteneurs — gestion multi-devises (EUR / USD / XOF), couverture de tests complète et déploiements automatisés via Jenkins.',
-    metrics: [
-      { n: '233', l: 'tests automatisés' },
-      { n: '3', l: 'devises gérées' },
-      { n: 'CI/CD', l: 'pipeline Jenkins' },
+    sector: 'LOGISTICS',
+    label: 'Live product · tradeflowsn.com',
+    title: 'TradeFlowSN — a tested backend for container tracking',
+    star: [
+      { k: 'Situation', v: 'Importers need to follow each container and its costs from purchase to delivery, in one place.' },
+      { k: 'Complication', v: 'Prices come in EUR, USD and XOF, and a wrong conversion means a wrong invoice.' },
+      { k: 'Action', v: 'Built a Go API on PostgreSQL and Redis with multi-currency pricing, covered it with automated tests and deployed it through a Jenkins pipeline.' },
+      { k: 'Result', v: 'In production, with 233 automated tests running on every change.' },
     ],
-    tags: ['Go', 'React', 'PostgreSQL', 'Redis', 'Jenkins'],
+    metrics: [
+      { n: '233', l: 'automated tests' },
+      { n: '3', l: 'currencies handled' },
+      { n: 'Live', l: 'in production' },
+    ],
+    tags: ['Go', 'PostgreSQL', 'Redis', 'Jenkins', 'React'],
     media: '/tradeflowsn.png',
   },
   {
-    sector: 'E-COMMERCE',
-    meta: 'bénévolat · monorepo fullstack',
-    title: 'Une plateforme e-commerce pour artistes graphistes',
-    desc: "Développement bénévole de RBS Crew SN — monorepo avec API Go (chi, pgx, sqlc), Next.js 16 (App Router, React 19), paiements multi-provider (Stripe, Wave, Orange Money), stockage média Cloudflare R2 et migration depuis WordPress.",
-    metrics: [
-      { n: '4', l: 'providers de paiement' },
-      { n: 'R2', l: 'stockage média cloud' },
-      { n: 'RBAC', l: 'admin multi-rôles' },
+    sector: 'JAVA MICROSERVICES',
+    label: 'Personal project',
+    title: 'Neo4Flix — Spring Boot microservices behind one gateway',
+    star: [
+      { k: 'Situation', v: 'A movie platform that recommends films from what users and similar users have rated.' },
+      { k: 'Complication', v: 'Users, catalogue, ratings and recommendations scale differently and need to deploy independently.' },
+      { k: 'Action', v: 'Split the system into 7 Spring Boot services with Eureka discovery and a Spring Cloud API gateway, using Neo4j for graph-based recommendations.' },
+      { k: 'Result', v: 'Each service can be deployed and scaled on its own, behind a single entry point for the Angular front-end.' },
     ],
-    tags: ['Go', 'chi', 'Next.js 16', 'PostgreSQL', 'Redis', 'Stripe'],
-    media: '/rbs-crew.png',
+    metrics: [
+      { n: '7', l: 'Spring Boot services' },
+      { n: '1', l: 'API gateway' },
+      { n: 'Graph', l: 'recommendations (Neo4j)' },
+    ],
+    tags: ['Java 17', 'Spring Boot', 'Spring Cloud', 'Eureka', 'Neo4j'],
+    media: '/neo4flix.png',
   },
 ];
 
 export function CaseStudies() {
   return (
-    <section id="cas" className="py-24 md:py-32">
+    <section id="cases" className="py-24 md:py-32">
       <div className="container-px">
         <Reveal className="max-w-[760px] mb-16">
-          <span className="eyebrow">Études de cas</span>
-          <h2 className="display text-[clamp(2rem,4vw,3.1rem)] mt-4">Des problèmes concrets, des résultats mesurables</h2>
+          <span className="eyebrow">Case studies</span>
+          <h2 className="display text-[clamp(2rem,4vw,3.1rem)] mt-4">Have I done this before? Yes — here’s how.</h2>
+          <p className="text-[clamp(1.05rem,1.7vw,1.32rem)] mt-4" style={{ color: 'var(--text-2)' }}>
+            Every project is labelled honestly: client work, live product or personal project.
+          </p>
         </Reveal>
 
         {CASES.map((c, i) => (
@@ -61,14 +80,21 @@ export function CaseStudies() {
               style={{ borderColor: 'var(--line)' }}
             >
               <div className={i % 2 === 1 ? 'md:order-2' : ''}>
-                <div className="ph aspect-[4/3]"><span className="ph__label"><img className="w-full h-full aspect-video object-contain" src={c.media} alt="" /></span></div>
+                <div className="ph aspect-[4/3]"><span className="ph__label"><img className="w-full h-full aspect-video object-contain" src={c.media} alt={c.title} /></span></div>
               </div>
               <div>
-                <div className="flex gap-4 items-center mb-4 font-mono text-[.78rem]" style={{ color: 'var(--text-3)' }}>
-                  <span style={{ color: 'var(--accent)' }}>{c.sector}</span> · {c.meta}
+                <div className="flex flex-wrap gap-x-4 gap-y-1 items-center mb-4 font-mono text-[.78rem]" style={{ color: 'var(--text-3)' }}>
+                  <span style={{ color: 'var(--accent)' }}>{c.sector}</span> · {c.label}
                 </div>
-                <h3 className="font-display font-semibold text-[1.7rem] tracking-tight mb-4">{c.title}</h3>
-                <p style={{ color: 'var(--text-2)' }}>{c.desc}</p>
+                <h3 className="font-display font-semibold text-[1.6rem] tracking-tight mb-5">{c.title}</h3>
+                <dl className="flex flex-col gap-3">
+                  {c.star.map((row) => (
+                    <div key={row.k} className="grid grid-cols-[110px_1fr] gap-3">
+                      <dt className="font-mono text-[.74rem] uppercase tracking-[.08em] pt-1" style={{ color: 'var(--text-3)' }}>{row.k}</dt>
+                      <dd className="text-[.96rem]" style={{ color: row.k === 'Result' ? 'var(--text)' : 'var(--text-2)' }}>{row.v}</dd>
+                    </div>
+                  ))}
+                </dl>
                 <div className="flex flex-wrap gap-7 my-6">
                   {c.metrics.map((m) => (
                     <div key={m.l}>

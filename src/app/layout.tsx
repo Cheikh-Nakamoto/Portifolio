@@ -26,24 +26,23 @@ export const metadata: Metadata = {
   title: siteConfig.title,
   description: siteConfig.description,
   keywords: [
-    'portfolio',
-    'développeur',
-    'full stack',
-    'Go',
-    'TypeScript',
-    'Rust',
-    'Java',
-    'React',
-    'Next.js',
-    'Angular',
-    'Sénégal',
+    'Java backend developer',
+    'Go backend developer',
+    'Spring Boot developer',
+    'multi-tenant SaaS',
+    'SaaS backend',
+    'REST API developer',
+    'PostgreSQL',
+    'freelance backend developer',
+    'Upwork',
     'Dakar',
+    'Senegal',
   ],
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
   openGraph: {
     type: 'website',
-    locale: 'fr_FR',
+    locale: 'en_US',
     url: siteConfig.links.github,
     title: siteConfig.title,
     description: siteConfig.description,
@@ -63,7 +62,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" suppressHydrationWarning className={`${display.variable} ${body.variable} ${mono.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <body className="font-sans">
         <ThemeProvider>{children}</ThemeProvider>
       </body>
