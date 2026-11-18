@@ -37,6 +37,7 @@ export function Nav() {
   return (
     <>
       <header
+        id="siteNav"
         className={`fixed top-0 left-0 right-0 z-[100] border-b transition-colors duration-300 ${
           scrolled
             ? 'backdrop-blur-xl backdrop-saturate-150 border-[var(--line)] bg-[color-mix(in_srgb,var(--bg)_78%,transparent)]'

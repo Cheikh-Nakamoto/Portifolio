@@ -51,7 +51,7 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 84px;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   body {
@@ -61,7 +61,7 @@
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    overflow-x: hidden;
+    overflow-x: clip;
     cursor: default;
   }
 
@@ -233,3 +233,17 @@
 
 /* ---------- FAQ accordion ---------- */
 .faq-a { max-height: 0; overflow: hidden; transition: max-height .35s var(--ease); }
+
+/* ---------- Pinned parallax intro (hero) ----------
+   Default: normal hero, no mask. The pinned zoom-reveal only runs on
+   tall-enough desktop screens with motion allowed (same query as Hero.tsx). */
+.intro-sticky { padding: 148px 0 96px; }
+.intro-mask, .intro-hint { display: none; }
+@media (min-width: 1024px) and (min-height: 700px) and (prefers-reduced-motion: no-preference) {
+  .intro-pin { height: 200vh; }
+  .intro-sticky {
+    position: sticky; top: 0; height: 100vh; overflow: hidden;
+    display: flex; align-items: center; padding: 72px 0 0;
+  }
+  .intro-mask, .intro-hint { display: block; }
+}
