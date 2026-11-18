@@ -8,8 +8,8 @@ const PLANS = [
   {
     name: 'Hourly',
     desc: 'For a focused task: an endpoint, a bug, a review of your tenant model.',
-    amt: 'Hourly',
-    per: 'via Upwork or direct',
+    amt: '$18',
+    per: '/ hour · via Upwork',
     feats: ['Start within a week', 'Good for audits & small fixes', 'Weekly time report', 'No minimum commitment'],
     cta: 'ghost',
   },
@@ -24,10 +24,10 @@ const PLANS = [
   },
   {
     name: 'Ongoing backend partner',
-    desc: 'Long-term work on your SaaS backend as part of your team.',
-    amt: 'Monthly',
-    per: 'retainer',
-    feats: ['Reserved weekly hours', 'Joins your standups (GMT)', 'Priority on incidents', 'Long-term contracts welcome'],
+    desc: 'A dedicated backend developer on your team, at a junior-level monthly rate.',
+    amt: '$750',
+    per: '/ month · full-time',
+    feats: ['40 hours a week', 'Joins your standups (GMT)', 'Priority on incidents', 'Long-term contracts welcome'],
     cta: 'ghost',
   },
 ];

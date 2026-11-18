@@ -7,6 +7,7 @@ import { siteConfig } from '@/config/site';
 import { Reveal } from '@/components/ui/Reveal';
 import { HiMail, HiArrowRight } from 'react-icons/hi';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { SiUpwork } from 'react-icons/si';
 
 const PROJECT_TYPES = [
   'New multi-tenant SaaS backend',
@@ -17,6 +18,7 @@ const PROJECT_TYPES = [
 ];
 
 const LINKS = [
+  { icon: SiUpwork, k: 'Upwork', v: 'Hire me on Upwork', href: siteConfig.links.upwork },
   { icon: HiMail, k: 'Email', v: siteConfig.links.email, href: `mailto:${siteConfig.links.email}` },
   { icon: FaGithub, k: 'GitHub', v: 'github.com/Cheikh-Nakamoto', href: siteConfig.links.github },
   { icon: FaLinkedin, k: 'LinkedIn', v: 'Professional profile', href: siteConfig.links.linkedin },

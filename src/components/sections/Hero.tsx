@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Reveal } from '@/components/ui/Reveal';
+import { siteConfig } from '@/config/site';
 
 const STATS = [
   { num: '3+ yrs', lbl: 'building backends & APIs' },
@@ -38,6 +39,7 @@ export function Hero() {
             <div className="flex flex-wrap gap-4 items-center">
               <a href="#contact" className="btn btn-primary">Hire me <span className="arrow">→</span></a>
               <a href="#cases" className="btn btn-ghost">See case studies</a>
+              <a href={siteConfig.links.upwork} target="_blank" rel="noopener noreferrer" className="text-[.95rem] underline underline-offset-4" style={{ color: 'var(--text-2)' }}>View my Upwork profile ↗</a>
             </div>
             <div className="flex flex-wrap gap-x-10 gap-y-6 mt-12">
               {STATS.map((st) => (

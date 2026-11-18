@@ -22,13 +22,13 @@ export function CTA() {
           <div className="flex flex-wrap gap-4 items-center justify-center">
             <a href="#contact" className="btn btn-primary">Hire me <span className="arrow">→</span></a>
             <a
-              href={siteConfig.links.linkedin}
+              href={siteConfig.links.upwork}
               target="_blank"
               rel="noopener noreferrer"
               className="btn"
               style={{ borderColor: 'color-mix(in srgb, var(--bg) 30%, transparent)', color: 'var(--bg)', background: 'transparent' }}
             >
-              Connect on LinkedIn
+              Hire me on Upwork
             </a>
           </div>
         </Reveal>

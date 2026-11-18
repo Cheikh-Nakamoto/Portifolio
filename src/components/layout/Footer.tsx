@@ -26,6 +26,7 @@ const NAV_COLS = [
     title: 'Elsewhere',
     links: [
       { href: siteConfig.links.github, label: 'GitHub', external: true },
+      { href: siteConfig.links.upwork, label: 'Upwork', external: true },
       { href: siteConfig.links.linkedin, label: 'LinkedIn', external: true },
       { href: `mailto:${siteConfig.links.email}`, label: 'Email' },
     ],

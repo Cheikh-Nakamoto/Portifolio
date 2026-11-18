@@ -16,6 +16,7 @@ export const siteConfig = {
 
   links: {
     github: "https://github.com/Cheikh-Nakamoto",
+    upwork: "https://www.upwork.com/freelancers/~010f1c2dfad650bdae",
     linkedin: "https://www.linkedin.com/in/cheikh-mounirou-coly-diouf-3549b6241",
     email: "feppdougou@gmail.com",
   },
