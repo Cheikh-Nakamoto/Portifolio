@@ -6,6 +6,25 @@ import { Reveal } from '@/components/ui/Reveal';
 // Each case is told as Situation → Complication → Action → Result.
 const CASES = [
   {
+    sector: 'SAAS · LIVE',
+    label: 'My own SaaS · live, in active development',
+    title: 'XewXew — a SaaS that gives every event its own website',
+    link: 'https://xewxew.click',
+    star: [
+      { k: 'Situation', v: 'Families and wedding planners in Senegal share event details through scattered WhatsApp messages. XewXew lets anyone pick a template, add their info and share a link like your-event.xewxew.click.' },
+      { k: 'Complication', v: 'One platform serves individuals, agencies with many clients, and guests — each must only see and edit their own events. Payments run on mobile money, and AI image credits must never be lost or double-charged.' },
+      { k: 'Action', v: 'Built a Go modular monolith (hexagonal, one PostgreSQL schema per module, boundaries enforced by architecture tests). Permission-based roles at platform, organisation and event level, a credit ledger with idempotent reserve/refund, signed Wave / Orange Money webhooks, an outbox + background workers, and OpenTelemetry tracing.' },
+      { k: 'Result', v: 'Live at xewxew.click with a wildcard subdomain per event — 69k lines of Go backed by 55k lines of tests, 118 migrations and 54 architecture decision records.' },
+    ],
+    metrics: [
+      { n: '12', l: 'backend modules' },
+      { n: '3', l: 'permission scopes' },
+      { n: '54', l: 'architecture decisions (ADRs)' },
+    ],
+    tags: ['Go', 'PostgreSQL 16', 'Redis', 'RBAC', 'Mobile money', 'OpenTelemetry', 'Next.js 15'],
+    media: '/xewxew.png',
+  },
+  {
     sector: 'MULTI-TENANT SAAS',
     label: 'Personal project · not in production yet',
     title: 'Kay-Point — one platform, many isolated organisations',
@@ -87,6 +106,11 @@ export function CaseStudies() {
                   <span style={{ color: 'var(--accent)' }}>{c.sector}</span> · {c.label}
                 </div>
                 <h3 className="font-display font-semibold text-[1.6rem] tracking-tight mb-5">{c.title}</h3>
+                {'link' in c && c.link && (
+                  <a href={c.link} target="_blank" rel="noopener noreferrer" className="inline-block mb-5 font-mono text-[.85rem] underline underline-offset-4" style={{ color: 'var(--accent)' }}>
+                    Visit {c.link.replace('https://', '')} ↗
+                  </a>
+                )}
                 <dl className="flex flex-col gap-3">
                   {c.star.map((row) => (
                     <div key={row.k} className="grid grid-cols-[110px_1fr] gap-3">

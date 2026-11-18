@@ -8,7 +8,7 @@ const PROOF = [
   'Hedera Certified Developer',
   '233 automated tests (TradeFlowSN)',
   '7 Spring Boot microservices (Neo4Flix)',
-  '1 live product in production',
+  '2 live products (XewXew, TradeFlowSN)',
 ];
 
 export function Proof() {

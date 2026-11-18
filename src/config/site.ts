@@ -72,6 +72,17 @@ export const siteConfig = {
   // Ordered by relevance to the niche (multi-tenant SaaS backends). Projects section shows the first 6.
   featuredProjects: [
     {
+      name: "XewXew",
+      label: "My own SaaS · live",
+      description:
+        "Event-website SaaS: each event gets its own subdomain. Go modular monolith, platform / organisation / event roles, credit ledger, mobile-money payments, background workers.",
+      stack: ["Go", "PostgreSQL", "Redis", "Next.js 15", "Cloudflare R2"],
+      url: "https://xewxew.click",
+      image: "/xewxew.png",
+      live: "https://xewxew.click",
+      highlight: true,
+    },
+    {
       name: "Kay-Point",
       label: "Personal project",
       description:
