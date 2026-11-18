@@ -23,6 +23,7 @@ const CASES = [
     ],
     tags: ['Go', 'PostgreSQL 16', 'Redis', 'RBAC', 'Mobile money', 'OpenTelemetry', 'Next.js 15'],
     media: '/xewxew.png',
+    video: { src: '/videos/xewxew-launch.mp4', poster: '/videos/xewxew-launch-poster.jpg', caption: 'XewXew launch video · 12 s' },
   },
   {
     sector: 'MULTI-TENANT SAAS',
@@ -99,7 +100,23 @@ export function CaseStudies() {
               style={{ borderColor: 'var(--line)' }}
             >
               <div className={i % 2 === 1 ? 'md:order-2' : ''}>
-                <div className="ph aspect-[4/3]"><span className="ph__label"><img className="w-full h-full aspect-video object-contain" src={c.media} alt={c.title} /></span></div>
+                {'video' in c && c.video ? (
+                  <figure className="flex flex-col items-center gap-3">
+                    <video
+                      className="w-full max-w-[320px] aspect-[9/16] rounded-[22px] border object-cover"
+                      style={{ borderColor: 'var(--line-2)', background: 'var(--bg-3)', boxShadow: 'var(--shadow)' }}
+                      src={c.video.src}
+                      poster={c.video.poster}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      aria-label={c.video.caption}
+                    />
+                    <figcaption className="font-mono text-[.76rem]" style={{ color: 'var(--text-3)' }}>▶ {c.video.caption}</figcaption>
+                  </figure>
+                ) : (
+                  <div className="ph aspect-[4/3]"><span className="ph__label"><img className="w-full h-full aspect-video object-contain" src={c.media} alt={c.title} /></span></div>
+                )}
               </div>
               <div>
                 <div className="flex flex-wrap gap-x-4 gap-y-1 items-center mb-4 font-mono text-[.78rem]" style={{ color: 'var(--text-3)' }}>
